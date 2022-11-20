@@ -9,7 +9,8 @@ extension Project {
       "CFBundleShortVersionString": "1.0",
       "CFBundleVersion": "1",
       "UIMainStoryboardFile": "",
-      "UILaunchStoryboardName": "LaunchScreen"
+      "UILaunchStoryboardName": "LaunchScreen",
+      "GCC_PREPROCESSOR_DEFINITIONS" : "FLEXLAYOUT_SWIFT_PACKAGE=1", // FlexLayout error fix
     ]
     
     let appTarget = Target(

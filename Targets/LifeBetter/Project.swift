@@ -21,10 +21,17 @@ import ProjectDescriptionHelpers
 
 // Creates our project using a helper function defined in ProjectDescriptionHelpers
 
+let lifeBetterDependencies: [TargetDependency] = [
+  .FlexLayout
+]
+
 let project = Project(
   name: "LifeBetter",
   organizationName: "com.minan",
-  packages: [],
+  packages: [.FlexLayout],
   settings: nil,
-  targets: Project.makeAppTargets(name: "LifeBetter", dependencies: [])
+  targets: Project.makeAppTargets(
+    name: "LifeBetter",
+    dependencies: lifeBetterDependencies
+  )
 )
