@@ -1,6 +1,5 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
-import MyPlugin
 
 /*
                 +-------------+
@@ -20,10 +19,28 @@ import MyPlugin
 
 // MARK: - Project
 
-// Local plugin loaded
-let localHelper = LocalHelper(name: "MyPlugin")
-
 // Creates our project using a helper function defined in ProjectDescriptionHelpers
-let project = Project.app(name: "LifeBetter",
-                          platform: .iOS,
-                          additionalTargets: ["LifeBetterKit", "LifeBetterUI"])
+
+let appTarget = Target(
+  name: "LifeBetter",
+  platform: .iOS,
+  product: .app,
+  productName: "LifeBetter",
+  bundleId: "com.minan.LifeBetter",
+  deploymentTarget: .iOS(targetVersion: "16.1", devices: [.iphone]),
+  infoPlist: .default,
+  sources: ["Sources/**"],
+  resources: ["Resources/**"],
+  scripts: [],
+  dependencies: [],
+  settings: nil,
+  environment: [:]
+)
+
+let project = Project(
+  name: "LifeBetter",
+  organizationName: "com.minan",
+  packages: [],
+  settings: nil,
+  targets: [appTarget]
+)
