@@ -38,27 +38,32 @@ extension Project {
       ])
     return [appTarget, testTarget]
   }
+  
+  public static func makeFrameworkTargets(
+    name: String,
+    dependencies: [TargetDependency]
+  ) -> [Target] {
+    let infoPlist: [String: InfoPlist.Value] = [
+      "GCC_PREPROCESSOR_DEFINITIONS" : "FLEXLAYOUT_SWIFT_PACKAGE=1" // FlexLayout error fix
+    ]
+    
+    let framework = Target(
+      name: name,
+      platform: .iOS,
+      product: .staticFramework,
+      bundleId: "com.minan.\(name)",
+      infoPlist: .extendingDefault(with: infoPlist),
+      sources: ["Sources/**"],
+      resources: ["Resources/**"],
+      dependencies: [])
+    let tests = Target(
+      name: "\(name)Tests",
+      platform: .iOS,
+      product: .unitTests,
+      bundleId: "com.minan.\(name)Tests",
+      infoPlist: .default,
+      sources: ["Tests/**"],
+      dependencies: [.target(name: name)])
+    return [framework, tests]
+  }
 }
-
-//public static func makeFrameworkTargets(
-//  name: String,
-//  platform: Platform
-//) -> [Target] {
-//  let sources = Target(name: name,
-//                       platform: platform,
-//                       product: .framework,
-//                       bundleId: "io.tuist.\(name)",
-//                       infoPlist: .default,
-//                       sources: ["Targets/\(name)/Sources/**"],
-//                       resources: [],
-//                       dependencies: [])
-//  let tests = Target(name: "\(name)Tests",
-//                     platform: platform,
-//                     product: .unitTests,
-//                     bundleId: "io.tuist.\(name)Tests",
-//                     infoPlist: .default,
-//                     sources: ["Targets/\(name)/Tests/**"],
-//                     resources: [],
-//                     dependencies: [.target(name: name)])
-//  return [sources, tests]
-//}
