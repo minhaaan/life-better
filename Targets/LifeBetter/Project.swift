@@ -37,10 +37,23 @@ let appTarget = Target(
   environment: [:]
 )
 
+let testTarget = Target(
+  name: "LifeBetterTests",
+  platform: .iOS,
+  product: .unitTests,
+  productName: "LifeBetterTests",
+  bundleId: "com.minan.LifeBetterTests",
+  deploymentTarget: .iOS(targetVersion: "16.1", devices: [.iphone]),
+  infoPlist: .default,
+  sources: ["Tests/**"],
+  dependencies: [],
+  settings: nil
+)
+
 let project = Project(
   name: "LifeBetter",
   organizationName: "com.minan",
   packages: [],
   settings: nil,
-  targets: [appTarget]
+  targets: [appTarget, testTarget]
 )
