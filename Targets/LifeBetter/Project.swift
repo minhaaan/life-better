@@ -2,24 +2,31 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 /*
-                +-------------+
-                |             |
-                |     App     | Contains LifeBetter App target and LifeBetter unit-test target
-                |             |
-         +------+-------------+-------+
-         |         depends on         |
-         |                            |
+ +-------------+
+ |             |
+ |     App     | Contains LifeBetter App target and LifeBetter unit-test target
+ |             |
+ +------+-------------+-------+
+ |         depends on         |
+ |                            |
  +----v-----+                   +-----v-----+
  |          |                   |           |
  |   Kit    |                   |     UI    |   Two independent frameworks to share code and start modularising your app
  |          |                   |           |
  +----------+                   +-----------+
-
+ 
  */
 
 // MARK: - Project
 
 // Creates our project using a helper function defined in ProjectDescriptionHelpers
+
+let infoPlist: [String: InfoPlist.Value] = [
+  "CFBundleShortVersionString": "1.0",
+  "CFBundleVersion": "1",
+  "UIMainStoryboardFile": "",
+  "UILaunchStoryboardName": "LaunchScreen"
+]
 
 let appTarget = Target(
   name: "LifeBetter",
@@ -28,7 +35,7 @@ let appTarget = Target(
   productName: "LifeBetter",
   bundleId: "com.minan.LifeBetter",
   deploymentTarget: .iOS(targetVersion: "16.1", devices: [.iphone]),
-  infoPlist: .default,
+  infoPlist: .extendingDefault(with: infoPlist),
   sources: ["Sources/**"],
   resources: ["Resources/**"],
   scripts: [],
