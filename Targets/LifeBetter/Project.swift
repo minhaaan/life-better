@@ -22,7 +22,10 @@ import ProjectDescriptionHelpers
 // Creates our project using a helper function defined in ProjectDescriptionHelpers
 
 let lifeBetterDependencies: [TargetDependency] = [
-  .FlexLayout
+  .FlexLayout,
+  .ModernRibs,
+  .SnapKit,
+  .CombineExt
 ]
 
 let project = Project(
