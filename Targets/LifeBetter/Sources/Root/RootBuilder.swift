@@ -7,13 +7,15 @@
 //
 
 import ModernRIBs
+import Subway
+import UIKit
 
 protocol RootDependency: Dependency {
   // TODO: Declare the set of dependencies required by this RIB, but cannot be
   // created by this RIB.
 }
 
-final class RootComponent: Component<RootDependency> {
+final class RootComponent: Component<RootDependency>, SubWayHomeDependency {
   let rootViewController: RootViewController
   
   init(
@@ -41,6 +43,13 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
   func build() -> LaunchRouting {
     let viewController = RootViewController()
     let interactor = RootInteractor(presenter: viewController)
-    return RootRouter(interactor: interactor, viewController: viewController)
+    
+    let component = RootComponent(dependency: AppComponent(), rootViewController: viewController)
+    
+    let subwayBuilder = SubWayHomeBuilder(dependency: component)
+    
+    return RootRouter(interactor: interactor,
+                      viewController: viewController,
+                      subwayHomeBuilder: subwayBuilder)
   }
 }

@@ -7,22 +7,38 @@
 //
 
 import ModernRIBs
+import Subway
 
-protocol RootInteractable: Interactable {
-    var router: RootRouting? { get set }
-    var listener: RootListener? { get set }
+protocol RootInteractable: Interactable, SubWayHomeListener {
+  var router: RootRouting? { get set }
+  var listener: RootListener? { get set }
 }
 
 protocol RootViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
+  // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, RootRouting {
-
-    // TODO: Constructor inject child builder protocols to allow building children.
-    override init(interactor: RootInteractable,
-                  viewController: RootViewControllable) {
-        super.init(interactor: interactor, viewController: viewController)
-        interactor.router = self
-    }
+  
+  // TODO: Constructor inject child builder protocols to allow building children.
+  init(interactor: RootInteractable,
+       viewController: RootViewControllable,
+       subwayHomeBuilder: SubWayHomeBuildable) {
+    self.subwayHomeBuilder = subwayHomeBuilder
+    super.init(interactor: interactor, viewController: viewController)
+    interactor.router = self
+  }
+  
+  // MARK: Private
+  
+  private let subwayHomeBuilder: SubWayHomeBuildable
+  
+  private var subwayHome: ViewableRouting?
+  
+  func routeToSubwayHome() {
+    let subwayHome = subwayHomeBuilder.build(withListener: interactor)
+    self.subwayHome = subwayHome
+    attachChild(subwayHome)
+    viewControllable.uiviewController.present(subwayHome.viewControllable.uiviewController, animated: true)
+  }
 }
