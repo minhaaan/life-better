@@ -8,6 +8,7 @@
 
 import ModernRIBs
 import Subway
+import UIKit
 
 protocol RootInteractable: Interactable, SubWayHomeListener {
   var router: RootRouting? { get set }
@@ -17,6 +18,8 @@ protocol RootInteractable: Interactable, SubWayHomeListener {
 protocol RootViewControllable: ViewControllable {
   // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
+
+extension UINavigationController: RootViewControllable {}
 
 final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, RootRouting {
   
@@ -39,6 +42,6 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     let subwayHome = subwayHomeBuilder.build(withListener: interactor)
     self.subwayHome = subwayHome
     attachChild(subwayHome)
-    viewControllable.uiviewController.present(subwayHome.viewControllable.uiviewController, animated: true)
+    viewController.pushViewController(subwayHome.viewControllable, animated: true)
   }
 }

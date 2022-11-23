@@ -9,6 +9,7 @@
 import ModernRIBs
 import Subway
 import UIKit
+import Utils
 
 protocol RootDependency: Dependency {
   // TODO: Declare the set of dependencies required by this RIB, but cannot be
@@ -16,13 +17,10 @@ protocol RootDependency: Dependency {
 }
 
 final class RootComponent: Component<RootDependency>, SubWayHomeDependency {
-  let rootViewController: RootViewController
   
-  init(
-    dependency: RootDependency,
-    rootViewController: RootViewController
+  override init(
+    dependency: RootDependency
   ) {
-    self.rootViewController = rootViewController
     super.init(dependency: dependency)
   }
   
@@ -43,13 +41,15 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
   func build() -> LaunchRouting {
     let viewController = RootViewController()
     let interactor = RootInteractor(presenter: viewController)
+
+    let navigationController = UINavigationController(root: viewController)
     
-    let component = RootComponent(dependency: AppComponent(), rootViewController: viewController)
+    let component = RootComponent(dependency: AppComponent())
     
     let subwayBuilder = SubWayHomeBuilder(dependency: component)
     
     return RootRouter(interactor: interactor,
-                      viewController: viewController,
+                      viewController: navigationController,
                       subwayHomeBuilder: subwayBuilder)
   }
 }
