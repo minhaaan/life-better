@@ -9,7 +9,8 @@ let lifeBetterDependencies: [TargetDependency] = [
   .CombineExt,
   .FlexLayout,
   .Then,
-  .CombineCocoa
+  .CombineCocoa,
+  .project(target: "Subway", path: "../Subway/Subway")
 ]
 
 let project = Project(
