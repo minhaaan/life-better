@@ -1,22 +1,15 @@
 import UIKit
 import ModernRIBs
 
-final class NavigationControllerable: ViewControllable {
-  
-  var uiviewController: UIViewController { self.navigationController }
-  let navigationController: UINavigationController
-  
-  public init(root: ViewControllable) {
-    let navigation = UINavigationController(rootViewController: root.uiviewController)
-    navigation.navigationBar.isTranslucent = false
-    navigation.navigationBar.backgroundColor = .white
-    navigation.navigationBar.scrollEdgeAppearance = navigation.navigationBar.standardAppearance
+extension UINavigationController: ViewControllable {
+    public var uiviewController: UIViewController { return self }
     
-    self.navigationController = navigation
-  }
+    public convenience init(root: ViewControllable) {
+        self.init(rootViewController: root.uiviewController)
+    }
 }
 
-extension ViewControllable {
+public extension ViewControllable {
   
   func present(_ viewControllable: ViewControllable, animated: Bool, completion: (() -> Void)?) {
     self.uiviewController.present(viewControllable.uiviewController, animated: true, completion: completion)
