@@ -10,7 +10,11 @@ extension Project {
       "CFBundleVersion": "1",
       "UIMainStoryboardFile": "",
       "UILaunchStoryboardName": "LaunchScreen",
+    ]
+    
+    let baseSettings: [String: SettingValue] = [
       "GCC_PREPROCESSOR_DEFINITIONS" : "FLEXLAYOUT_SWIFT_PACKAGE=1", // FlexLayout error fix
+      "OTHER_LDFAGS": "-ObjC"
     ]
     
     let appTarget = Target(
@@ -22,7 +26,8 @@ extension Project {
       infoPlist: .extendingDefault(with: infoPlist),
       sources: ["Sources/**"],
       resources: ["Resources/**"],
-      dependencies: dependencies
+      dependencies: dependencies,
+      settings: .settings(base: baseSettings, configurations: [], defaultSettings: .recommended)
     )
     
     let testTarget = Target(
@@ -35,7 +40,9 @@ extension Project {
       sources: ["Tests/**"],
       dependencies: [
         .target(name: "\(name)")
-      ])
+      ],
+      settings: .settings(base: baseSettings, configurations: [], defaultSettings: .recommended)
+    )
     return [appTarget, testTarget]
   }
   

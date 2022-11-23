@@ -2,7 +2,6 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let subwayDependencies: [TargetDependency] = [
-  .FlexLayout,
   .ModernRibs,
   .SnapKit,
   .CombineExt

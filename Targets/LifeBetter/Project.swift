@@ -4,10 +4,11 @@ import ProjectDescriptionHelpers
 // MARK: - Project
 
 let lifeBetterDependencies: [TargetDependency] = [
-  .FlexLayout,
   .ModernRibs,
   .SnapKit,
-  .CombineExt
+  .CombineExt,
+  .FlexLayout,
+  .Then
 ]
 
 let project = Project(
