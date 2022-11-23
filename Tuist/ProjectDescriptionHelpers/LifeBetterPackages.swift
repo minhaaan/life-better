@@ -9,6 +9,7 @@ public extension TargetDependency{
   static let ModernRibs: TargetDependency = .external(name: "ModernRIBs")
   static let CombineExt: TargetDependency = .external(name: "CombineExt")
   static let Then: TargetDependency = .external(name: "Then")
+  static let CombineCocoa: TargetDependency = .external(name: "CombineCocoa")
 }
 
 public extension Package {

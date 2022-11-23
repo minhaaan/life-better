@@ -8,7 +8,8 @@ let lifeBetterDependencies: [TargetDependency] = [
   .SnapKit,
   .CombineExt,
   .FlexLayout,
-  .Then
+  .Then,
+  .CombineCocoa
 ]
 
 let project = Project(
