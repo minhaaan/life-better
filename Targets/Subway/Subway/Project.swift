@@ -4,7 +4,9 @@ import ProjectDescriptionHelpers
 let subwayDependencies: [TargetDependency] = [
   .ModernRibs,
   .SnapKit,
-  .CombineExt
+  .CombineExt,
+  .project(target: "Utils", path: "../Utils"),
+  .project(target: "Utils", path: "../Platform/Utils")
 ]
 
 let project = Project(
