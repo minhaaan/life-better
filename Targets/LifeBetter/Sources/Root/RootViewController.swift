@@ -73,7 +73,9 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
       .width(UIScreen.main.bounds.width)
       .define { flex in
         flex.addItem(titleLabel)
+          .alignSelf(.center)
         flex.addItem(button)
+          .alignSelf(.center)
       }
   }
   

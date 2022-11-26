@@ -35,13 +35,18 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
   // MARK: Private
   
   private let subwayHomeBuilder: SubWayHomeBuildable
-  
-  private var subwayHome: ViewableRouting?
+  private var subwayHome: SubwayHomeRou?
   
   func routeToSubwayHome() {
     let subwayHome = subwayHomeBuilder.build(withListener: interactor)
     self.subwayHome = subwayHome
     attachChild(subwayHome)
     viewController.pushViewController(subwayHome.viewControllable, animated: true)
+  }
+  
+  func detachSubwayHome() {
+    if let subwayHome {
+      detachChild(subwayHome)
+    }
   }
 }

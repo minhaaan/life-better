@@ -13,6 +13,7 @@ protocol SubWayHomePresentableListener: AnyObject {
   // TODO: Declare properties and methods that the view controller can invoke to perform
   // business logic, such as signIn(). This protocol is implemented by the corresponding
   // interactor class.
+  func detachSubwayHome()
 }
 
 final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, SubWayHomeViewControllable {
@@ -23,5 +24,12 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
     super.viewDidLoad()
     
     view.backgroundColor = .systemPink
+  }
+  
+  override func didMove(toParent parent: UIViewController?) {
+    super.didMove(toParent: parent)
+    if parent == nil {
+      listener?.detachSubwayHome()
+    }
   }
 }
