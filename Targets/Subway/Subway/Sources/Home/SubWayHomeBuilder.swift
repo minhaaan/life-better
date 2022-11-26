@@ -34,7 +34,6 @@ public final class SubWayHomeBuilder: Builder<SubWayHomeDependency>, SubWayHomeB
   }
   
   public func build(withListener listener: SubWayHomeListener) -> SubWayHomeRouting {
-    let component = SubWayHomeComponent(dependency: dependency)
     let viewController = SubWayHomeViewController()
     let interactor = SubWayHomeInteractor(presenter: viewController)
     interactor.listener = listener
