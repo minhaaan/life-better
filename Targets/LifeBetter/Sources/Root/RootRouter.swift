@@ -35,7 +35,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
   // MARK: Private
   
   private let subwayHomeBuilder: SubWayHomeBuildable
-  private var subwayHome: SubwayHomeRou?
+  private var subwayHome: SubWayHomeRouting?
   
   func routeToSubwayHome() {
     let subwayHome = subwayHomeBuilder.build(withListener: interactor)
