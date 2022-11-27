@@ -8,12 +8,12 @@
 
 import ModernRIBs
 
-protocol SubWayHomeInteractable: Interactable {
+public protocol SubWayHomeInteractable: Interactable {
   var router: SubWayHomeRouting? { get set }
   var listener: SubWayHomeListener? { get set }
 }
 
-protocol SubWayHomeViewControllable: ViewControllable {
+public protocol SubWayHomeViewControllable: ViewControllable {
   // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 

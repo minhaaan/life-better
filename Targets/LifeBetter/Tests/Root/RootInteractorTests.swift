@@ -45,5 +45,16 @@ final class RootInteractorTests: XCTestCase {
     XCTAssert(router.routeToSubwayHomeCalled == true)
     XCTAssert(router.routeToSubwayHomeCallsCount == 1)
   }
+  
+  func test_detachSubwayHome이_호출됐을때() {
+    // GIVEN
+    
+    // WHEN
+    interactor.detachSubwayHome()
+    
+    // THEN
+    XCTAssert(router.detachSubwayHomeCalled == true)
+    XCTAssert(router.detachSubwayHomeCallsCount == 1)
+  }
 
 }

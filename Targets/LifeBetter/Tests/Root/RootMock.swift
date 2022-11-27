@@ -2,6 +2,7 @@
 import ModernRIBs
 import Subway
 import UIKit
+import Combine
 
 // MARK: - RootPresentableMock -
 
@@ -123,12 +124,47 @@ final class SubwayHomeBuildableMock: SubWayHomeBuildable {
   
   var buildCallCount = 0
   func build(withListener listener: SubWayHomeListener) -> SubWayHomeRouting {
-    
+    buildCallCount += 1
     if let buildHandler = buildHandler {
       return buildHandler(listener)
     }
     
     fatalError()
   }
+}
+
+// MARK: SubwayHomeListenerMock
+final class SubwayHomeListenerMock: SubWayHomeListener {
+  var detachSubwayHomeCallsCount = 0
+  func detachSubwayHome() {
+    detachSubwayHomeCallsCount += 1
+  }
+}
+
+// MARK: ViewControllableMock
+
+public final class ViewControllableMock: UIViewController, ViewControllable {
+  
+  public init() {
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  public required init?(coder: NSCoder) {
+    fatalError()
+  }
+  
+  var presentCallsCount = 0
+  public override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+    presentCallsCount += 1
+  }
+  
+  var dismissCallsCount = 0
+  public override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+    dismissCallsCount += 1
+  }
+  
+  
   
 }
+
+extension ViewControllableMock: RootViewControllable {}

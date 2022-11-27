@@ -38,15 +38,6 @@ final class SubwayHomeInteractorTests: XCTestCase {
     
     // THEN
     XCTAssert(interactor.detachSubwayHomeCallCount == 1)
-  }
-  
-  func test_a() {
-    // GIVEN
-    
-    // WHEN
-    interactor.detachSubwayHome()
-    
-    // THEN
     XCTAssert(listener.detachSubwayHomeCallsCount == 1)
   }
 }

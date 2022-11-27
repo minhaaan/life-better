@@ -12,7 +12,7 @@ public protocol SubWayHomeRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
-protocol SubWayHomePresentable: Presentable {
+public protocol SubWayHomePresentable: Presentable {
   var listener: SubWayHomePresentableListener? { get set }
   // TODO: Declare methods the interactor can invoke the presenter to present data.
 }

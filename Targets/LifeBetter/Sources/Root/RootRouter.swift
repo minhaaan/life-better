@@ -41,7 +41,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     let subwayHome = subwayHomeBuilder.build(withListener: interactor)
     self.subwayHome = subwayHome
     attachChild(subwayHome)
-    viewController.pushViewController(subwayHome.viewControllable, animated: true)
+    viewControllable.pushViewController(subwayHome.viewControllable, animated: true)
   }
   
   func detachSubwayHome() {
