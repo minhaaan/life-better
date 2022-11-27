@@ -46,8 +46,9 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
   
   func detachSubwayHome() {
     if let subwayHome {
-      subwayHome.viewControllable.popViewController(animated: true)
       detachChild(subwayHome)
+      subwayHome.viewControllable.popViewController(animated: true)
+      self.subwayHome = nil
     }
   }
 }
