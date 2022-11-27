@@ -10,7 +10,8 @@ let lifeBetterDependencies: [TargetDependency] = [
   .Then,
   .CombineCocoa,
   .project(target: "Subway", path: "../Subway/Subway"),
-  .project(target: "Utils", path: "../Platform/Utils")
+  .project(target: "Utils", path: "../Platform/Utils"),
+  .project(target: "Network", path: "../Platform/Network")
 ]
 
 let project = Project(
