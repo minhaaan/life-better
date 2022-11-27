@@ -7,24 +7,43 @@
 //
 
 @testable import LifeBetter
+import Subway
 import XCTest
 
 final class RootInteractorTests: XCTestCase {
   
-  private var interactor: RootInteractor!
+  private var interactor: RootInteractorMock!
+  private var presentableListener: RootPresentableListenerMock!
+  private var presenter: RootPresentableMock!
+  private var router: RootRouterMock!
   
   // TODO: declare other objects and mocks you need as private vars
   
   override func setUp() {
     super.setUp()
     
-    // TODO: instantiate objects and mocks
+    presentableListener = RootPresentableListenerMock()
+    presenter = RootPresentableMock(listener: self.presentableListener)
+    interactor = RootInteractorMock(presenter: self.presenter)
+    router = RootRouterMock(
+      interactor: self.interactor,
+      viewController: RootViewController(),
+      subwayHomeBuilder: SubWayHomeBuilder(dependency: RootComponent(dependency: AppComponent()))
+    )
   }
   
   // MARK: - Tests
   
-  func test_exampleObservable_callsRouterOrListener_exampleProtocol() {
-    // This is an example of an interactor test case.
-    // Test your interactor binds observables and sends messages to router or listener.
+  func test_RootPresentableListener에서_showSubwayHome가_호출됐을때() {
+    // GIVEN
+    
+    // WHEN
+    presenter.listener?.showSubwayHome()
+    
+    //THEN
+    XCTAssert(interactor.showSubwayHomeCallcount == 1)
+    XCTAssert(router.routeToSubwayHomeCalled == true)
+    XCTAssert(router.routeToSubwayHomeCallsCount == 1)
   }
+
 }
