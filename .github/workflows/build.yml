@@ -23,4 +23,4 @@ jobs:
         run: tuist generate -n
 
       - name: run build
-        run: tuist build --device "iPhone 14" --os 16.1
+        run: tuist build --device "iPhone 14" --os 16.0
