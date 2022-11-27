@@ -197,4 +197,9 @@ final public class SubwayHomeViewControllableMock: SubWayHomeViewControllable {
   public init() {
     initCallCount += 1
   }
+  
+  public var addChildSubwayListViewControllerCallsCount = 0
+  public func addChildSubwayListViewController(viewController: ModernRIBs.ViewControllable) {
+    addChildSubwayListViewControllerCallsCount += 1
+  }
 }

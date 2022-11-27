@@ -8,7 +8,7 @@
 
 import ModernRIBs
 
-protocol SubWayHomeInteractable: Interactable, SubwayListListener {
+public protocol SubWayHomeInteractable: Interactable, SubwayListListener {
   var router: SubWayHomeRouting? { get set }
   var listener: SubWayHomeListener? { get set }
 }

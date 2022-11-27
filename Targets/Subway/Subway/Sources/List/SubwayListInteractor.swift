@@ -17,7 +17,7 @@ protocol SubwayListPresentable: Presentable {
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol SubwayListListener: AnyObject {
+public protocol SubwayListListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
