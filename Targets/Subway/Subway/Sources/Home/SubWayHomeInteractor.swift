@@ -23,7 +23,7 @@ public protocol SubWayHomeListener: AnyObject {
 }
 
 final class SubWayHomeInteractor: PresentableInteractor<SubWayHomePresentable>, SubWayHomeInteractable, SubWayHomePresentableListener {
-  
+
   weak var router: SubWayHomeRouting?
   weak var listener: SubWayHomeListener?
   

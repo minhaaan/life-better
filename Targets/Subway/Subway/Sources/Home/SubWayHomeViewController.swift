@@ -43,7 +43,19 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
     }
   }
   
-  // MARK: Method
+  // MARK: SubWayHomeViewControllable
+  
+  func addChildSubwayListViewController(viewController: ModernRIBs.ViewControllable) {
+    view.addSubview(viewController.uiviewController.view)
+    addChild(viewController.uiviewController)
+    viewController.uiviewController.view.snp.makeConstraints { make in
+      make.leading.trailing.equalToSuperview().inset(20)
+      make.height.equalTo(100)
+      make.center.equalToSuperview()
+    }
+  }
+  
+  // MARK: Privtate Method
   
   private func setupLayout() {
     view.backgroundColor = .systemPink
@@ -61,6 +73,5 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
         self?.listener?.detachSubwayHome()
       }
       .store(in: &bag)
-      
   }
 }

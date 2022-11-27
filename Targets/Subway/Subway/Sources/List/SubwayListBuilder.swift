@@ -32,7 +32,7 @@ final class SubwayListBuilder: Builder<SubwayListDependency>, SubwayListBuildabl
   
   func build(withListener listener: SubwayListListener) -> SubwayListRouting {
     let component = SubwayListComponent(dependency: dependency)
-    let viewController = SubwayListViewController()
+    let viewController = SubwayListViewController(subwayStations: component.subwayStations)
     let interactor = SubwayListInteractor(presenter: viewController)
     interactor.listener = listener
     return SubwayListRouter(interactor: interactor, viewController: viewController)
