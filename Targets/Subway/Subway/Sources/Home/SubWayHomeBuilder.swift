@@ -9,19 +9,25 @@ public protocol SubWayHomeDependency: Dependency {
 public final class SubWayHomeComponent: Component<EmptyComponent> {
   
   var subwayStationList: [SubwayStation] {
-    return loadSubwayStationList()
+    loadSubwayStationList(
+      fileName: "subway-station-list",
+      withExtension: "json"
+    )
   }
   
   init() {
     super.init(dependency: EmptyComponent())
   }
   
-  fileprivate func loadSubwayStationList() -> [SubwayStation] {
-    let stationListJsonUrl = SubwayResources.bundle.url(
-      forResource: "subway-station-list",
-      withExtension: "json"
-    )!
+  func loadSubwayStationList(
+    fileName: String,
+    withExtension: String
+  ) -> [SubwayStation] {
     guard
+      let stationListJsonUrl = SubwayResources.bundle.url(
+        forResource: fileName,
+        withExtension: withExtension
+      ),
       let data = try? Data(contentsOf: stationListJsonUrl),
       let stationLists = try? JSONDecoder().decode([SubwayStation].self, from: data)
     else {
