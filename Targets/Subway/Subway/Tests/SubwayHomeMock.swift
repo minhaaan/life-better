@@ -5,6 +5,8 @@ import Combine
 
 // MARK: SubwayHomePresentableMock
 public final class SubwayHomePresentableMock: SubWayHomePresentable {
+  public var subwayData: String = ""
+  
   public var listener: SubWayHomePresentableListener?
   
   public init() {}
