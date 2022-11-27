@@ -12,7 +12,7 @@ import XCTest
 
 final class RootInteractorTests: XCTestCase {
   
-  private var interactor: RootInteractorMock!
+  private var interactor: RootInteractor!
   private var presentableListener: RootPresentableListenerMock!
   private var presenter: RootPresentableMock!
   private var router: RootRouterMock!
@@ -24,7 +24,7 @@ final class RootInteractorTests: XCTestCase {
     
     presentableListener = RootPresentableListenerMock()
     presenter = RootPresentableMock(listener: self.presentableListener)
-    interactor = RootInteractorMock(presenter: self.presenter)
+    interactor = RootInteractor(presenter: presenter)
     router = RootRouterMock(
       interactor: self.interactor,
       viewController: RootViewController(),
@@ -41,7 +41,6 @@ final class RootInteractorTests: XCTestCase {
     presenter.listener?.showSubwayHome()
     
     //THEN
-    XCTAssert(interactor.showSubwayHomeCallcount == 1)
     XCTAssert(router.routeToSubwayHomeCalled == true)
     XCTAssert(router.routeToSubwayHomeCallsCount == 1)
   }

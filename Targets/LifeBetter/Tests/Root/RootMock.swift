@@ -83,39 +83,6 @@ final class RootRouterMock: LaunchRouter<RootInteractable, RootViewControllable>
     }
 }
 
-final class RootInteractorMock: PresentableInteractor<RootPresentable>, RootInteractable, RootPresentableListener {
-  weak var router: RootRouting?
-  weak var listener: RootListener?
-  
-  // TODO: Add additional dependencies to constructor. Do not perform any logic
-  // in constructor.
-  override init(presenter: RootPresentable) {
-    super.init(presenter: presenter)
-    presenter.listener = self
-  }
-  
-  override func didBecomeActive() {
-    super.didBecomeActive()
-    // TODO: Implement business logic here.
-  }
-  
-  override func willResignActive() {
-    super.willResignActive()
-    // TODO: Pause any business logic.
-  }
-  
-  var showSubwayHomeCallcount = 0
-  func showSubwayHome() {
-    showSubwayHomeCallcount += 1
-    router?.routeToSubwayHome()
-  }
-  
-  var detachSubwayHomeCallcount = 0
-  func detachSubwayHome() {
-    router?.detachSubwayHome()
-  }
-}
-
 // MARK: SubwayHomeBuildableMock
 
 final class SubwayHomeBuildableMock: SubWayHomeBuildable {
@@ -141,30 +108,3 @@ final class SubwayHomeListenerMock: SubWayHomeListener {
   }
 }
 
-// MARK: ViewControllableMock
-
-public final class ViewControllableMock: UIViewController, ViewControllable {
-  
-  public init() {
-    super.init(nibName: nil, bundle: nil)
-  }
-
-  public required init?(coder: NSCoder) {
-    fatalError()
-  }
-  
-  var presentCallsCount = 0
-  public override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-    presentCallsCount += 1
-  }
-  
-  var dismissCallsCount = 0
-  public override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-    dismissCallsCount += 1
-  }
-  
-  
-  
-}
-
-extension ViewControllableMock: RootViewControllable {}

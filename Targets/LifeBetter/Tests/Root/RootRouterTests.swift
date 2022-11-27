@@ -14,7 +14,6 @@ final class RootRouterTests: XCTestCase {
 
   private var router: RootRouter!
   private var interactor: RootInteractor!
-  private var viewControllable: ViewControllableMock!
   private var subwayHomeBuildable: SubwayHomeBuildableMock!
   private var subWayHomeInteractable: SubWayHomeInteractorMock!
   public var subwayHomeRouter: SubwayHomeRouterMock!
@@ -30,7 +29,6 @@ final class RootRouterTests: XCTestCase {
     subwayHomeViewControllableMock = SubwayHomeViewControllableMock()
     subWayHomeInteractable = SubWayHomeInteractorMock(presenter: SubwayHomePresentableMock())
     subwayHomeRouter = SubwayHomeRouterMock(interactable: subWayHomeInteractable, viewControllable: subwayHomeViewControllableMock)
-    viewControllable = ViewControllableMock()
     var subwayHomeListener: SubWayHomeListener? = nil
     self.subwayHomeBuildable = SubwayHomeBuildableMock()
     subwayHomeBuildable.buildHandler = { listener -> SubWayHomeRouting in
@@ -40,7 +38,7 @@ final class RootRouterTests: XCTestCase {
     
     self.router = RootRouter(
       interactor: interactor,
-      viewController: viewControllable,
+      viewController: RootViewController(),
       subwayHomeBuilder: self.subwayHomeBuildable
     )
   }
