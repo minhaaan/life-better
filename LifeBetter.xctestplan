@@ -1,0 +1,42 @@
+{
+  "configurations" : [
+    {
+      "id" : "AA49C930-4DC8-4C13-8A10-0A3EF7660BD0",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:LifeBetter.xcodeproj",
+      "identifier" : "77D55F34AE7A957E7FCDE2E0",
+      "name" : "LifeBetter"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:LifeBetter.xcodeproj",
+        "identifier" : "3A5278D90942C3AF09B9255F",
+        "name" : "LifeBetterTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Subway\/Subway\/Subway.xcodeproj",
+        "identifier" : "DADBF7C964B37212529A964C",
+        "name" : "SubwayTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Platform\/Utils\/Utils.xcodeproj",
+        "identifier" : "1DCB1A88ED933140A011EC01",
+        "name" : "UtilsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

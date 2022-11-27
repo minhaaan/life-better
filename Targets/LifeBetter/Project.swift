@@ -21,5 +21,14 @@ let project = Project(
   targets: Project.makeAppTargets(
     name: "LifeBetter",
     dependencies: lifeBetterDependencies
-  )
+  ),
+  schemes: [
+    Scheme(
+      name: "LifeBetter",
+      shared: true,
+      buildAction: .buildAction(targets: ["LifeBetter"]),
+      testAction: .testPlans([.relativeToRoot("LifeBetter.xctestplan")]),
+      runAction: .runAction(executable: "LifeBetter")
+    )
+  ]
 )
