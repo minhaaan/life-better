@@ -8,7 +8,7 @@ public protocol SubWayHomeDependency: Dependency {
 
 public final class SubWayHomeComponent: Component<EmptyComponent> {
   
-  var subwayStationList: [SubwayStation] {
+  var subwayStations: [SubwayStation] {
     loadSubwayStationList(
       fileName: "subway-station-list",
       withExtension: "json"
@@ -51,7 +51,7 @@ public final class SubWayHomeBuilder: Builder<SubWayHomeDependency>, SubWayHomeB
   
   public func build(withListener listener: SubWayHomeListener) -> SubWayHomeRouting {
     let component = SubWayHomeComponent()
-    let viewController = SubWayHomeViewController(subwayStationList: component.subwayStationList)
+    let viewController = SubWayHomeViewController(subwayStationList: component.subwayStations)
     let interactor = SubWayHomeInteractor(presenter: viewController)
     interactor.listener = listener
     return SubWayHomeRouter(interactor: interactor, viewController: viewController)

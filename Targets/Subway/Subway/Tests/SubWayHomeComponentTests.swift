@@ -12,7 +12,16 @@ final class SubWayHomeComponentTests: XCTestCase {
   override func tearDownWithError() throws {
   }
   
-  func test_지하철역정보_제이슨파일_읽어서_SubwayStation_배열_리턴() {
+  func test_subwayStationListValue() {
+    // GIVEN
+    // WHEN
+    
+    // THEN
+    XCTAssert(sut.subwayStations.isEmpty == false)
+    XCTAssert(sut.subwayStations.first?.stationName == "소요산")
+  }
+  
+  func test_loadSubwayStationList() {
     // GIVEN
     let fileName = "subway-station-list"
     let withExtension = "json"
