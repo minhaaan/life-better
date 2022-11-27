@@ -4,7 +4,6 @@ import ProjectDescriptionHelpers
 // MARK: - Project
 
 let lifeBetterDependencies: [TargetDependency] = [
-  .ModernRibs,
   .SnapKit,
   .CombineExt,
   .FlexLayout,

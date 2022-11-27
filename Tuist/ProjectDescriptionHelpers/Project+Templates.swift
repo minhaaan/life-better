@@ -22,7 +22,7 @@ extension Project {
       platform: .iOS,
       product: .app,
       bundleId: "com.minan.\(name)",
-      deploymentTarget: .iOS(targetVersion: "16.1", devices: .iphone),
+      deploymentTarget: .iOS(targetVersion: "16.1", devices: [.iphone]),
       infoPlist: .extendingDefault(with: infoPlist),
       sources: ["Sources/**"],
       resources: ["Resources/**"],
@@ -35,7 +35,7 @@ extension Project {
       platform: .iOS,
       product: .unitTests,
       bundleId: "com.minan.\(name)Tests",
-      deploymentTarget: .iOS(targetVersion: "16.1", devices: .iphone),
+      deploymentTarget: .iOS(targetVersion: "16.1", devices: [.iphone]),
       infoPlist: .default,
       sources: ["Tests/**"],
       dependencies: [
@@ -59,15 +59,17 @@ extension Project {
       platform: .iOS,
       product: .staticFramework,
       bundleId: "com.minan.\(name)",
+      deploymentTarget: .iOS(targetVersion: "16.1", devices: [.iphone]),
       infoPlist: .extendingDefault(with: infoPlist),
       sources: ["Sources/**"],
       resources: ["Resources/**"],
-      dependencies: [])
+      dependencies: dependencies)
     let tests = Target(
       name: "\(name)Tests",
       platform: .iOS,
       product: .unitTests,
       bundleId: "com.minan.\(name)Tests",
+      deploymentTarget: .iOS(targetVersion: "16.1", devices: [.iphone]),
       infoPlist: .default,
       sources: ["Tests/**"],
       dependencies: [.target(name: name)])
