@@ -4,6 +4,7 @@ import ProjectDescriptionHelpers
 // MARK: Project
 
 let utilsDependencies: [TargetDependency] = [
+  .Moya,
 ]
 
 let project = Project(
