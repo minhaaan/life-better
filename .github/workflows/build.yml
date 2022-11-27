@@ -1,0 +1,26 @@
+name: build
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: tuist clean
+        run: tuist clean
+
+      - name: tuist fetch
+        run: tuist fetch
+
+      - name: tuist generate -n
+        run: tuist generate -n
+
+      - name: run build
+        run: tuist build --device "iPhone 14" --os 16.0
