@@ -11,7 +11,7 @@ import XCTest
 
 final class SubwayHomeRouterTests: XCTestCase {
   
-  private var router: SubwayHomeRouter!
+  private var router: SubWayHomeRouter!
   
   
   // TODO: declare other objects and mocks you need as private vars

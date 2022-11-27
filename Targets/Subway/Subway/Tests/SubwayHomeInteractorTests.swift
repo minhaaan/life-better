@@ -10,21 +10,43 @@
 import XCTest
 
 final class SubwayHomeInteractorTests: XCTestCase {
-
-    private var interactor: SubwayHomeInteractor!
-
-    // TODO: declare other objects and mocks you need as private vars
-
-    override func setUp() {
-        super.setUp()
-
-        // TODO: instantiate objects and mocks
-    }
-
-    // MARK: - Tests
-
-    func test_exampleObservable_callsRouterOrListener_exampleProtocol() {
-        // This is an example of an interactor test case.
-        // Test your interactor binds observables and sends messages to router or listener.
-    }
+  
+  private var interactor: SubWayHomeInteractorMock!
+  private var presentable: SubwayHomePresentableMock!
+  private var listener: SubwayHomeListenerMock!
+  private var router: SubWayHomeRouter!
+  
+  // TODO: declare other objects and mocks you need as private vars
+  
+  override func setUp() {
+    super.setUp()
+    
+    self.presentable = SubwayHomePresentableMock()
+    self.interactor = SubWayHomeInteractorMock(presenter: self.presentable)
+    self.listener = SubwayHomeListenerMock()
+    interactor.listener = listener
+    interactor.router = self.router
+  }
+  
+  // MARK: - Tests
+  
+  func test_SubwayHomePresentableMock에서_detachSubwayHome이_호출됐을때() {
+    // GIVEN
+    
+    // WHEN
+    presentable.listener?.detachSubwayHome()
+    
+    // THEN
+    XCTAssert(interactor.detachSubwayHomeCallCount == 1)
+  }
+  
+  func test_a() {
+    // GIVEN
+    
+    // WHEN
+    interactor.detachSubwayHome()
+    
+    // THEN
+    XCTAssert(listener.detachSubwayHomeCallsCount == 1)
+  }
 }
