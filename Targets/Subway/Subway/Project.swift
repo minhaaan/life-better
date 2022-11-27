@@ -4,6 +4,7 @@ import ProjectDescriptionHelpers
 let subwayDependencies: [TargetDependency] = [
   .SnapKit,
   .CombineExt,
+  .CombineCocoa,
   .project(target: "Utils", path: "../../Platform/Utils")
 ]
 
