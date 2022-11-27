@@ -169,7 +169,9 @@ public final class SubwayHomeRouterMock: SubWayHomeRouting {
     loadCallCount += 1
   }
 
+  public var attachChildCallsCount = 0
   public func attachChild(_ child: ModernRIBs.Routing) {
+    attachChildCallsCount += 1
   }
 
   public var detachChildCallsCount = 0
