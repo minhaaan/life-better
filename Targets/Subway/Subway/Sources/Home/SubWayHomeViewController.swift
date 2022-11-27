@@ -1,13 +1,9 @@
-//
-//  SubWayHomeViewController.swift
-//  Subway
-//
-//  Created by 최민한 on 2022/11/23.
-//  Copyright © 2022 com.minan. All rights reserved.
-//
-
 import ModernRIBs
 import UIKit
+import Then
+import SnapKit
+import Combine
+import CombineCocoa
 
 public protocol SubWayHomePresentableListener: AnyObject {
   // TODO: Declare properties and methods that the view controller can invoke to perform
@@ -18,12 +14,28 @@ public protocol SubWayHomePresentableListener: AnyObject {
 
 final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, SubWayHomeViewControllable {
   
+  // MARK: Properties
+  
   weak var listener: SubWayHomePresentableListener?
+  
+  var subwayData: String = "123"
+  
+  private var bag = Set<AnyCancellable>()
+  
+  // MARK: Layout Properties
+  
+  private let button = UIButton(type: .system).then {
+    $0.setTitleColor(.white, for: .normal)
+    $0.backgroundColor = .systemBlue
+    $0.layer.cornerRadius = 8
+  }
+  
+  // MARK: LifeCycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    view.backgroundColor = .systemPink
+    setupLayout()
+    setupTapGesture()
   }
   
   override func didMove(toParent parent: UIViewController?) {
@@ -31,5 +43,26 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
     if parent == nil {
       listener?.detachSubwayHome()
     }
+  }
+  
+  // MARK: Method
+  
+  private func setupLayout() {
+    view.backgroundColor = .systemPink
+    
+    button.setTitle(subwayData, for: .normal)
+    view.addSubview(button)
+    button.snp.makeConstraints { make in
+      make.center.equalToSuperview()
+    }
+  }
+  
+  private func setupTapGesture() {
+    button.tapPublisher
+      .sink { [weak self] _ in
+        self?.listener?.detachSubwayHome()
+      }
+      .store(in: &bag)
+      
   }
 }
