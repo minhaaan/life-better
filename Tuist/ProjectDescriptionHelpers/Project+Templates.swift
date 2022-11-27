@@ -14,7 +14,8 @@ extension Project {
     
     let baseSettings: [String: SettingValue] = [
       "GCC_PREPROCESSOR_DEFINITIONS" : "FLEXLAYOUT_SWIFT_PACKAGE=1", // FlexLayout error fix
-      "OTHER_LDFAGS": "-ObjC"
+      "OTHER_LDFAGS": "-ObjC",
+      "DEVELOPMENT_TEAM": "7T8JF3V3RR"
     ]
     
     let appTarget = Target(
@@ -54,6 +55,10 @@ extension Project {
       "GCC_PREPROCESSOR_DEFINITIONS" : "FLEXLAYOUT_SWIFT_PACKAGE=1" // FlexLayout error fix
     ]
     
+    let baseSettings: [String: SettingValue] = [
+      "DEVELOPMENT_TEAM": "7T8JF3V3RR"
+    ]
+    
     let framework = Target(
       name: name,
       platform: .iOS,
@@ -63,7 +68,9 @@ extension Project {
       infoPlist: .extendingDefault(with: infoPlist),
       sources: ["Sources/**"],
       resources: ["Resources/**"],
-      dependencies: dependencies)
+      dependencies: dependencies,
+      settings: .settings(base: baseSettings, configurations: [], defaultSettings: .recommended)
+    )
     let tests = Target(
       name: "\(name)Tests",
       platform: .iOS,
@@ -72,7 +79,9 @@ extension Project {
       deploymentTarget: .iOS(targetVersion: "16.1", devices: [.iphone]),
       infoPlist: .default,
       sources: ["Tests/**"],
-      dependencies: [.target(name: name)])
+      dependencies: [.target(name: name)],
+      settings: .settings(base: baseSettings, configurations: [], defaultSettings: .recommended)
+    )
     return [framework, tests]
   }
 }
