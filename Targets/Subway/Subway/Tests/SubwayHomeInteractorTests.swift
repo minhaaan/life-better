@@ -11,9 +11,9 @@ import XCTest
 
 final class SubwayHomeInteractorTests: XCTestCase {
   
-  private var interactor: SubWayHomeInteractorMock!
+  private var interactor: SubWayHomeInteractor!
   private var presentable: SubwayHomePresentableMock!
-  private var listener: SubwayHomeListenerMock!
+  private var listener: SubWayHomeListenerMock!
   private var router: SubWayHomeRouter!
   
   // TODO: declare other objects and mocks you need as private vars
@@ -22,8 +22,8 @@ final class SubwayHomeInteractorTests: XCTestCase {
     super.setUp()
     
     self.presentable = SubwayHomePresentableMock()
-    self.interactor = SubWayHomeInteractorMock(presenter: self.presentable)
-    self.listener = SubwayHomeListenerMock()
+    self.interactor = SubWayHomeInteractor(presenter: self.presentable)
+    self.listener = SubWayHomeListenerMock()
     interactor.listener = listener
     interactor.router = self.router
   }
@@ -37,7 +37,6 @@ final class SubwayHomeInteractorTests: XCTestCase {
     presentable.listener?.detachSubwayHome()
     
     // THEN
-    XCTAssert(interactor.detachSubwayHomeCallCount == 1)
     XCTAssert(listener.detachSubwayHomeCallsCount == 1)
   }
 }

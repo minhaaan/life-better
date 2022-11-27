@@ -15,7 +15,7 @@ final class RootRouterTests: XCTestCase {
   private var router: RootRouter!
   private var interactor: RootInteractor!
   private var subwayHomeBuildable: SubwayHomeBuildableMock!
-  private var subWayHomeInteractable: SubWayHomeInteractorMock!
+  private var subWayHomeInteractable: SubWayHomeInteractableMock!
   public var subwayHomeRouter: SubwayHomeRouterMock!
   public var subwayHomeViewControllableMock: SubwayHomeViewControllableMock!
 
@@ -27,7 +27,7 @@ final class RootRouterTests: XCTestCase {
     let presenter = RootPresentableMock(listener: RootPresentableListenerMock())
     interactor = RootInteractor(presenter: presenter)
     subwayHomeViewControllableMock = SubwayHomeViewControllableMock()
-    subWayHomeInteractable = SubWayHomeInteractorMock(presenter: SubwayHomePresentableMock())
+    subWayHomeInteractable = SubWayHomeInteractableMock()
     subwayHomeRouter = SubwayHomeRouterMock(interactable: subWayHomeInteractable, viewControllable: subwayHomeViewControllableMock)
     var subwayHomeListener: SubWayHomeListener? = nil
     self.subwayHomeBuildable = SubwayHomeBuildableMock()
@@ -52,7 +52,7 @@ final class RootRouterTests: XCTestCase {
     router.routeToSubwayHome()
 
     // THEN
-    XCTAssert(subWayHomeInteractable.didBecomeActiveCallCount == 1)
+    XCTAssert(subWayHomeInteractable.activateCallsCount == 1)
     XCTAssert(subwayHomeBuildable.buildCallCount == 1)
     XCTAssert(subwayHomeRouter.loadCallCount == 1)
   }
@@ -65,6 +65,6 @@ final class RootRouterTests: XCTestCase {
     router.detachSubwayHome()
     
     // THEN
-    XCTAssert(subWayHomeInteractable.willResignActiveCallCount == 1)
+    XCTAssert(subWayHomeInteractable.deactivateCallsCount == 1)
   }
 }

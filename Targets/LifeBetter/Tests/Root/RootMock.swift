@@ -108,3 +108,93 @@ final class SubwayHomeListenerMock: SubWayHomeListener {
   }
 }
 
+// MARK: SubWayHomeInteractableMock
+final class SubWayHomeInteractableMock: SubWayHomeInteractable {
+    var router: SubWayHomeRouting?
+    var listener: SubWayHomeListener?
+    
+   // MARK: - isActive
+
+    var isActive: Bool {
+        get { underlyingIsActive }
+        set(value) { underlyingIsActive = value }
+    }
+    private var underlyingIsActive: Bool!
+    
+   // MARK: - isActiveStream
+
+    var isActiveStream: AnyPublisher<Bool, Never> {
+        get { underlyingIsActiveStream }
+        set(value) { underlyingIsActiveStream = value }
+    }
+    private var underlyingIsActiveStream: AnyPublisher<Bool, Never>!
+    
+   // MARK: - activate
+
+    var activateCallsCount = 0
+    var activateCalled: Bool {
+        activateCallsCount > 0
+    }
+    var activateClosure: (() -> Void)?
+
+    func activate() {
+        activateCallsCount += 1
+        activateClosure?()
+    }
+    
+   // MARK: - deactivate
+
+    var deactivateCallsCount = 0
+    var deactivateCalled: Bool {
+        deactivateCallsCount > 0
+    }
+    var deactivateClosure: (() -> Void)?
+
+    func deactivate() {
+        deactivateCallsCount += 1
+        deactivateClosure?()
+    }
+}
+
+// MARK: SubwayHomeRouterMock
+public final class SubwayHomeRouterMock: SubWayHomeRouting {
+  public var viewControllable: ModernRIBs.ViewControllable
+
+  public var interactable: ModernRIBs.Interactable
+
+  public var children: [ModernRIBs.Routing] = []
+
+  public var loadCallCount = 0
+  public func load() {
+    loadCallCount += 1
+  }
+
+  public func attachChild(_ child: ModernRIBs.Routing) {
+  }
+
+  public var detachChildCallsCount = 0
+  public func detachChild(_ child: ModernRIBs.Routing) {
+    detachChildCallsCount += 1
+  }
+
+  public var lifeCyclePublisher = PassthroughSubject<RouterLifecycle, Never>()
+  public var lifecycle: AnyPublisher<ModernRIBs.RouterLifecycle, Never> {
+    lifeCyclePublisher.eraseToAnyPublisher()
+  }
+
+  public init(interactable: ModernRIBs.Interactable, viewControllable: ModernRIBs.ViewControllable) {
+    self.viewControllable = viewControllable
+    self.interactable = interactable
+  }
+
+}
+
+// MARK: SubwayViewControllableMock
+final public class SubwayHomeViewControllableMock: SubWayHomeViewControllable {
+  public var uiviewController: UIViewController = UIViewController()
+
+  public var initCallCount = 0
+  public init() {
+    initCallCount += 1
+  }
+}
