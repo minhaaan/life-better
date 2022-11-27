@@ -20,8 +20,19 @@ public protocol SubWayHomeViewControllable: ViewControllable {
 final class SubWayHomeRouter: ViewableRouter<SubWayHomeInteractable, SubWayHomeViewControllable>, SubWayHomeRouting {
   
   // TODO: Constructor inject child builder protocols to allow building children.
-  override init(interactor: SubWayHomeInteractable, viewController: SubWayHomeViewControllable) {
+  init(
+    interactor: SubWayHomeInteractable,
+    viewController: SubWayHomeViewControllable,
+    subwayListBuilder: SubwayListBuildable
+  ) {
+    self.subwayListBuilder = subwayListBuilder
     super.init(interactor: interactor, viewController: viewController)
     interactor.router = self
   }
+  
+  // MARK: Private
+  
+  private let subwayListBuilder: SubwayListBuildable
+  private var subwayList: SubwayListRouting?
+  
 }

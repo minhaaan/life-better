@@ -18,8 +18,6 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
   
   weak var listener: SubWayHomePresentableListener?
   
-  let subwayStationList: [SubwayStation]
-  
   private var bag = Set<AnyCancellable>()
   
   // MARK: Layout Properties
@@ -28,19 +26,6 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
     $0.setTitleColor(.white, for: .normal)
     $0.backgroundColor = .systemBlue
     $0.layer.cornerRadius = 8
-  }
-  
-  // MARK: init
-  
-  init(
-    subwayStationList: [SubwayStation]
-  ) {
-    self.subwayStationList = subwayStationList
-    super.init(nibName: nil, bundle: nil)
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError()
   }
   
   // MARK: LifeCycle

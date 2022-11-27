@@ -1,5 +1,5 @@
 //
-//  ListInteractor.swift
+//  SubwayListInteractor.swift
 //  Subway
 //
 //  Created by 최민한 on 2022/11/28.
@@ -8,27 +8,27 @@
 
 import ModernRIBs
 
-protocol ListRouting: ViewableRouting {
+protocol SubwayListRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
-protocol ListPresentable: Presentable {
-    var listener: ListPresentableListener? { get set }
+protocol SubwayListPresentable: Presentable {
+    var listener: SubwayListPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol ListListener: AnyObject {
+protocol SubwayListListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class ListInteractor: PresentableInteractor<ListPresentable>, ListInteractable, ListPresentableListener {
+final class SubwayListInteractor: PresentableInteractor<SubwayListPresentable>, SubwayListInteractable, SubwayListPresentableListener {
 
-    weak var router: ListRouting?
-    weak var listener: ListListener?
+    weak var router: SubwayListRouting?
+    weak var listener: SubwayListListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: ListPresentable) {
+    override init(presenter: SubwayListPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }

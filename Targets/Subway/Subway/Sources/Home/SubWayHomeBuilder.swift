@@ -6,7 +6,7 @@ public protocol SubWayHomeDependency: Dependency {
   // created by this RIB.
 }
 
-public final class SubWayHomeComponent: Component<EmptyComponent> {
+public final class SubWayHomeComponent: Component<EmptyComponent>, SubwayListDependency {
   
   var subwayStations: [SubwayStation] {
     loadSubwayStationList(
@@ -51,9 +51,12 @@ public final class SubWayHomeBuilder: Builder<SubWayHomeDependency>, SubWayHomeB
   
   public func build(withListener listener: SubWayHomeListener) -> SubWayHomeRouting {
     let component = SubWayHomeComponent()
-    let viewController = SubWayHomeViewController(subwayStationList: component.subwayStations)
+    let viewController = SubWayHomeViewController()
     let interactor = SubWayHomeInteractor(presenter: viewController)
     interactor.listener = listener
-    return SubWayHomeRouter(interactor: interactor, viewController: viewController)
+    
+    let subwayListBuilder = SubwayListBuilder(dependency: component)
+    
+    return SubWayHomeRouter(interactor: interactor, viewController: viewController, subwayListBuilder: subwayListBuilder)
   }
 }
