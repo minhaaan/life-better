@@ -1,23 +1,33 @@
-//
-//  SubWayHomeBuilder.swift
-//  Subway
-//
-//  Created by 최민한 on 2022/11/23.
-//  Copyright © 2022 com.minan. All rights reserved.
-//
-
 import ModernRIBs
+import Foundation
 
 public protocol SubWayHomeDependency: Dependency {
   // TODO: Declare the set of dependencies required by this RIB, but cannot be
   // created by this RIB.
 }
 
-public final class SubWayHomeComponent: Component<SubWayHomeDependency> {
+public final class SubWayHomeComponent: Component<EmptyComponent> {
   
-  // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
-  public override init(dependency: SubWayHomeDependency) {
-    super.init(dependency: dependency)
+  var subwayStationList: [SubwayStation] {
+    return loadSubwayStationList()
+  }
+  
+  init() {
+    super.init(dependency: EmptyComponent())
+  }
+  
+  fileprivate func loadSubwayStationList() -> [SubwayStation] {
+    let stationListJsonUrl = SubwayResources.bundle.url(
+      forResource: "subway-station-list",
+      withExtension: "json"
+    )!
+    guard
+      let data = try? Data(contentsOf: stationListJsonUrl),
+      let stationLists = try? JSONDecoder().decode([SubwayStation].self, from: data)
+    else {
+      return []
+    }
+    return stationLists
   }
 }
 
@@ -34,7 +44,8 @@ public final class SubWayHomeBuilder: Builder<SubWayHomeDependency>, SubWayHomeB
   }
   
   public func build(withListener listener: SubWayHomeListener) -> SubWayHomeRouting {
-    let viewController = SubWayHomeViewController()
+    let component = SubWayHomeComponent()
+    let viewController = SubWayHomeViewController(subwayStationList: component.subwayStationList)
     let interactor = SubWayHomeInteractor(presenter: viewController)
     interactor.listener = listener
     return SubWayHomeRouter(interactor: interactor, viewController: viewController)

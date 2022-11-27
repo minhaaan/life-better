@@ -15,7 +15,6 @@ public protocol SubWayHomeRouting: ViewableRouting {
 public protocol SubWayHomePresentable: Presentable {
   var listener: SubWayHomePresentableListener? { get set }
   // TODO: Declare methods the interactor can invoke the presenter to present data.
-  var subwayData: String { get }
 }
 
 public protocol SubWayHomeListener: AnyObject {

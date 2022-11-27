@@ -18,7 +18,7 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
   
   weak var listener: SubWayHomePresentableListener?
   
-  var subwayData: String = "123"
+  let subwayStationList: [SubwayStation]
   
   private var bag = Set<AnyCancellable>()
   
@@ -28,6 +28,19 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
     $0.setTitleColor(.white, for: .normal)
     $0.backgroundColor = .systemBlue
     $0.layer.cornerRadius = 8
+  }
+  
+  // MARK: init
+  
+  init(
+    subwayStationList: [SubwayStation]
+  ) {
+    self.subwayStationList = subwayStationList
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError()
   }
   
   // MARK: LifeCycle
@@ -50,7 +63,7 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
   private func setupLayout() {
     view.backgroundColor = .systemPink
     
-    button.setTitle(subwayData, for: .normal)
+    button.setTitle("123123", for: .normal)
     view.addSubview(button)
     button.snp.makeConstraints { make in
       make.center.equalToSuperview()
