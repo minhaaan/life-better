@@ -62,6 +62,7 @@ final class SubwayListViewController: UIViewController, SubwayListPresentable, S
   private func setupCollectionView() {
     collectionView.dataSource = self
     collectionView.delegate = self
+    collectionView.register(UICollectionViewListCell.self, forCellWithReuseIdentifier: "cell")
   }
   
 }
