@@ -40,7 +40,7 @@ final class SubwayListInteractor: PresentableInteractor<SubwayListPresentable>, 
   
   override func didBecomeActive() {
     super.didBecomeActive()
-    // TODO: Implement business logic here.
+    presenter.updateSubwayStations(with: subwayStation) // didBecomeActive 때 SubwayList subwayStations 값 넣어주기.
   }
   
   override func willResignActive() {

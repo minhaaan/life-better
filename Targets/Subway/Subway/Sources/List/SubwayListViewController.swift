@@ -21,7 +21,7 @@ final class SubwayListViewController: UIViewController, SubwayListPresentable, S
   
   weak var listener: SubwayListPresentableListener?
   
-  private var subwayStations: [SubwayStation]
+  private var subwayStations: [SubwayStation] = []
   
   // MARK: Layout Properties
   
@@ -42,8 +42,7 @@ final class SubwayListViewController: UIViewController, SubwayListPresentable, S
   
   // MARK: init
   
-  init(subwayStations: [SubwayStation]) {
-    self.subwayStations = subwayStations
+  init() {
     super.init(nibName: nil, bundle: nil)
   }
   required init?(coder: NSCoder) {
