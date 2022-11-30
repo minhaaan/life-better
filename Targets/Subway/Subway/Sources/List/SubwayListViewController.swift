@@ -21,6 +21,14 @@ final class SubwayListViewController: UIViewController, SubwayListPresentable, S
   
   private let subwayStations: [SubwayStation]
   
+  // List CollectionView
+  private let collectionView: UICollectionView = UICollectionView(
+    frame: .zero,
+    collectionViewLayout: UICollectionViewCompositionalLayout.list(
+      using: UICollectionLayoutListConfiguration(appearance: .plain)
+    )
+  )
+  
   // MARK: init
   
   init(subwayStations: [SubwayStation]) {
@@ -37,12 +45,52 @@ final class SubwayListViewController: UIViewController, SubwayListPresentable, S
     super.viewDidLoad()
     
     setupLayout()
+    setupCollectionView()
   }
   
   // MARK: func
   
   private func setupLayout() {
     view.backgroundColor = .systemPurple
+    
+    view.addSubview(collectionView)
+    collectionView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
   }
+  
+  private func setupCollectionView() {
+    collectionView.dataSource = self
+    collectionView.delegate = self
+  }
+  
+}
+
+extension SubwayListViewController: UICollectionViewDataSource {
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    1
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    subwayStations.count
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: "cell",
+      for: indexPath
+    ) as? UICollectionViewListCell
+    else {
+      return UICollectionViewListCell()
+    }
+    
+    var config = cell.defaultContentConfiguration()
+    config.text = subwayStations[indexPath.row].stationName
+    
+    return cell
+  }
+}
+
+extension SubwayListViewController: UICollectionViewDelegate {
   
 }
