@@ -12,6 +12,7 @@ let project = Project(
   packages: [],
   targets: Project.makeFrameworkTargets(
     name: "Network",
+    isDynamic: true,
     dependencies: utilsDependencies
   )
 )
