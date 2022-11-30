@@ -5,7 +5,6 @@ import ProjectDescriptionHelpers
 
 let lifeBetterDependencies: [TargetDependency] = [
   .SnapKit,
-  .CombineExt,
   .FlexLayout,
   .Then,
   .CombineCocoa,
