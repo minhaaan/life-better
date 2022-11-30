@@ -87,6 +87,7 @@ extension SubwayListViewController: UICollectionViewDataSource {
     
     var config = cell.defaultContentConfiguration()
     config.text = subwayStations[indexPath.row].stationName
+    cell.contentConfiguration = config
     
     return cell
   }
