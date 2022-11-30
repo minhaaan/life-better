@@ -49,6 +49,7 @@ extension Project {
   
   public static func makeFrameworkTargets(
     name: String,
+    isDynamic: Bool,
     dependencies: [TargetDependency]
   ) -> [Target] {
     let infoPlist: [String: InfoPlist.Value] = [
@@ -62,7 +63,7 @@ extension Project {
     let framework = Target(
       name: name,
       platform: .iOS,
-      product: .staticFramework,
+      product: isDynamic ? .framework : .staticFramework,
       bundleId: "com.minan.\(name)",
       deploymentTarget: .iOS(targetVersion: "16.0", devices: [.iphone]),
       infoPlist: .extendingDefault(with: infoPlist),
