@@ -50,8 +50,7 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
     addChild(viewController.uiviewController)
     viewController.uiviewController.view.snp.makeConstraints { make in
       make.leading.trailing.equalToSuperview().inset(20)
-      make.height.equalTo(100)
-      make.center.equalToSuperview()
+      make.top.bottom.equalToSuperview().inset(30)
     }
   }
   
