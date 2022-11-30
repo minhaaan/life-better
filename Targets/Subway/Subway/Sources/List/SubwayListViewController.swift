@@ -14,20 +14,22 @@ protocol SubwayListPresentableListener: AnyObject {
   // TODO: Declare properties and methods that the view controller can invoke to perform
   // business logic, such as signIn(). This protocol is implemented by the corresponding
   // interactor class.
+  func updateSearchKeyword(keyword: String)
 }
 
 final class SubwayListViewController: UIViewController, SubwayListPresentable, SubwayListViewControllable {
   
   weak var listener: SubwayListPresentableListener?
   
-  private let subwayStations: [SubwayStation]
+  private var subwayStations: [SubwayStation]
   
   // MARK: Layout Properties
   
-  private let searchBar = UISearchBar().then {
+  private lazy var searchBar = UISearchBar().then {
     $0.placeholder = "search"
     $0.barStyle = .default
     $0.sizeToFit()
+    $0.delegate = self
   }
   
   // List CollectionView
@@ -77,6 +79,11 @@ final class SubwayListViewController: UIViewController, SubwayListPresentable, S
     collectionView.delegate = self
     collectionView.register(UICollectionViewListCell.self, forCellWithReuseIdentifier: "cell")
   }
+  
+  func updateSubwayStations(with subwayStations: [SubwayStation]) {
+    self.subwayStations = subwayStations
+    collectionView.reloadData()
+  }
 }
 
 extension SubwayListViewController: UICollectionViewDataSource {
@@ -107,4 +114,10 @@ extension SubwayListViewController: UICollectionViewDataSource {
 
 extension SubwayListViewController: UICollectionViewDelegate {
   
+}
+
+extension SubwayListViewController: UISearchBarDelegate {
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    listener?.updateSearchKeyword(keyword: searchText)
+  }
 }
