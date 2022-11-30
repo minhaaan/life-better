@@ -13,6 +13,7 @@ let project = Project(
   packages: [],
   targets: Project.makeFrameworkTargets(
     name: "Subway",
+    isDynamic: false,
     dependencies: subwayDependencies
   )
 )
