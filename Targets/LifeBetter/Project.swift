@@ -10,7 +10,7 @@ let lifeBetterDependencies: [TargetDependency] = [
   .CombineCocoa,
   .project(target: "Subway", path: "../Subway/Subway"),
   .project(target: "Utils", path: "../Platform/Utils"),
-  .project(target: "Network", path: "../Platform/Network")
+  .project(target: "Network", path: "../Core/Network")
 ]
 
 let project = Project(
