@@ -49,16 +49,13 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
     view.addSubview(viewController.uiviewController.view)
     addChild(viewController.uiviewController)
     viewController.uiviewController.view.snp.makeConstraints { make in
-      make.leading.trailing.equalToSuperview().inset(20)
-      make.top.bottom.equalToSuperview().inset(30)
+      make.edges.equalTo(view.safeAreaLayoutGuide)
     }
   }
   
   // MARK: Privtate Method
   
   private func setupLayout() {
-    view.backgroundColor = .systemPink
-    
     button.setTitle("123123", for: .normal)
     view.addSubview(button)
     button.snp.makeConstraints { make in
