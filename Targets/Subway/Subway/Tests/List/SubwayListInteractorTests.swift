@@ -12,19 +12,43 @@ import XCTest
 final class SubwayListInteractorTests: XCTestCase {
   
   private var interactor: SubwayListInteractor!
+  private var subwayListPresentable: SubwayListPresentableMock!
   
   // TODO: declare other objects and mocks you need as private vars
   
   override func setUp() {
     super.setUp()
     
-    // TODO: instantiate objects and mocks
+    self.subwayListPresentable = SubwayListPresentableMock()
+    
+    interactor = SubwayListInteractor(
+      presenter: self.subwayListPresentable,
+      subwayStation: subwayStationsMockData
+    )
   }
   
   // MARK: - Tests
   
-  func test_exampleObservable_callsRouterOrListener_exampleProtocol() {
-    // This is an example of an interactor test case.
-    // Test your interactor binds observables and sends messages to router or listener.
+  func test_updateSearchKeywordWithEmptyString() {
+    // GIVEN
+    
+    // WHEN
+    interactor.updateSearchKeyword(keyword: "")
+    
+    // THEN
+    XCTAssert(subwayListPresentable.updateSubwayStationsCallsCount == 1)
+    XCTAssert(subwayListPresentable.updatedSubwayStations == subwayStationsMockData)
+  }
+  
+  func test_updateSearchKeywordWith1() {
+    // GIVEN
+    
+    // WHEN
+    interactor.updateSearchKeyword(keyword: "1")
+    
+    // THEN
+    XCTAssert(subwayListPresentable.updateSubwayStationsCallsCount == 1)
+    XCTAssertTrue(subwayListPresentable.updatedSubwayStations.count == 1)
+    XCTAssert(subwayListPresentable.updatedSubwayStations.first?.stationName == "1")
   }
 }

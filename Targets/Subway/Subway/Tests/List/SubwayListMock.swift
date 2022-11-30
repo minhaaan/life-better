@@ -55,3 +55,23 @@ final class SubwayListRoutingMock: SubwayListRouting {
 final class SubwayListListnerMock: SubwayListListener {
   
 }
+
+// MARK: SubwayListPresentable
+final class SubwayListPresentableMock: SubwayListPresentable {
+  var listener: Subway.SubwayListPresentableListener?
+  
+  var updateSubwayStationsCallsCount = 0
+  var updatedSubwayStations: [SubwayStation] = []
+  func updateSubwayStations(with subwayStations: [Subway.SubwayStation]) {
+    updateSubwayStationsCallsCount += 1
+    updatedSubwayStations = subwayStations
+  }
+}
+
+// MARK: SubwayStationsMockData
+let subwayStationsMockData: [SubwayStation] = [
+  .init(subwayId: 1, stationId: 1, stationName: "1"),
+  .init(subwayId: 2, stationId: 2, stationName: "2"),
+  .init(subwayId: 3, stationId: 3, stationName: "3"),
+  .init(subwayId: 4, stationId: 4, stationName: "4")
+]

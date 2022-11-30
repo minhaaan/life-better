@@ -1,6 +1,6 @@
 import Foundation
 
-struct SubwayStation: Decodable {
+struct SubwayStation: Decodable, Equatable {
   let subwayId: Int
   let stationId: Int
   let stationName: String
