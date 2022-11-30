@@ -8,6 +8,7 @@
 
 import ModernRIBs
 import UIKit
+import Then
 
 protocol SubwayListPresentableListener: AnyObject {
   // TODO: Declare properties and methods that the view controller can invoke to perform
@@ -20,6 +21,14 @@ final class SubwayListViewController: UIViewController, SubwayListPresentable, S
   weak var listener: SubwayListPresentableListener?
   
   private let subwayStations: [SubwayStation]
+  
+  // MARK: Layout Properties
+  
+  private let searchBar = UISearchBar().then {
+    $0.placeholder = "search"
+    $0.barStyle = .default
+    $0.sizeToFit()
+  }
   
   // List CollectionView
   private let collectionView: UICollectionView = UICollectionView(
@@ -51,9 +60,15 @@ final class SubwayListViewController: UIViewController, SubwayListPresentable, S
   // MARK: func
   
   private func setupLayout() {
+    view.addSubview(searchBar)
     view.addSubview(collectionView)
+    searchBar.snp.makeConstraints { make in
+      make.top.equalTo(view.safeAreaLayoutGuide)
+      make.horizontalEdges.equalToSuperview()
+    }
     collectionView.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
+      make.top.equalTo(searchBar.snp.bottom)
+      make.horizontalEdges.bottom.equalToSuperview()
     }
   }
   
@@ -62,7 +77,6 @@ final class SubwayListViewController: UIViewController, SubwayListPresentable, S
     collectionView.delegate = self
     collectionView.register(UICollectionViewListCell.self, forCellWithReuseIdentifier: "cell")
   }
-  
 }
 
 extension SubwayListViewController: UICollectionViewDataSource {
