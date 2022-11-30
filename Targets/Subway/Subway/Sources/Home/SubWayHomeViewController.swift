@@ -56,6 +56,8 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
   // MARK: Privtate Method
   
   private func setupLayout() {
+    view.backgroundColor = .systemBackground
+    
     button.setTitle("123123", for: .normal)
     view.addSubview(button)
     button.snp.makeConstraints { make in

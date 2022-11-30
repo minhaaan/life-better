@@ -51,8 +51,6 @@ final class SubwayListViewController: UIViewController, SubwayListPresentable, S
   // MARK: func
   
   private func setupLayout() {
-    view.backgroundColor = .systemPurple
-    
     view.addSubview(collectionView)
     collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()

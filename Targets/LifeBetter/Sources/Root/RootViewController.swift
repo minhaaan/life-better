@@ -18,17 +18,15 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
   
   weak var listener: RootPresentableListener?
   
-  private let body = UIView().then { $0.backgroundColor = .white }
+  private let body = UIView().then { $0.backgroundColor = .systemBackground }
   
   private let titleLabel = UILabel().then {
     $0.text = "TITLE"
-    $0.textColor = .black
     $0.font = .boldSystemFont(ofSize: 20)
   }
   
   private let button = UIButton(type: .system).then {
     $0.setTitle("button", for: .normal)
-    $0.setTitleColor(.black, for: .normal)
     $0.titleLabel?.font = .boldSystemFont(ofSize: 22)
   }
   
@@ -65,7 +63,7 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
   // MARK: method
   
   private func setupLayout() {
-    view.backgroundColor = .white
+    view.backgroundColor = .systemBackground
     
     view.addSubview(body)
     
