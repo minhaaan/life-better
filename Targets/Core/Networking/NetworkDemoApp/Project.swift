@@ -6,7 +6,7 @@ let project = Project(
   targets: Project.makeAppTargets(
     name: "NetworkDemoApp",
     dependencies: [
-      .project(target: "Network", path: "../")
+      .project(target: "Networking", path: "../")
     ]
   )
 )

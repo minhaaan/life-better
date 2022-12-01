@@ -7,11 +7,11 @@ let utilsDependencies: [TargetDependency] = [
 ]
 
 let project = Project(
-  name: "Network",
+  name: "Networking",
   organizationName: "com.minan",
   packages: [],
   targets: Project.makeFrameworkTargets(
-    name: "Network",
+    name: "Networking",
     isDynamic: true,
     dependencies: utilsDependencies
   )
