@@ -9,31 +9,27 @@
 import Foundation
 import Combine
 
-protocol APIManagerInterface {
-  func perform<👻: Decodable>(_ request: RequestProtocol, authToken: String) -> AnyPublisher<👻, Error>
+public protocol APIManagerInterface {
+  func perform<👻: Decodable>(_ request: RequestProtocol, type: 👻.Type) -> AnyPublisher<👻, Error>
 }
 
-class APIManager: APIManagerInterface {
+public class APIManager: APIManagerInterface {
   
   private let urlSession: URLSession
   
-  init(urlSession: URLSession = URLSession.shared) {
+  public init(urlSession: URLSession = URLSession.shared) {
     self.urlSession = urlSession
   }
   
-  func perform<👻: Decodable>(_ request: RequestProtocol, authToken: String) -> AnyPublisher<👻, Error> {
-    let a = try? urlSession.dataTaskPublisher(for: request.createURLRequest(authToken: authToken)).eraseToAnyPublisher()
-    
-    return a!.tryMap() { res in
-      guard
-        let b = res.response as? HTTPURLResponse,
-        b.statusCode == 200
-      else {
-        throw URLError(.badServerResponse)
-      }
-      return res.data
+  public func perform<👻: Decodable>(_ request: RequestProtocol, type: 👻.Type) -> AnyPublisher<👻, Error> {
+    guard let request = try? request.createURLRequest(authToken: "") else {
+      return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
     }
-    .decode(type: 👻.self, decoder: JSONDecoder())
-    .eraseToAnyPublisher()
+    
+    return urlSession.dataTaskPublisher(for: request)
+      .tryMap { data, res in
+        try JSONDecoder().decode(👻.self, from: data)
+      }
+      .eraseToAnyPublisher()
   }
 }
