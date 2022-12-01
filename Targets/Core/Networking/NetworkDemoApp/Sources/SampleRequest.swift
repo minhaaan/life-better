@@ -29,10 +29,6 @@ extension SampleRequest: RequestProtocol {
     return [:]
   }
   
-  var addAuthorizationToken: Bool {
-    false
-  }
-  
   var requestType: Networking.RequestType {
     .GET
   }

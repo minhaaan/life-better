@@ -22,7 +22,7 @@ public class APIManager: APIManagerInterface {
   }
   
   public func perform<👻: Decodable>(_ request: RequestProtocol, type: 👻.Type) -> AnyPublisher<👻, Error> {
-    guard let request = try? request.createURLRequest(authToken: "") else {
+    guard let request = try? request.createURLRequest() else {
       return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
     }
     

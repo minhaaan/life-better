@@ -4,14 +4,15 @@ public protocol RequestProtocol {
   var host: String { get }
   var path: String { get }
   
+  var requestType: RequestType { get }
+  
   var header: [String: String] { get }
   var params: [String: Any] { get }
   
   var urlParams: [String: String?] { get }
   
-  var addAuthorizationToken: Bool { get }
+  var authorizationToken: String? { get }
   
-  var requestType: RequestType { get }
 }
 
 public extension RequestProtocol {
@@ -19,8 +20,8 @@ public extension RequestProtocol {
     ""
   }
   
-  var addAuthorizationToken: Bool {
-    return true
+  var authorizationToken: String? {
+    return nil
   }
   
   var params: [String: Any] {
@@ -37,9 +38,9 @@ public extension RequestProtocol {
 }
 
 extension RequestProtocol {
-  func createURLRequest(authToken: String) throws -> URLRequest {
+  func createURLRequest() throws -> URLRequest {
     var components = URLComponents()
-    components.scheme = "https" // TODO: 바꾸기
+    components.scheme = "https"
     components.host = host
     components.path = path
     
@@ -58,7 +59,7 @@ extension RequestProtocol {
       urlRequest.allHTTPHeaderFields = header
     }
     
-    if addAuthorizationToken {
+    if let authToken = authorizationToken {
       urlRequest.setValue(
         authToken,
         forHTTPHeaderField: "Authorization"
@@ -69,7 +70,7 @@ extension RequestProtocol {
     
     if !params.isEmpty {
       urlRequest.httpBody = try JSONSerialization.data(
-        withJSONObject: path
+        withJSONObject: params
       )
     }
     
