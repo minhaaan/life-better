@@ -6,9 +6,9 @@ let subwayRepositoryDependencies: [TargetDependency] = [
 ]
 
 let project = Project(
-  name: "SubwayRepository",
+  name: "SubwayNetworking",
   targets: Project.makeFrameworkTargets(
-    name: "SubwayRepository",
+    name: "SubwayNetworking",
     isDynamic: false,
     dependencies: subwayRepositoryDependencies
   )

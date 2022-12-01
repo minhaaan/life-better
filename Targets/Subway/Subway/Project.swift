@@ -5,7 +5,7 @@ let subwayDependencies: [TargetDependency] = [
   .SnapKit,
   .CombineCocoa,
   .project(target: "Utils", path: "../../Platform/Utils"),
-  .project(target: "SubwayRepository", path: "../SubwayRepository")
+  .project(target: "SubwayNetworking", path: "../SubwayNetworking")
 ]
 
 let project = Project(
