@@ -1,6 +1,7 @@
 import Foundation
 
-protocol RequestProtocol {
+public protocol RequestProtocol {
+  var host: String { get }
   var path: String { get }
   
   var header: [String: String] { get }
@@ -13,7 +14,7 @@ protocol RequestProtocol {
   var requestType: RequestType { get }
 }
 
-extension RequestProtocol {
+public extension RequestProtocol {
   var host: String {
     ""
   }
@@ -38,7 +39,7 @@ extension RequestProtocol {
 extension RequestProtocol {
   func createURLRequest(authToken: String) throws -> URLRequest {
     var components = URLComponents()
-    components.scheme = "https"
+    components.scheme = "https" // TODO: 바꾸기
     components.host = host
     components.path = path
     
