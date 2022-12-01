@@ -9,9 +9,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
   ) -> Bool {
+    
     window = UIWindow(frame: UIScreen.main.bounds)
-    let viewController = UIViewController()
-    viewController.view.backgroundColor = .systemBlue
+    
+    let viewController = NetworkingTestViewController()
     window?.rootViewController = viewController
     window?.makeKeyAndVisible()
     

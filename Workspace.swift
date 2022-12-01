@@ -7,5 +7,6 @@ let workspace = Workspace(
     "Targets/Subway/*",
     "Targets/Platform/*",
     "Targets/Core/*",
+    "Targets/Core/Networking/*"
   ]
 )
