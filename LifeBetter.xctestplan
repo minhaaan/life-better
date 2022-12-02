@@ -36,6 +36,27 @@
         "identifier" : "1DCB1A88ED933140A011EC01",
         "name" : "UtilsTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Core\/Networking\/Networking.xcodeproj",
+        "identifier" : "F37FCD8E01CA56BB3BD87FD6",
+        "name" : "NetworkingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Subway\/SubwayCore\/SubwayCore.xcodeproj",
+        "identifier" : "A297E5E6A80B62C9EB7D750B",
+        "name" : "SubwayCoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Subway\/SubwayNetworking\/SubwayNetworking.xcodeproj",
+        "identifier" : "3335A987F02DDCB8711BCA03",
+        "name" : "SubwayNetworkingTests"
+      }
     }
   ],
   "version" : 1
