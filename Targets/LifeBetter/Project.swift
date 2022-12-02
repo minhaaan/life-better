@@ -8,9 +8,9 @@ let lifeBetterDependencies: [TargetDependency] = [
   .FlexLayout,
   .Then,
   .CombineCocoa,
-  .project(target: "Subway", path: "../Subway/Subway"),
-  .project(target: "Utils", path: "../Platform/Utils"),
-  .project(target: "Networking", path: "../Core/Networking")
+  .feature.subway,
+  .platform.utils,
+  .core.networking
 ]
 
 let project = Project(

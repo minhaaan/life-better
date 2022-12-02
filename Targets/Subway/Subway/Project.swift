@@ -4,8 +4,8 @@ import ProjectDescriptionHelpers
 let subwayDependencies: [TargetDependency] = [
   .SnapKit,
   .CombineCocoa,
-  .project(target: "Utils", path: "../../Platform/Utils"),
-  .project(target: "SubwayNetworking", path: "../SubwayNetworking")
+  .platform.utils,
+  .feature.subwayNetworking
 ]
 
 let project = Project(

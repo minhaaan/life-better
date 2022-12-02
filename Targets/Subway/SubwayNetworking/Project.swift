@@ -2,7 +2,7 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let subwayRepositoryDependencies: [TargetDependency] = [
-  .project(target: "Networking", path: "../../Core/Networking")
+  .core.networking
 ]
 
 let project = Project(

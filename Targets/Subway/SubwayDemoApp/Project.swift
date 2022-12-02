@@ -6,7 +6,7 @@ let project = Project(
   targets: Project.makeAppTargets(
     name: "SubwayDemoApp",
     dependencies: [
-      .project(target: "Subway", path: "../Subway")
+      .feature.subway
     ]
   )
 )
