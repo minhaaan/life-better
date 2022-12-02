@@ -18,6 +18,7 @@ final class SubwayListRouterTests: XCTestCase {
   private var subwayDetailBuildable: SubwayDetailBuildableMock!
   private var subwayDetailListner: SubwayDetailListener!
   private var subwayDetailRouting: SubwayDetailRoutingMock!
+  private var subwayDetailInteractable: SubwayDetailInteractableMock!
   
   // TODO: declare other objects and mocks you need as private vars
   
@@ -32,10 +33,12 @@ final class SubwayListRouterTests: XCTestCase {
     self.subwayListViewControllable = SubwayListViewControllableMock()
     self.subwayDetailBuildable = SubwayDetailBuildableMock()
     self.subwayDetailListner = SubwayDetailListnerMock()
+    self.subwayDetailInteractable = SubwayDetailInteractableMock()
     self.subwayDetailRouting = SubwayDetailRoutingMock(
       viewControllable: SubwayListViewControllableMock(),
-      interactable: subwayListInteractor
+      interactable: subwayDetailInteractable
     )
+    
     
     self.subwayDetailBuildable.buildHandler = { (listner: SubwayDetailListener) -> SubwayDetailRouting in
       self.subwayDetailListner = listner
@@ -62,6 +65,21 @@ final class SubwayListRouterTests: XCTestCase {
     // THEN
     XCTAssert(subwayDetailBuildable.buildCallsCount == 1)
     XCTAssert(subwayDetailRouting.loadCalled == true)
+    XCTAssert(subwayDetailInteractable.activateCalled)
+    XCTAssert(subwayDetailInteractable.activateCallsCount == 1)
+  }
+  
+  func test_detachSubwayDetail() {
+    // GIVEN
+    let stationName = "동대구"
+    
+    // WHEN
+    router.attachSubwayDetail(stationName: stationName)
+    router.detachSubwayDetail()
+    
+    // THEN
+    XCTAssert(subwayDetailInteractable.deactivateCalled)
+    XCTAssert(subwayDetailInteractable.deactivateCallsCount == 1)
   }
   
 }

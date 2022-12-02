@@ -16,7 +16,7 @@ protocol SubwayDetailPresentableListener: AnyObject {
 }
 
 final class SubwayDetailViewController: UIViewController, SubwayDetailPresentable, SubwayDetailViewControllable {
-    
+  
   // MARK: Properties
   
   weak var listener: SubwayDetailPresentableListener?

@@ -20,6 +20,7 @@ protocol SubwayDetailPresentable: Presentable {
 
 public protocol SubwayDetailListener: AnyObject {
   // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+  func detachSubwayDetail()
 }
 
 final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentable>, SubwayDetailInteractable, SubwayDetailPresentableListener {

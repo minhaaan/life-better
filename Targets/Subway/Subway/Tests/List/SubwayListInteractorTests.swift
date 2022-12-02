@@ -68,4 +68,14 @@ final class SubwayListInteractorTests: XCTestCase {
     // THEN
     XCTAssert(subwayListRouter.attachSubwayDetailCallsCount == 1)
   }
+  
+  func test_detachSubwayDetail_Call() {
+    // GIVEN
+    
+    // WHEN
+    interactor.detachSubwayDetail()
+    
+    // THEN
+    XCTAssert(subwayListRouter.detachSubwayDetailCallsCount == 1)
+  }
 }

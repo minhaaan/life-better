@@ -62,9 +62,12 @@ final class RootRouterTests: XCTestCase {
     
     // WHEN
     router.routeToSubwayHome()
+    XCTAssert(subWayHomeInteractable.deactivateCallsCount == 0)
+    
     router.detachSubwayHome()
     
     // THEN
+    XCTAssert(subWayHomeInteractable.deactivateCalled)
     XCTAssert(subWayHomeInteractable.deactivateCallsCount == 1)
   }
 }

@@ -49,5 +49,6 @@ final class SubwayHomeRouterTests: XCTestCase {
     XCTAssert(subwayListBuildable.buildCallsCount == 1)
     XCTAssert(subwayHomeViewControllable.addChildSubwayListViewControllerCallsCount == 1)
     XCTAssert(subwayListRouting.loadCallsCount == 1)
+    XCTAssert(subwayHomeInteratable.activateCallsCount == 1)
   }
 }

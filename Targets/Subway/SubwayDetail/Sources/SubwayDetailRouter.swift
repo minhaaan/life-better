@@ -8,20 +8,20 @@
 
 import ModernRIBs
 
-protocol SubwayDetailInteractable: Interactable {
-    var router: SubwayDetailRouting? { get set }
-    var listener: SubwayDetailListener? { get set }
+public protocol SubwayDetailInteractable: Interactable {
+  var router: SubwayDetailRouting? { get set }
+  var listener: SubwayDetailListener? { get set }
 }
 
 protocol SubwayDetailViewControllable: ViewControllable {
-    // TODO: Declare methods the router invokes to manipulate the view hierarchy.
+  // TODO: Declare methods the router invokes to manipulate the view hierarchy.
 }
 
 final class SubwayDetailRouter: ViewableRouter<SubwayDetailInteractable, SubwayDetailViewControllable>, SubwayDetailRouting {
-
-    // TODO: Constructor inject child builder protocols to allow building children.
-    override init(interactor: SubwayDetailInteractable, viewController: SubwayDetailViewControllable) {
-        super.init(interactor: interactor, viewController: viewController)
-        interactor.router = self
-    }
+  
+  // TODO: Constructor inject child builder protocols to allow building children.
+  override init(interactor: SubwayDetailInteractable, viewController: SubwayDetailViewControllable) {
+    super.init(interactor: interactor, viewController: viewController)
+    interactor.router = self
+  }
 }

@@ -41,4 +41,10 @@ final class SubwayListRouter: ViewableRouter<SubwayListInteractable, SubwayListV
     viewController.pushViewController(subwayDetail.viewControllable, animated: true)
   }
   
+  func detachSubwayDetail() {
+    if let subwayDetail {
+      detachChild(subwayDetail)
+    }
+  }
+  
 }

@@ -57,6 +57,11 @@ final class SubwayListRoutingMock: SubwayListRouting {
     attachSubwayDetailCallsCount += 1
   }
   
+  var detachSubwayDetailCallsCount = 0
+  func detachSubwayDetail() {
+    detachSubwayDetailCallsCount += 1
+  }
+  
 }
 
 // MARK: SubwayListListnerMock
@@ -142,6 +147,12 @@ final class SubwayListInteractableMock: SubwayListInteractable {
     deactivateCallsCount += 1
     deactivateClosure?()
   }
+  
+  var detachSubwayDetailCallsCount = 0
+  func detachSubwayDetail() {
+    detachSubwayDetailCallsCount += 1
+    router?.detachSubwayDetail()
+  }
 }
 
 // MARK: SubwayDetailBuildableMock
@@ -163,7 +174,10 @@ final class SubwayDetailBuildableMock: SubwayDetailBuildable {
 
 // MARK: SubwayDetailListnerMock
 final class SubwayDetailListnerMock: SubwayDetailListener {
-  
+  var detachSubwayDetailCallsCount = 0
+  func detachSubwayDetail() {
+    detachSubwayDetailCallsCount += 1
+  }
 }
 
 // MARK: - SubwayDetailRoutingMock -
@@ -236,4 +250,53 @@ final class SubwayDetailRoutingMock: SubwayDetailRouting {
     detachChildReceivedInvocations.append(child)
     detachChildClosure?(child)
   }
+}
+
+// MARK: - SubwayDetailInteractableMock -
+
+final class SubwayDetailInteractableMock: SubwayDetailInteractable {
+    var router: SubwayDetail.SubwayDetailRouting?
+    var listener: SubwayDetail.SubwayDetailListener?
+    
+   // MARK: - isActive
+
+    var isActive: Bool {
+        get { underlyingIsActive }
+        set(value) { underlyingIsActive = value }
+    }
+    private var underlyingIsActive: Bool!
+    
+   // MARK: - isActiveStream
+
+    var isActiveStream: AnyPublisher<Bool, Never> {
+        get { underlyingIsActiveStream }
+        set(value) { underlyingIsActiveStream = value }
+    }
+    private var underlyingIsActiveStream: AnyPublisher<Bool, Never>!
+    
+   // MARK: - activate
+
+    var activateCallsCount = 0
+    var activateCalled: Bool {
+        activateCallsCount > 0
+    }
+    var activateClosure: (() -> Void)?
+
+    func activate() {
+        activateCallsCount += 1
+        activateClosure?()
+    }
+    
+   // MARK: - deactivate
+
+    var deactivateCallsCount = 0
+    var deactivateCalled: Bool {
+        deactivateCallsCount > 0
+    }
+    var deactivateClosure: (() -> Void)?
+
+    func deactivate() {
+        deactivateCallsCount += 1
+        deactivateClosure?()
+    }
 }
