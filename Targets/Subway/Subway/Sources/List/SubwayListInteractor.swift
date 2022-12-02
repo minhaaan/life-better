@@ -11,6 +11,7 @@ import Utils
 
 protocol SubwayListRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+  func attachSubwayDetail(stationName: String)
 }
 
 protocol SubwayListPresentable: Presentable {
@@ -58,7 +59,7 @@ final class SubwayListInteractor: PresentableInteractor<SubwayListPresentable>, 
   }
   
   func didTapSubwayStation(stationName: String) {
-    print("DEBUG: didTapSubwayStation \(stationName)")
+    router?.attachSubwayDetail(stationName: stationName)
   }
 }
 
