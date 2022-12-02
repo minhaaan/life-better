@@ -7,6 +7,7 @@
 //
 
 import ModernRIBs
+import SubwayNetworking
 
 public protocol SubwayDetailDependency: Dependency {
   // TODO: Declare the set of dependencies required by this RIB, but cannot be
@@ -20,6 +21,17 @@ final class SubwayDetailComponent: Component<SubwayDetailDependency> {
   var stationName: String {
     dependency.stationName
   }
+  
+  let subwayRepository: SubwayRepository
+  
+  init(
+    dependency: SubwayDetailDependency,
+    subwayRepository: SubwayRepository
+  ) {
+    self.subwayRepository = subwayRepository
+    super.init(dependency: dependency)
+  }
+  
 }
 
 // MARK: - Builder
@@ -30,14 +42,26 @@ public protocol SubwayDetailBuildable: Buildable {
 
 public final class SubwayDetailBuilder: Builder<SubwayDetailDependency>, SubwayDetailBuildable {
   
-  public override init(dependency: SubwayDetailDependency) {
+  let subwayRepository: SubwayRepository
+  
+  public init(
+    dependency: SubwayDetailDependency,
+    subwayRepository: SubwayRepository
+  ) {
+    self.subwayRepository = subwayRepository
     super.init(dependency: dependency)
   }
   
   public func build(withListener listener: SubwayDetailListener) -> SubwayDetailRouting {
-    let component = SubwayDetailComponent(dependency: dependency)
+    let component = SubwayDetailComponent(
+      dependency: dependency,
+      subwayRepository: subwayRepository
+    )
     let viewController = SubwayDetailViewController()
-    let interactor = SubwayDetailInteractor(presenter: viewController)
+    let interactor = SubwayDetailInteractor(
+      presenter: viewController,
+      subwayRepository: component.subwayRepository
+    )
     interactor.listener = listener
     return SubwayDetailRouter(interactor: interactor, viewController: viewController)
   }

@@ -8,6 +8,7 @@
 
 import ModernRIBs
 import SubwayDetail
+import SubwayNetworking
 
 protocol SubwayListDependency: Dependency {
   var subwayStations: [SubwayStation] { get }
@@ -39,7 +40,10 @@ final class SubwayListBuilder: Builder<SubwayListDependency>, SubwayListBuildabl
     let interactor = SubwayListInteractor(presenter: viewController, subwayStation: component.subwayStations)
     interactor.listener = listener
     
-    let subwayDetailBuilder = SubwayDetailBuilder(dependency: component)
+    let subwayDetailBuilder = SubwayDetailBuilder(
+      dependency: component,
+      subwayRepository: SubwayRepository()
+    )
     
     return SubwayListRouter(
       interactor: interactor,
