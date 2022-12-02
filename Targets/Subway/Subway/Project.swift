@@ -5,7 +5,8 @@ let subwayDependencies: [TargetDependency] = [
   .SnapKit,
   .CombineCocoa,
   .platform.utils,
-  .feature.subwayNetworking
+  .feature.subwayNetworking,
+  .feature.subwayCore
 ]
 
 let project = Project(
