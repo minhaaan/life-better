@@ -1,22 +1,20 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
-let subwayDependencies: [TargetDependency] = [
-  .SnapKit,
-  .CombineCocoa,
+let subwayCoreDependencies: [TargetDependency] = [
   .platform.utils,
-  .feature.subwayNetworking,
+  .platform.ribsUtils,
   .feature.subwayCore,
-  .feature.subwayDetail
+  .feature.subwayNetworking
 ]
 
 let project = Project(
-  name: "Subway",
+  name: "SubwayDetail",
   organizationName: "com.minan",
   packages: [],
   targets: Project.makeFrameworkTargets(
-    name: "Subway",
+    name: "SubwayDetail",
     isDynamic: false,
-    dependencies: subwayDependencies
+    dependencies: subwayCoreDependencies
   )
 )

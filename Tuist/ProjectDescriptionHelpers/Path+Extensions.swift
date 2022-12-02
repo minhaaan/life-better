@@ -27,4 +27,5 @@ public struct Subway {
   public let subway = Path.relativeToRoot("Targets/Subway/Subway")
   public let subwayNetworking = Path.relativeToRoot("Targets/Subway/SubwayNetworking")
   public let subwayCore = Path.relativeToRoot("Targets/Subway/SubwayCore")
+  public let subwayDetail = Path.relativeToRoot("Targets/Subway/SubwayDetail")
 }
