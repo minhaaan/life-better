@@ -13,6 +13,7 @@ final class SubwayListInteractorTests: XCTestCase {
   
   private var interactor: SubwayListInteractor!
   private var subwayListPresentable: SubwayListPresentableMock!
+  private var subwayListRouter: SubwayListRoutingMock!
   
   // TODO: declare other objects and mocks you need as private vars
   
@@ -25,6 +26,12 @@ final class SubwayListInteractorTests: XCTestCase {
       presenter: self.subwayListPresentable,
       subwayStation: subwayStationsMockData
     )
+    
+    self.subwayListRouter = SubwayListRoutingMock(
+      viewControllable: SubwayListViewControllableMock(),
+      interactable: interactor
+    )
+    interactor.router = self.subwayListRouter
   }
   
   // MARK: - Tests
@@ -50,5 +57,15 @@ final class SubwayListInteractorTests: XCTestCase {
     XCTAssert(subwayListPresentable.updateSubwayStationsCallsCount == 1)
     XCTAssertTrue(subwayListPresentable.updatedSubwayStations.count == 1)
     XCTAssert(subwayListPresentable.updatedSubwayStations.first?.stationName == "1")
+  }
+  
+  func test_listCell_Tapped() {
+    // GIVEN
+    
+    // WHEN
+    interactor.didTapSubwayStation(stationName: "")
+    
+    // THEN
+    XCTAssert(subwayListRouter.attachSubwayDetailCallsCount == 1)
   }
 }
