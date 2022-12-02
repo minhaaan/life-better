@@ -13,7 +13,6 @@ public struct Core {
 
 public struct Platform {
   private static let defaultPath = "Targets/Platform"
-  public let RibsUtil: Path = Path.relativeToRoot("\(defaultPath)/RibsUtil")
   public let Utils: Path = Path.relativeToRoot("\(defaultPath)/Utils")
 }
 

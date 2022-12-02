@@ -11,7 +11,6 @@ public struct CoreTarget {
 }
 
 public struct PlatformTarget {
-  public let ribsUtils = TargetDependency.project(target: "RibsUtils", path: .platform.RibsUtil)
   public let utils = TargetDependency.project(target: "Utils", path: .platform.Utils)
 }
 

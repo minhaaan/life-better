@@ -3,7 +3,6 @@ import ProjectDescriptionHelpers
 
 let subwayCoreDependencies: [TargetDependency] = [
   .platform.utils,
-  .platform.ribsUtils,
   .feature.subwayCore,
   .feature.subwayNetworking
 ]
