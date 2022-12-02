@@ -15,6 +15,7 @@ protocol SubwayListPresentableListener: AnyObject {
   // business logic, such as signIn(). This protocol is implemented by the corresponding
   // interactor class.
   func updateSearchKeyword(keyword: String)
+  func didTapSubwayStation(stationName: String)
 }
 
 final class SubwayListViewController: UIViewController, SubwayListPresentable, SubwayListViewControllable {
@@ -112,7 +113,13 @@ extension SubwayListViewController: UICollectionViewDataSource {
 }
 
 extension SubwayListViewController: UICollectionViewDelegate {
-  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
+    guard let stationName = subwayStations[safe: indexPath.row]?.stationName else { return }
+    listener?.didTapSubwayStation(stationName: stationName)
+  }
 }
 
 extension SubwayListViewController: UISearchBarDelegate {

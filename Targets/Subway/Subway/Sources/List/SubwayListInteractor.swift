@@ -56,5 +56,9 @@ final class SubwayListInteractor: PresentableInteractor<SubwayListPresentable>, 
     let searchResult = subwayStation.filter { $0.stationName.contains(keyword) }
     presenter.updateSubwayStations(with: searchResult)
   }
+  
+  func didTapSubwayStation(stationName: String) {
+    print("DEBUG: didTapSubwayStation \(stationName)")
+  }
 }
 
