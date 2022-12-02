@@ -7,12 +7,15 @@
 //
 
 import ModernRIBs
+import SubwayDetail
 
 protocol SubwayListDependency: Dependency {
   var subwayStations: [SubwayStation] { get }
 }
 
-final class SubwayListComponent: Component<SubwayListDependency> {
+final class SubwayListComponent: Component<SubwayListDependency>, SubwayDetailDependency {
+  var stationName: String = ""
+  
   var subwayStations: [SubwayStation] {
     dependency.subwayStations
   }
@@ -35,6 +38,13 @@ final class SubwayListBuilder: Builder<SubwayListDependency>, SubwayListBuildabl
     let viewController = SubwayListViewController()
     let interactor = SubwayListInteractor(presenter: viewController, subwayStation: component.subwayStations)
     interactor.listener = listener
-    return SubwayListRouter(interactor: interactor, viewController: viewController)
+    
+    let subwayDetailBuilder = SubwayDetailBuilder(dependency: component)
+    
+    return SubwayListRouter(
+      interactor: interactor,
+      viewController: viewController,
+      subwayDetailBuilder: subwayDetailBuilder
+    )
   }
 }

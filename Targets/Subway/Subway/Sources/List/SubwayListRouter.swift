@@ -7,6 +7,7 @@
 //
 
 import ModernRIBs
+import SubwayDetail
 
 protocol SubwayListInteractable: Interactable, SubwayListListener {
   var router: SubwayListRouting? { get set }
@@ -20,8 +21,17 @@ protocol SubwayListViewControllable: ViewControllable {
 final class SubwayListRouter: ViewableRouter<SubwayListInteractable, SubwayListViewControllable>, SubwayListRouting {
   
   // TODO: Constructor inject child builder protocols to allow building children.
-  override init(interactor: SubwayListInteractable, viewController: SubwayListViewControllable) {
+  init(
+    interactor: SubwayListInteractable,
+    viewController: SubwayListViewControllable,
+    subwayDetailBuilder: SubwayDetailBuildable
+  ) {
+    self.subwayDetailBuilder = subwayDetailBuilder
     super.init(interactor: interactor, viewController: viewController)
     interactor.router = self
   }
+  
+  private let subwayDetailBuilder: SubwayDetailBuildable
+  private var subwayDetail: SubwayDetailRouting?
+  
 }

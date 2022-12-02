@@ -8,7 +8,7 @@
 
 import ModernRIBs
 
-protocol SubwayDetailRouting: ViewableRouting {
+public protocol SubwayDetailRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
@@ -17,7 +17,7 @@ protocol SubwayDetailPresentable: Presentable {
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-protocol SubwayDetailListener: AnyObject {
+public protocol SubwayDetailListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
