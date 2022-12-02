@@ -8,6 +8,7 @@
 import Foundation
 import Networking
 import Combine
+import SubwayCore
 
 public final class SubwayRepository {
  
@@ -20,6 +21,4 @@ public final class SubwayRepository {
   public func getRealtimeStationArrival(stationName: String) -> AnyPublisher<RealtimeStationArrivalModel, Error> {
     apiManager.perform(SubwayRequest(stationName: stationName), type: RealtimeStationArrivalModel.self)
   }
-  
-  
 }
