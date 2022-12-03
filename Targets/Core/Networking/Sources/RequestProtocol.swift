@@ -39,18 +39,15 @@ public extension RequestProtocol {
 
 extension RequestProtocol {
   func createURLRequest() throws -> URLRequest {
-    var components = URLComponents()
-    components.scheme = "https"
-    components.host = host
-    components.path = path
+    var components = URLComponents(string: host + path)
     
     if !urlParams.isEmpty {
-      components.queryItems = urlParams.map {
+      components?.queryItems = urlParams.map {
         URLQueryItem(name: $0, value: $1)
       }
     }
     
-    guard let url = components.url else { throw NetworkError.invalidUrl }
+    guard let url = components?.url else { throw NetworkError.invalidUrl }
     
     var urlRequest = URLRequest(url: url)
     urlRequest.httpMethod = requestType.rawValue
