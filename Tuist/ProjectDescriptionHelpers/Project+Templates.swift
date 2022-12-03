@@ -10,6 +10,9 @@ extension Project {
       "CFBundleVersion": "1",
       "UIMainStoryboardFile": "",
       "UILaunchStoryboardName": "LaunchScreen",
+      "NSAppTransportSecurity":   [
+        "NSAllowsArbitraryLoads": true
+      ]
     ]
     
     let baseSettings: [String: SettingValue] = [
