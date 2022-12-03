@@ -19,6 +19,11 @@ public final class SubwayRepository {
   }
   
   public func getRealtimeStationArrival(stationName: String) -> AnyPublisher<RealtimeStationArrivalModel, Error> {
-    apiManager.perform(SubwayRequest(stationName: stationName), type: RealtimeStationArrivalModel.self)
+    return apiManager
+      .perform(
+        SubwayRequest(stationName: stationName),
+        type: RealtimeStationArrivalModel.self
+      )
+      .eraseToAnyPublisher()
   }
 }
