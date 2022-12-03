@@ -1,13 +1,7 @@
-//
-//  SubwayDetailInteractor.swift
-//  SubwayDetail
-//
-//  Created by 최민한 on 2022/12/02.
-//  Copyright © 2022 com.minan. All rights reserved.
-//
-
 import ModernRIBs
 import SubwayNetworking
+import SubwayCore
+import Combine
 
 public protocol SubwayDetailRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -15,7 +9,7 @@ public protocol SubwayDetailRouting: ViewableRouting {
 
 protocol SubwayDetailPresentable: Presentable {
   var listener: SubwayDetailPresentableListener? { get set }
-  // TODO: Declare methods the interactor can invoke the presenter to present data.
+  var data: PassthroughSubject<RealtimeStationArrivalModel, Never> { get }
 }
 
 public protocol SubwayDetailListener: AnyObject {
@@ -29,6 +23,8 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   weak var listener: SubwayDetailListener?
   
   private let subwayRepository: SubwayRepository
+  
+  private var bag = Set<AnyCancellable>()
   
   // TODO: Add additional dependencies to constructor. Do not perform any logic
   // in constructor.
@@ -49,5 +45,22 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   override func willResignActive() {
     super.willResignActive()
     // TODO: Pause any business logic.
+  }
+  
+  func detachSubwayDetail() {
+    listener?.detachSubwayDetail()
+  }
+  
+  func getData() {
+    subwayRepository
+      .getRealtimeStationArrival(stationName: "")
+      .sink { completion in
+        if case .failure(let error) = completion {
+          print("DEBUG: 에러났다.")
+        }
+      } receiveValue: { [weak self] data in
+        self?.presenter.data.send(data)
+      }
+      .store(in: &bag)
   }
 }
