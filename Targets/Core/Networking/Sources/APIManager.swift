@@ -26,10 +26,15 @@ public class APIManager: APIManagerInterface {
       return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
     }
     
-    return urlSession.dataTaskPublisher(for: request)
-      .tryMap { data, res in
-        try JSONDecoder().decode(👻.self, from: data)
+    return urlSession.dataTaskPublisher(for: request.url!)
+      .tryMap() { element -> Data in
+        guard let httpResponse = element.response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+          throw URLError(.badServerResponse)
+        }
+        return element.data
       }
+      .decode(type: 👻.self, decoder: JSONDecoder())
       .eraseToAnyPublisher()
   }
 }
