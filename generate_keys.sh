@@ -6,4 +6,5 @@ do
 done
 
 cd Targets/Platform/Utils/Sources
-echo "import Foundation\n\npublic struct Keys {\npublic static let a = \"${a_option}\"\n}" >> Keys.swift
+echo "import Foundation\n\npublic struct Keys {\npublic static let SUBWAY_API_KEY = \"${a_option}\"\n}" >> Keys.swift
+ls
