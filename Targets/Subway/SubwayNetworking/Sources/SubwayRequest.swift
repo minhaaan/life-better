@@ -1,5 +1,6 @@
 import Foundation
 import Networking
+import Utils
 
 public struct SubwayRequest {
   let stationName: String
@@ -7,7 +8,7 @@ public struct SubwayRequest {
 
 extension SubwayRequest: RequestProtocol {
   public var host: String {
-    "http://swopenAPI.seoul.go.kr/api/subway/(인증키)/json/realtimeStationArrival/0/5" // TODO: 인증키 넣기.
+    "http://swopenAPI.seoul.go.kr/api/subway/\(Keys.SUBWAY_API_KEY)/json/realtimeStationArrival/0/5" // TODO: 인증키 넣기.
   }
   
   public var path: String {
