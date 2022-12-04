@@ -27,3 +27,7 @@ jobs:
 
       - name: run test
         run: tuist test --device "iPhone 14" --os 16.1
+
+      # See https://github.com/codecov/example-ci/blob/main/.github/workflows/ci.yml
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
