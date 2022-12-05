@@ -4,6 +4,7 @@ import ProjectDescriptionHelpers
 // MARK: Project
 
 let utilsDependencies: [TargetDependency] = [
+  .platform.utils
 ]
 
 let project = Project(
