@@ -22,6 +22,7 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   weak var router: SubwayDetailRouting?
   weak var listener: SubwayDetailListener?
   
+  private let stationName: String
   private let subwayRepository: SubwayRepository
   
   private var bag = Set<AnyCancellable>()
@@ -30,9 +31,11 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   // in constructor.
   init(
     presenter: SubwayDetailPresentable,
-    subwayRepository: SubwayRepository
+    subwayRepository: SubwayRepository,
+    stationName: String
   ) {
     self.subwayRepository = subwayRepository
+    self.stationName = stationName
     super.init(presenter: presenter)
     presenter.listener = self
   }
@@ -53,7 +56,7 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   
   func getData() {
     subwayRepository
-      .getRealtimeStationArrival(stationName: "")
+      .getRealtimeStationArrival(stationName: stationName)
       .sink { completion in
         if case .failure(let error) = completion {
           print("DEBUG: 에러났다.")
