@@ -33,6 +33,8 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
   
   // MARK: LayoutProperties
   
+  let label = UILabel()
+  
   // MARK: init
   
   init(stationName: String) {
@@ -74,10 +76,8 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
   
   private func bind() {
     arrivalData
-      .sink(receiveCompletion: { compl in
-        print("DEBUG: comp is \(compl)")
-      }, receiveValue: { [weak self] value in
-        print("DEBUG: value is \(value)")
+      .sink(receiveValue: { [weak self] value in
+        self?.label.text = value.errorMessage.code
       })
       .store(in: &bag)
     
