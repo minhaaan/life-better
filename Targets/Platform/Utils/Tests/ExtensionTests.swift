@@ -47,4 +47,16 @@ final class ExtensionTests: XCTestCase {
     XCTAssert(array[safe: 4] == nil)
   }
   
+  func test_string_isNotEmpty() {
+    // GIVEN
+    let emptyString = ""
+    let notEmptyString = "1"
+    
+    // WHEN
+    
+    // THEN
+    XCTAssert(emptyString.isNotEmpty == false)
+    XCTAssert(notEmptyString.isNotEmpty)
+  }
+  
 }
