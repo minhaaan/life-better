@@ -57,6 +57,13 @@
         "identifier" : "3335A987F02DDCB8711BCA03",
         "name" : "SubwayNetworkingTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/Subway\/SubwayDetail\/SubwayDetail.xcodeproj",
+        "identifier" : "53E1546FFBB2EB9E4233E968",
+        "name" : "SubwayDetailTests"
+      }
     }
   ],
   "version" : 1
