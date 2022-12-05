@@ -30,9 +30,9 @@ jobs:
 
       - name: run build
         run: xcodebuild build-for-testing \
-  -workspace LifeBetter.xcworkspace \
-  -scheme LifeBetter \
-  -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.1'
+          -workspace LifeBetter.xcworkspace \
+          -scheme LifeBetter \
+          -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.1'
 
       - name: run test
         run: xcodebuild test \
