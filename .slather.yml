@@ -4,4 +4,12 @@ coverage_service: cobertura_xml
 xcodeproj: Targets/LifeBetter/LifeBetter.xcodeproj
 workspace: LifeBetter.xcworkspace
 scheme: LifeBetter
+binary_basename:
+  - LifeBetter
+  - Networking
+  - Utils
+  - SubwayCore
+  # - Subway
+  # - SubwayDetail
+  # - SubwayNetworking
 output_directory: ./
