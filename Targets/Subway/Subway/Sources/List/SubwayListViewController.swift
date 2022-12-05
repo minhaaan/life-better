@@ -104,10 +104,15 @@ extension SubwayListViewController: UICollectionViewDataSource {
       return UICollectionViewListCell()
     }
     
-    var config = cell.defaultContentConfiguration()
-    config.text = subwayStations[indexPath.row].stationName
-    cell.contentConfiguration = config
+    guard let station = subwayStations[safe: indexPath.row] else { return UICollectionViewListCell() }
+    guard let lineNumber = Int(String(station.subwayId).suffix(2)) else { return UICollectionViewListCell() }
     
+    var content = cell.defaultContentConfiguration()
+    content.text = station.stationName
+    // TODO: 수인분당, 신분당 등 처리.
+    content.image = UIImage(systemName: "\(lineNumber).circle.fill")
+    content.imageProperties.tintColor = SubwayAsset.lineImageColor.color
+    cell.contentConfiguration = content
     return cell
   }
 }
