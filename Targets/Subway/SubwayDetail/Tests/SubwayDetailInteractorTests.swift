@@ -17,7 +17,7 @@ import SubwayCore
 final class SubwayDetailInteractorTests: XCTestCase {
   
   private var interactor: SubwayDetailInteractor!
-  private var stationName: String = "두류"
+  private var station: SubwayStation = SubwayStation(subwayId: 1001, stationId: 1, stationName: "두류")
   private var subwayDetailPresenter: SubwayDetailPresentableMock!
   private var subwayRepository: SubwayRepository!
   private var bag: Set<AnyCancellable>!
@@ -34,7 +34,7 @@ final class SubwayDetailInteractorTests: XCTestCase {
     self.interactor = SubwayDetailInteractor(
       presenter: subwayDetailPresenter,
       subwayRepository: subwayRepository,
-      stationName: stationName
+      station: station
     )
     interactor.listener = self.subwayDetailListener
     self.bag = .init()

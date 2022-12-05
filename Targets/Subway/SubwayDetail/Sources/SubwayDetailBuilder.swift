@@ -54,7 +54,7 @@ public final class SubwayDetailBuilder: Builder<SubwayDetailDependency>, SubwayD
     let interactor = SubwayDetailInteractor(
       presenter: viewController,
       subwayRepository: component.subwayRepository,
-      stationName: station.stationName
+      station: station
     )
     interactor.listener = listener
     return SubwayDetailRouter(interactor: interactor, viewController: viewController)
