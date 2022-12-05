@@ -35,4 +35,16 @@ final class ExtensionTests: XCTestCase {
     XCTAssert(notEmptyDic.isNotEmpty)
   }
   
+  func test_array_safe_subscript() {
+    // GIVEN
+    let array: [Int] = [1,2,3]
+    
+    // WHEN
+    let result = array[safe: 0]
+    
+    // THEN
+    XCTAssert(result != nil)
+    XCTAssert(array[safe: 4] == nil)
+  }
+  
 }
