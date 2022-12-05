@@ -1,4 +1,5 @@
 import Foundation
+import Utils
 
 public protocol RequestProtocol {
   var host: String { get }
@@ -47,7 +48,10 @@ extension RequestProtocol {
       }
     }
     
-    guard let url = components?.url else { throw NetworkError.invalidUrl }
+    guard let url = components?.url else {
+      log.error("Networking: invalidURL Error occured url is \(components?.url)")
+      throw NetworkError.invalidUrl
+    }
     
     var urlRequest = URLRequest(url: url)
     urlRequest.httpMethod = requestType.rawValue
