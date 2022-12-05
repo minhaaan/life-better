@@ -3,7 +3,7 @@ import Foundation
 // MARK: - RealtimeStationArrivalModel
 public struct RealtimeStationArrivalModel: Codable {
   public let errorMessage: ErrorMessage
-  public let realtimeArrivalList: [RealtimeArrivalList]
+  public var realtimeArrivalList: [RealtimeArrivalList]
   
   public init(errorMessage: ErrorMessage, realtimeArrivalList: [RealtimeArrivalList]) {
       self.errorMessage = errorMessage

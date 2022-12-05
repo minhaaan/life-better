@@ -58,6 +58,11 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   func getArrivalData() {
     subwayRepository
       .getRealtimeStationArrival(stationName: station.stationName)
+      .map { [weak self] data in
+        var result = data
+        result.realtimeArrivalList = data.realtimeArrivalList.filter { $0.subwayId == String(self?.station.subwayId ?? 0) }
+        return result
+      }
       .sink { completion in
         if case .failure(let error) = completion {
           log.error("getRealtimeStationArrival error \(error)")

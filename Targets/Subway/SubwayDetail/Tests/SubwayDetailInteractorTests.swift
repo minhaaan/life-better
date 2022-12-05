@@ -17,7 +17,7 @@ import SubwayCore
 final class SubwayDetailInteractorTests: XCTestCase {
   
   private var interactor: SubwayDetailInteractor!
-  private var station: SubwayStation = SubwayStation(subwayId: 1001, stationId: 1, stationName: "두류")
+  private var station: SubwayStation = SubwayStation(subwayId: 1002, stationId: 1, stationName: "두류")
   private var subwayDetailPresenter: SubwayDetailPresentableMock!
   private var subwayRepository: SubwayRepository!
   private var bag: Set<AnyCancellable>!
@@ -61,9 +61,10 @@ final class SubwayDetailInteractorTests: XCTestCase {
     
     // THEN
     subwayDetailPresenter.arrivalData
-      .sink { model in
-        print("DEBUG: model is \(model)")
-        XCTAssert(true)
+      .sink { [weak self] model in
+        model.realtimeArrivalList.forEach { list in
+          XCTAssert(list.subwayId == String(self?.station.subwayId ?? -1))
+        }
         exp.fulfill()
       }
       .store(in: &bag)
