@@ -9,7 +9,7 @@ public protocol SubwayDetailRouting: ViewableRouting {
 
 protocol SubwayDetailPresentable: Presentable {
   var listener: SubwayDetailPresentableListener? { get set }
-  var data: PassthroughSubject<RealtimeStationArrivalModel, Never> { get }
+  var arrivalData: PassthroughSubject<RealtimeStationArrivalModel, Never> { get }
 }
 
 public protocol SubwayDetailListener: AnyObject {
@@ -54,7 +54,7 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
     listener?.detachSubwayDetail()
   }
   
-  func getData() {
+  func getArrivalDataData() {
     subwayRepository
       .getRealtimeStationArrival(stationName: stationName)
       .sink { completion in
@@ -62,7 +62,7 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
           print("DEBUG: 에러났다.")
         }
       } receiveValue: { [weak self] data in
-        self?.presenter.data.send(data)
+        self?.presenter.arrivalData.send(data)
       }
       .store(in: &bag)
   }

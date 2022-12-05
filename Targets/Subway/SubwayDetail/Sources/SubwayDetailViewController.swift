@@ -16,7 +16,7 @@ protocol SubwayDetailPresentableListener: AnyObject {
   // business logic, such as signIn(). This protocol is implemented by the corresponding
   // interactor class.
   func detachSubwayDetail()
-  func getData()
+  func getArrivalDataData()
 }
 
 final class SubwayDetailViewController: UIViewController, SubwayDetailPresentable, SubwayDetailViewControllable {
@@ -25,7 +25,7 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
   
   weak var listener: SubwayDetailPresentableListener?
   
-  var data = PassthroughSubject<RealtimeStationArrivalModel, Never>()
+  var arrivalData = PassthroughSubject<RealtimeStationArrivalModel, Never>()
   
   private var bag = Set<AnyCancellable>()
   
@@ -41,7 +41,7 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
     
     setupLayout()
     bind()
-    listener?.getData()
+    listener?.getArrivalDataData()
   }
   
   override func didMove(toParent parent: UIViewController?) {
@@ -58,7 +58,7 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
   }
   
   private func bind() {
-    data
+    arrivalData
       .sink(receiveCompletion: { compl in
       print("DEBUG: comp is \(compl)")
     }, receiveValue: { value in
