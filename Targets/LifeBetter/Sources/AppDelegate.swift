@@ -3,8 +3,6 @@ import ModernRIBs
 import SwiftyBeaver
 import Utils
 
-let log = SwiftyBeaver.self
-
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
