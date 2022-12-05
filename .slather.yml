@@ -1,0 +1,7 @@
+# .slather.yml
+
+coverage_service: cobertura_xml
+xcodeproj: Targets/LifeBetter/LifeBetter.xcodeproj
+workspace: LifeBetter.xcworkspace
+scheme: LifeBetter
+output_directory: ./
