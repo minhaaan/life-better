@@ -8,7 +8,8 @@ let project = Project(
     dependencies: [
       .feature.subway
     ]
-  )
+  ),
+  schemes: [.makeScheme(name: "SubwayDemoApp")]
 )
 
 

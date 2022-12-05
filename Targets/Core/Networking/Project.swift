@@ -14,5 +14,6 @@ let project = Project(
     name: "Networking",
     isDynamic: true,
     dependencies: utilsDependencies
-  )
+  ),
+  schemes: [.makeScheme(name: "Networking")]
 )

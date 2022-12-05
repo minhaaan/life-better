@@ -15,5 +15,6 @@ let project = Project(
     name: "Utils",
     isDynamic: true,
     dependencies: utilsDependencies
-  )
+  ),
+  schemes: [.makeScheme(name: "Utils")]
 )

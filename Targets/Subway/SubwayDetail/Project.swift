@@ -15,5 +15,6 @@ let project = Project(
     name: "SubwayDetail",
     isDynamic: false,
     dependencies: subwayCoreDependencies
-  )
+  ),
+  schemes: [.makeScheme(name: "SubwayDetail")]
 )

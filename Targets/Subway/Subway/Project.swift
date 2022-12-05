@@ -18,5 +18,9 @@ let project = Project(
     name: "Subway",
     isDynamic: false,
     dependencies: subwayDependencies
-  )
+  ),
+  schemes: [
+    .makeScheme(name: "Subway")
+  ]
 )
+
