@@ -27,10 +27,11 @@ public class APIManager: APIManagerInterface {
       return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
     }
     
-    log.info("Networking: Request url is \(request.url!)")
+    log.verbose("Networking: Request url is \(request.url!)")
     
     return urlSession.dataTaskPublisher(for: request.url!)
       .tryMap() { element -> Data in
+        log.verbose("Networking: Response statusCode is \((element.response as? HTTPURLResponse)?.statusCode) request url: \(request.url!)")
         guard let httpResponse = element.response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
           throw URLError(.badServerResponse)
