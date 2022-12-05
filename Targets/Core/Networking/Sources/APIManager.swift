@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import Utils
 
 public protocol APIManagerInterface {
   func perform<👻: Decodable>(_ request: RequestProtocol, type: 👻.Type) -> AnyPublisher<👻, Error>
@@ -25,6 +26,8 @@ public class APIManager: APIManagerInterface {
     guard let request = try? request.createURLRequest() else {
       return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
     }
+    
+    log.info("Networking: Request url is \(request.url!)")
     
     return urlSession.dataTaskPublisher(for: request.url!)
       .tryMap() { element -> Data in
