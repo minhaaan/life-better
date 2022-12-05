@@ -9,13 +9,14 @@
 import ModernRIBs
 import UIKit
 import Then
+import SubwayCore
 
 protocol SubwayListPresentableListener: AnyObject {
   // TODO: Declare properties and methods that the view controller can invoke to perform
   // business logic, such as signIn(). This protocol is implemented by the corresponding
   // interactor class.
   func updateSearchKeyword(keyword: String)
-  func didTapSubwayStation(stationName: String)
+  func didTapSubwayStation(station: SubwayStation)
 }
 
 final class SubwayListViewController: UIViewController, SubwayListPresentable, SubwayListViewControllable {
@@ -121,8 +122,8 @@ extension SubwayListViewController: UICollectionViewDelegate {
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {
-    guard let stationName = subwayStations[safe: indexPath.row]?.stationName else { return }
-    listener?.didTapSubwayStation(stationName: stationName)
+    guard let selectedStation = subwayStations[safe: indexPath.row] else { return }
+    listener?.didTapSubwayStation(station: selectedStation)
   }
 }
 

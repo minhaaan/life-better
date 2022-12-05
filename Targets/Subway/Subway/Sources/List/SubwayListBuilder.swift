@@ -9,6 +9,7 @@
 import ModernRIBs
 import SubwayDetail
 import SubwayNetworking
+import SubwayCore
 
 protocol SubwayListDependency: Dependency {
   var subwayStations: [SubwayStation] { get }

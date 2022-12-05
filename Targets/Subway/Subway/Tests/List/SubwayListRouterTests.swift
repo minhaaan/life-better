@@ -9,6 +9,7 @@
 @testable import Subway
 import XCTest
 import SubwayDetail
+import SubwayCore
 
 final class SubwayListRouterTests: XCTestCase {
   
@@ -57,10 +58,10 @@ final class SubwayListRouterTests: XCTestCase {
  
   func test_attachSubwayDetail() {
     // GIVEN
-    let stationName: String = "죽전"
+    let subwayStation = SubwayStation(subwayId: 1001, stationId: 1, stationName: "두류")
     
     // WHEN
-    router.attachSubwayDetail(stationName: stationName)
+    router.attachSubwayDetail(station: subwayStation)
     
     // THEN
     XCTAssert(subwayDetailBuildable.buildCallsCount == 1)
@@ -71,10 +72,10 @@ final class SubwayListRouterTests: XCTestCase {
   
   func test_detachSubwayDetail() {
     // GIVEN
-    let stationName = "동대구"
+    let station = SubwayStation(subwayId: 1001, stationId: 1, stationName: "두류")
     
     // WHEN
-    router.attachSubwayDetail(stationName: stationName)
+    router.attachSubwayDetail(station: station)
     router.detachSubwayDetail()
     
     // THEN

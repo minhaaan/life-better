@@ -8,6 +8,7 @@
 
 import ModernRIBs
 import SubwayDetail
+import SubwayCore
 
 protocol SubwayListInteractable: Interactable, SubwayDetailListener {
   var router: SubwayListRouting? { get set }
@@ -34,8 +35,8 @@ final class SubwayListRouter: ViewableRouter<SubwayListInteractable, SubwayListV
   private let subwayDetailBuilder: SubwayDetailBuildable
   private var subwayDetail: SubwayDetailRouting?
   
-  func attachSubwayDetail(stationName: String) {
-    let subwayDetail = subwayDetailBuilder.build(withListener: interactor, stationName: stationName)
+  func attachSubwayDetail(station: SubwayStation) {
+    let subwayDetail = subwayDetailBuilder.build(withListener: interactor, station: station)
     self.subwayDetail = subwayDetail
     attachChild(subwayDetail)
     viewController.pushViewController(subwayDetail.viewControllable, animated: true)

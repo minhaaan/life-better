@@ -8,10 +8,11 @@
 
 import ModernRIBs
 import Utils
+import SubwayCore
 
 protocol SubwayListRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-  func attachSubwayDetail(stationName: String)
+  func attachSubwayDetail(station: SubwayStation)
   func detachSubwayDetail()
 }
 
@@ -59,8 +60,8 @@ final class SubwayListInteractor: PresentableInteractor<SubwayListPresentable>, 
     presenter.updateSubwayStations(with: searchResult)
   }
   
-  func didTapSubwayStation(stationName: String) {
-    router?.attachSubwayDetail(stationName: stationName)
+  func didTapSubwayStation(station: SubwayStation) {
+    router?.attachSubwayDetail(station: station)
   }
   
   func detachSubwayDetail() {

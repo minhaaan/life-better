@@ -4,6 +4,7 @@ import Foundation
 import Combine
 import UIKit
 import SubwayDetail
+import SubwayCore
 
 // MARK: SubwayListBuildableMock
 final class SubwayListBuildableMock: SubwayListBuildable {
@@ -53,7 +54,7 @@ final class SubwayListRoutingMock: SubwayListRouting {
   }
   
   var attachSubwayDetailCallsCount = 0
-  func attachSubwayDetail(stationName: String) {
+  func attachSubwayDetail(station: SubwayStation) {
     attachSubwayDetailCallsCount += 1
   }
   
@@ -75,7 +76,7 @@ final class SubwayListPresentableMock: SubwayListPresentable {
   
   var updateSubwayStationsCallsCount = 0
   var updatedSubwayStations: [SubwayStation] = []
-  func updateSubwayStations(with subwayStations: [Subway.SubwayStation]) {
+  func updateSubwayStations(with subwayStations: [SubwayStation]) {
     updateSubwayStationsCallsCount += 1
     updatedSubwayStations = subwayStations
   }
@@ -163,7 +164,7 @@ final class SubwayDetailBuildableMock: SubwayDetailBuildable {
   var buildCallsCount = 0
   func build(
     withListener listener: SubwayDetail.SubwayDetailListener,
-    stationName: String
+    station: SubwayStation
   ) -> SubwayDetail.SubwayDetailRouting {
     buildCallsCount += 1
     if let buildHandler {

@@ -1,5 +1,6 @@
 import ModernRIBs
 import Foundation
+import SubwayCore
 
 public protocol SubWayHomeDependency: Dependency {
   // TODO: Declare the set of dependencies required by this RIB, but cannot be

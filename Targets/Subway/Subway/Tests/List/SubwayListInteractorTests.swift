@@ -8,6 +8,7 @@
 
 @testable import Subway
 import XCTest
+import SubwayCore
 
 final class SubwayListInteractorTests: XCTestCase {
   
@@ -61,9 +62,10 @@ final class SubwayListInteractorTests: XCTestCase {
   
   func test_listCell_Tapped() {
     // GIVEN
+    let selectedSubwayStation = SubwayStation(subwayId: 1001, stationId: 1, stationName: "두류")
     
     // WHEN
-    interactor.didTapSubwayStation(stationName: "")
+    interactor.didTapSubwayStation(station: selectedSubwayStation)
     
     // THEN
     XCTAssert(subwayListRouter.attachSubwayDetailCallsCount == 1)

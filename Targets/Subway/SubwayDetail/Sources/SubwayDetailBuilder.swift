@@ -8,6 +8,7 @@
 
 import ModernRIBs
 import SubwayNetworking
+import SubwayCore
 
 public protocol SubwayDetailDependency: Dependency {
 }
@@ -29,7 +30,7 @@ final class SubwayDetailComponent: Component<SubwayDetailDependency> {
 // MARK: - Builder
 
 public protocol SubwayDetailBuildable: Buildable {
-  func build(withListener listener: SubwayDetailListener, stationName: String) -> SubwayDetailRouting
+  func build(withListener listener: SubwayDetailListener, station: SubwayStation) -> SubwayDetailRouting
 }
 
 public final class SubwayDetailBuilder: Builder<SubwayDetailDependency>, SubwayDetailBuildable {
@@ -44,16 +45,16 @@ public final class SubwayDetailBuilder: Builder<SubwayDetailDependency>, SubwayD
     super.init(dependency: dependency)
   }
   
-  public func build(withListener listener: SubwayDetailListener, stationName: String) -> SubwayDetailRouting {
+  public func build(withListener listener: SubwayDetailListener, station: SubwayStation) -> SubwayDetailRouting {
     let component = SubwayDetailComponent(
       dependency: dependency,
       subwayRepository: subwayRepository
     )
-    let viewController = SubwayDetailViewController(stationName: stationName)
+    let viewController = SubwayDetailViewController(stationName: station.stationName)
     let interactor = SubwayDetailInteractor(
       presenter: viewController,
       subwayRepository: component.subwayRepository,
-      stationName: stationName
+      stationName: station.stationName
     )
     interactor.listener = listener
     return SubwayDetailRouter(interactor: interactor, viewController: viewController)

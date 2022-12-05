@@ -30,7 +30,7 @@ public struct ErrorMessage: Codable {
 public struct RealtimeArrivalList: Codable {
   public let totalCount: Int
   public let rowNum: Int
-  public let subwayId: String
+  public let subwayId: String // Line Number 1002, 1004 2호선 4호선
   public let statnNm: String
   public let recptnDt: String // 열차도착정보를 생성한 시각
   public let arvlMsg2: String // 첫번째도착메세지 (전역 진입, 전역 도착 등)
