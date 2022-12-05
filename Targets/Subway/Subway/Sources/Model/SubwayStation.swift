@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 struct SubwayStation: Decodable, Equatable {
   let subwayId: Int
@@ -9,5 +9,15 @@ struct SubwayStation: Decodable, Equatable {
     case subwayId = "SUBWAY_ID"
     case stationId = "STATN_ID"
     case stationName = "STATN_NM"
+  }
+}
+
+extension SubwayStation {
+  var lineImage: UIImage? {
+    return UIImage(systemName: "\(lineImageName).circle.fill")
+  }
+  
+  var lineImageName: Int {
+    return subwayId % 100
   }
 }
