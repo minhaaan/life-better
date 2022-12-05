@@ -71,3 +71,7 @@ Tuist/Dependencies
 
 # APIKEY
 # Keys.swift
+
+# slather report
+cobertura.xml
+
