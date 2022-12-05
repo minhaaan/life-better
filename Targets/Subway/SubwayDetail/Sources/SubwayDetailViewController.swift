@@ -16,7 +16,7 @@ protocol SubwayDetailPresentableListener: AnyObject {
   // business logic, such as signIn(). This protocol is implemented by the corresponding
   // interactor class.
   func detachSubwayDetail()
-  func getArrivalDataData()
+  func getArrivalData()
 }
 
 final class SubwayDetailViewController: UIViewController, SubwayDetailPresentable, SubwayDetailViewControllable {
@@ -52,7 +52,7 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
     
     setupLayout()
     bind()
-    listener?.getArrivalDataData()
+    listener?.getArrivalData()
   }
   
   override func didMove(toParent parent: UIViewController?) {

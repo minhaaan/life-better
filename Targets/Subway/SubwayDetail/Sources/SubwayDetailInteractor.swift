@@ -2,6 +2,7 @@ import ModernRIBs
 import SubwayNetworking
 import SubwayCore
 import Combine
+import Utils
 
 public protocol SubwayDetailRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -54,12 +55,12 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
     listener?.detachSubwayDetail()
   }
   
-  func getArrivalDataData() {
+  func getArrivalData() {
     subwayRepository
       .getRealtimeStationArrival(stationName: stationName)
       .sink { completion in
         if case .failure(let error) = completion {
-          print("DEBUG: 에러났다.")
+          log.error("getRealtimeStationArrival error \(error)")
         }
       } receiveValue: { [weak self] data in
         self?.presenter.arrivalData.send(data)

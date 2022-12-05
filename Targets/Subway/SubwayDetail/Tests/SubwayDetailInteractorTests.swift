@@ -57,7 +57,7 @@ final class SubwayDetailInteractorTests: XCTestCase {
     }
     
     // WHEN
-    subwayDetailPresenter.listener?.getArrivalDataData()
+    subwayDetailPresenter.listener?.getArrivalData()
     
     // THEN
     subwayDetailPresenter.arrivalData
