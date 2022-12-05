@@ -34,7 +34,6 @@ jobs:
 
       - name: run test
         run: xcodebuild test -workspace LifeBetter.xcworkspace -scheme LifeBetter -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.1'
-
       - name: slather
         run: slather
 
