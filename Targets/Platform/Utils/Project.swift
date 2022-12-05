@@ -4,7 +4,8 @@ import ProjectDescriptionHelpers
 // MARK: Project
 
 let utilsDependencies: [TargetDependency] = [
-  .ModernRibs
+  .ModernRibs,
+  .SwiftyBeaver
 ]
 
 let project = Project(
