@@ -35,7 +35,7 @@ final class SubwayListRouter: ViewableRouter<SubwayListInteractable, SubwayListV
   private var subwayDetail: SubwayDetailRouting?
   
   func attachSubwayDetail(stationName: String) {
-    let subwayDetail = subwayDetailBuilder.build(withListener: interactor)
+    let subwayDetail = subwayDetailBuilder.build(withListener: interactor, stationName: stationName)
     self.subwayDetail = subwayDetail
     attachChild(subwayDetail)
     viewController.pushViewController(subwayDetail.viewControllable, animated: true)

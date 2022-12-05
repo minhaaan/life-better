@@ -162,7 +162,8 @@ final class SubwayDetailBuildableMock: SubwayDetailBuildable {
   
   var buildCallsCount = 0
   func build(
-    withListener listener: SubwayDetail.SubwayDetailListener
+    withListener listener: SubwayDetail.SubwayDetailListener,
+    stationName: String
   ) -> SubwayDetail.SubwayDetailRouting {
     buildCallsCount += 1
     if let buildHandler {

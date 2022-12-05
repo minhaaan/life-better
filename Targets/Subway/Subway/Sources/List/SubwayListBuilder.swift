@@ -15,8 +15,6 @@ protocol SubwayListDependency: Dependency {
 }
 
 final class SubwayListComponent: Component<SubwayListDependency>, SubwayDetailDependency {
-  var stationName: String = ""
-  
   var subwayStations: [SubwayStation] {
     dependency.subwayStations
   }

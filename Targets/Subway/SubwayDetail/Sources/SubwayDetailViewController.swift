@@ -25,14 +25,25 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
   
   weak var listener: SubwayDetailPresentableListener?
   
+  private let stationName: String
+  
   var arrivalData = PassthroughSubject<RealtimeStationArrivalModel, Never>()
   
   private var bag = Set<AnyCancellable>()
   
   // MARK: LayoutProperties
   
-  
   // MARK: init
+  
+  init(stationName: String) {
+    self.stationName = stationName
+    super.init(nibName: nil, bundle: nil)
+    self.setupNavBar()
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError()
+  }
   
   // MARK: LifeCycle
   
@@ -53,18 +64,22 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
   
   // MARK: Method
   
+  private func setupNavBar() {
+    self.navigationItem.title = stationName
+  }
+  
   private func setupLayout() {
-    view.backgroundColor = .systemGreen
+    view.backgroundColor = .systemBackground
   }
   
   private func bind() {
     arrivalData
       .sink(receiveCompletion: { compl in
-      print("DEBUG: comp is \(compl)")
-    }, receiveValue: { value in
-      print("DEBUG: value is \(value)")
-    })
-    .store(in: &bag)
-
+        print("DEBUG: comp is \(compl)")
+      }, receiveValue: { [weak self] value in
+        print("DEBUG: value is \(value)")
+      })
+      .store(in: &bag)
+    
   }
 }
