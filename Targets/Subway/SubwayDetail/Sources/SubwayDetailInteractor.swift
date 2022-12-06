@@ -12,6 +12,7 @@ protocol SubwayDetailPresentable: Presentable {
   var listener: SubwayDetailPresentableListener? { get set }
   func updateHeadingList(with: Set<String>)
   func updateArrivalList(with: [RealtimeArrivalList])
+  func updateLabelText(with text: String)
 }
 
 public protocol SubwayDetailListener: AnyObject {
@@ -26,6 +27,8 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   
   private let station: SubwayStation
   private let subwayRepository: SubwayRepository
+  
+  var realtimeArrivalList: [RealtimeArrivalList] = []
   
   private var bag = Set<AnyCancellable>()
   
@@ -76,5 +79,12 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
         self?.presenter.updateArrivalList(with: value.realtimeArrivalList)
       }
       .store(in: &bag)
+  }
+  
+  func filterSelectedTrainLineNmWithList(with trainLineName: String) {
+    defer { presenter.updateLabelText(with: realtimeArrivalList.map { $0.arvlMsg2 }.joined(separator: ", ")) }
+    realtimeArrivalList = realtimeArrivalList.filter { realTimeArrivalData in
+      realTimeArrivalData.trainLineNm.contains(trainLineName)
+    }
   }
 }

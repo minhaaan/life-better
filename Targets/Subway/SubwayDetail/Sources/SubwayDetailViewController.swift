@@ -19,6 +19,7 @@ protocol SubwayDetailPresentableListener: AnyObject {
   // interactor class.
   func detachSubwayDetail()
   func getArrivalData()
+  func filterSelectedTrainLineNmWithList(with trainLineName: String)
 }
 
 final class SubwayDetailViewController: UIViewController, SubwayDetailPresentable, SubwayDetailViewControllable {
@@ -91,7 +92,7 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
       let alertVC = UIAlertController(title: "어디 방향으로 가시나요?", message: "😎", preferredStyle: .actionSheet)
       self.heading.forEach { trainLineNm in
         let alertAction = UIAlertAction(title: trainLineNm, style: .default) { [weak self] action in
-          self?.filterSelectedTrainLineNmWithList(with: trainLineNm)
+          self?.listener?.filterSelectedTrainLineNmWithList(with: trainLineNm)
         }
         alertVC.addAction(alertAction)
       }
@@ -103,18 +104,15 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
     }
   }
   
-  func filterSelectedTrainLineNmWithList(with trainLineName: String) {
-    defer { self.label.text = list.map { $0.arvlMsg2 }.joined(separator: ", ") }
-    list = list.filter { realTimeArrivalData in
-      realTimeArrivalData.trainLineNm.contains(trainLineName)
-    }
-  }
-  
   func updateHeadingList(with: Set<String>) {
     self.heading = with
   }
   
   func updateArrivalList(with: [RealtimeArrivalList]) {
     self.list = with
+  }
+  
+  func updateLabelText(with text: String) {
+    self.label.text = text
   }
 }

@@ -84,23 +84,6 @@ final class SubwayDetailViewControllerTests: XCTestCase {
     XCTAssert(presentableListener.getArrivalDataCallsCount > 0)
   }
   
-  func test_filterSelectedTrainLineNmWithList() {
-    // GIVEN
-    let mockRealtimeArrivalList: [RealtimeArrivalList] = [
-      .init(totalCount: 1, rowNum: 1, subwayId: "1", statnNm: "1", trainLineNm: "1 - 1", barvlDt: "1", recptnDt: "1", arvlMsg2: "1", arvlMsg3: "1", arvlCd: "1"),
-      .init(totalCount: 2, rowNum: 2, subwayId: "2", statnNm: "2", trainLineNm: "2 - 2", barvlDt: "2", recptnDt: "2", arvlMsg2: "2", arvlMsg3: "2", arvlCd: "2")
-    ]
-    
-    // WHEN
-    viewController.viewDidLoad()
-    viewController.list = mockRealtimeArrivalList
-    viewController.filterSelectedTrainLineNmWithList(with: "2")
-    
-    // THEN
-    XCTAssert(viewController.list.count == 1)
-    XCTAssert(viewController.label.text == "2")
-  }
-  
   func test_updateHeadingList() {
     // GIVEN
     let mockHeadingList: Set<String> = ["1", "2"]
@@ -111,6 +94,17 @@ final class SubwayDetailViewControllerTests: XCTestCase {
     // THEN
     XCTAssert(viewController.heading.count == 2)
     XCTAssert(viewController.heading.contains("1"))
+  }
+  
+  func test_updateLabelText() {
+    // GIVEN
+    let text = "123"
+    
+    // WHEN
+    viewController.updateLabelText(with: text)
+    
+    // THEN
+    viewController.label.text = text
   }
   
 }

@@ -7,6 +7,7 @@ import ModernRIBs
 
 // MARK: SubwayDetailPresentableMock
 final class SubwayDetailPresentableMock: SubwayDetailPresentable {
+  
   var listener: SubwayDetail.SubwayDetailPresentableListener?
   
   var updateHeadingListCallsCount = 0
@@ -23,6 +24,14 @@ final class SubwayDetailPresentableMock: SubwayDetailPresentable {
   }
   func updateArrivalList(with: [SubwayCore.RealtimeArrivalList]) {
     updateArrivalListCallsCount += 1
+  }
+  
+  var updateLabelTextCallsCount = 0
+  var updateLabelTextCalled: Bool {
+    updateLabelTextCallsCount > 0
+  }
+  func updateLabelText(with text: String) {
+    updateLabelTextCallsCount += 1
   }
 }
 
@@ -56,5 +65,13 @@ final class SubwayDetailPresentableListenerMock: SubwayDetailPresentableListener
   func getArrivalData() {
     getArrivalDataCalled = true
     getArrivalDataCallsCount += 1
+  }
+  
+  var filterSelectedTrainLineNmWithListCallsCount = 0
+  var filterSelectedTrainLineNmWithListCalled: Bool {
+    filterSelectedTrainLineNmWithListCallsCount > 0
+  }
+  func filterSelectedTrainLineNmWithList(with trainLineName: String) {
+    filterSelectedTrainLineNmWithListCallsCount += 1
   }
 }

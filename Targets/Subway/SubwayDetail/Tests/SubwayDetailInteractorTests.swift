@@ -81,6 +81,24 @@ final class SubwayDetailInteractorTests: XCTestCase {
     XCTAssert(subwayDetailListener.detachSubwayDetailCallsCount == 1)
   }
   
+  func test_filterSelectedTrainLineNmWithList() {
+    // GIVEN
+    let mockTrainLineName = "1"
+    let mockRealtimeArrivalList: [RealtimeArrivalList] = [
+      .init(totalCount: 1, rowNum: 1, subwayId: "1", statnNm: "1", trainLineNm: "1", barvlDt: "1", recptnDt: "1", arvlMsg2: "1", arvlMsg3: "1", arvlCd: "1"),
+      .init(totalCount: 2, rowNum: 2, subwayId: "2", statnNm: "2", trainLineNm: "2", barvlDt: "2", recptnDt: "2", arvlMsg2: "2", arvlMsg3: "2", arvlCd: "2")
+    ]
+    
+    // WHEN
+    interactor.realtimeArrivalList = mockRealtimeArrivalList
+    interactor.filterSelectedTrainLineNmWithList(with: mockTrainLineName)
+    
+    // THEN
+    XCTAssert(subwayDetailPresenter.updateLabelTextCallsCount == 1)
+    XCTAssert(subwayDetailPresenter.updateLabelTextCalled)
+    XCTAssert(interactor.realtimeArrivalList.first?.trainLineNm == "1")
+  }
+  
   
   
 }
