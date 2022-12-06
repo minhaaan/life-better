@@ -50,18 +50,15 @@ final class SubwayDetailViewControllerTests: XCTestCase {
     XCTAssert(viewController.view.backgroundColor == .systemBackground)
   }
 
-  func test_arraivalDataSend() {
+  func test_updateArrivalList() {
     // GIVEN
     let mockRealtimeStationArrivalModel: RealtimeStationArrivalModel! = RealtimeStationArrivalModel(errorMessage: ErrorMessage(status: 1, code: "1", message: "1", link: "1", developerMessage: "1", total: 1), realtimeArrivalList: [.init(totalCount: 1, rowNum: 1, subwayId: "1", statnNm: "1", trainLineNm: "1 - 1", barvlDt: "1", recptnDt: "1", arvlMsg2: "1", arvlMsg3: "1", arvlCd: "1")])
 
     // WHEN
-    viewController.viewDidLoad()
-    presentableInteractor.presenter.arrivalData.send(mockRealtimeStationArrivalModel)
+    viewController.updateArrivalList(with: mockRealtimeStationArrivalModel.realtimeArrivalList)
 
     // THEN
-    XCTAssert(viewController.heading.isNotEmpty)
-    XCTAssert(viewController.heading.first == "1")
-    XCTAssert(viewController.list.first?.arvlMsg3 == mockRealtimeStationArrivalModel.realtimeArrivalList.first?.arvlMsg3)
+    XCTAssert(viewController.list.first?.barvlDt == mockRealtimeStationArrivalModel.realtimeArrivalList.first?.barvlDt)
   }
 
   func test_didMove_to_listner_detach() {
@@ -102,6 +99,18 @@ final class SubwayDetailViewControllerTests: XCTestCase {
     // THEN
     XCTAssert(viewController.list.count == 1)
     XCTAssert(viewController.label.text == "2")
+  }
+  
+  func test_updateHeadingList() {
+    // GIVEN
+    let mockHeadingList: Set<String> = ["1", "2"]
+    
+    // WHEN
+    viewController.updateHeadingList(with: mockHeadingList)
+    
+    // THEN
+    XCTAssert(viewController.heading.count == 2)
+    XCTAssert(viewController.heading.contains("1"))
   }
   
 }

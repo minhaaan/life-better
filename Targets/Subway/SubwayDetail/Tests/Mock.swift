@@ -9,7 +9,21 @@ import ModernRIBs
 final class SubwayDetailPresentableMock: SubwayDetailPresentable {
   var listener: SubwayDetail.SubwayDetailPresentableListener?
   
-  var arrivalData: PassthroughSubject<SubwayCore.RealtimeStationArrivalModel, Never> = .init()
+  var updateHeadingListCallsCount = 0
+  var updateHeadingListCalled: Bool {
+    updateHeadingListCallsCount > 0
+  }
+  func updateHeadingList(with: Set<String>) {
+    updateHeadingListCallsCount += 1
+  }
+  
+  var updateArrivalListCallsCount = 0
+  var updateArrivalListCalled: Bool {
+    updateArrivalListCallsCount > 0
+  }
+  func updateArrivalList(with: [SubwayCore.RealtimeArrivalList]) {
+    updateArrivalListCallsCount += 1
+  }
 }
 
 

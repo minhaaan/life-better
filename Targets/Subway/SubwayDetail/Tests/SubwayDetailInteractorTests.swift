@@ -57,18 +57,16 @@ final class SubwayDetailInteractorTests: XCTestCase {
     }
     
     // WHEN
-    subwayDetailPresenter.listener?.getArrivalData()
+    interactor.getArrivalData()
     
     // THEN
-    subwayDetailPresenter.arrivalData
-      .sink { [weak self] model in
-        model.realtimeArrivalList.forEach { list in
-          XCTAssert(list.subwayId == String(self?.station.subwayId ?? -1))
-        }
-        exp.fulfill()
-      }
-      .store(in: &bag)
-      
+    Thread.sleep(forTimeInterval: 1)
+    XCTAssert(subwayDetailPresenter.updateArrivalListCalled)
+    XCTAssert(subwayDetailPresenter.updateArrivalListCallsCount == 1)
+    XCTAssert(subwayDetailPresenter.updateHeadingListCalled)
+    XCTAssert(subwayDetailPresenter.updateHeadingListCallsCount == 1)
+    exp.fulfill()
+    
     wait(for: [exp], timeout: 2.0)
   }
   

@@ -10,7 +10,8 @@ public protocol SubwayDetailRouting: ViewableRouting {
 
 protocol SubwayDetailPresentable: Presentable {
   var listener: SubwayDetailPresentableListener? { get set }
-  var arrivalData: PassthroughSubject<RealtimeStationArrivalModel, Never> { get }
+  func updateHeadingList(with: Set<String>)
+  func updateArrivalList(with: [RealtimeArrivalList])
 }
 
 public protocol SubwayDetailListener: AnyObject {
@@ -67,8 +68,12 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
         if case .failure(let error) = completion {
           log.error("getRealtimeStationArrival error \(error)")
         }
-      } receiveValue: { [weak self] data in
-        self?.presenter.arrivalData.send(data)
+      } receiveValue: { [weak self] value in
+        let headingListValue = value.realtimeArrivalList
+          .map { $0.trainLineNm }
+          .compactMap { trainLineNm in return trainLineNm.components(separatedBy: "-")[safe: 1]?.trimmingCharacters(in: .whitespaces) }
+        self?.presenter.updateHeadingList(with: Set(headingListValue))
+        self?.presenter.updateArrivalList(with: value.realtimeArrivalList)
       }
       .store(in: &bag)
   }
