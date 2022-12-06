@@ -55,6 +55,8 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
     // TODO: Pause any business logic.
   }
   
+  // MARK: SubwayDetailPresentable
+  
   func detachSubwayDetail() {
     listener?.detachSubwayDetail()
   }
