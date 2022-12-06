@@ -10,6 +10,8 @@ import ModernRIBs
 import UIKit
 import SubwayCore
 import Combine
+import Utils
+import SnapKit
 
 protocol SubwayDetailPresentableListener: AnyObject {
   // TODO: Declare properties and methods that the view controller can invoke to perform
@@ -28,6 +30,14 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
   private let stationName: String
   
   var arrivalData = PassthroughSubject<RealtimeStationArrivalModel, Never>()
+  
+  var heading = Set<String>() {
+    didSet {
+      self.showSelectedTrainLineNmAlert()
+    }
+  }
+  
+  var list: [RealtimeArrivalList] = []
   
   private var bag = Set<AnyCancellable>()
   
@@ -72,14 +82,45 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
   
   private func setupLayout() {
     view.backgroundColor = .systemBackground
+    
+    view.addSubview(label)
+    label.snp.makeConstraints { make in
+      make.center.equalToSuperview()
+    }
   }
   
   private func bind() {
     arrivalData
       .sink(receiveValue: { [weak self] value in
-        self?.label.text = value.errorMessage.code
+        log.debug("arrivalData is \(value)")
+        let headingListValue = value.realtimeArrivalList
+          .map { $0.trainLineNm }
+          .compactMap { trainLineNm in return trainLineNm.components(separatedBy: "-")[safe: 1]?.trimmingCharacters(in: .whitespaces) }
+        self?.heading = Set(headingListValue)
+        self?.list = value.realtimeArrivalList
       })
       .store(in: &bag)
-    
+  }
+  
+  private func showSelectedTrainLineNmAlert() {
+    let alertVC = UIAlertController(title: "어디 방향으로 가시나요?", message: "😎", preferredStyle: .actionSheet)
+    heading.forEach { trainLineNm in
+      let alertAction = UIAlertAction(title: trainLineNm, style: .default) { [weak self] action in
+        self?.filterSelectedTrainLineNmWithList(with: trainLineNm)
+      }
+      alertVC.addAction(alertAction)
+    }
+    alertVC.addAction(UIAlertAction(title: "다른역 선택하기", style: .cancel, handler: { [weak self] _ in
+      self?.popViewController(animated: true)
+      self?.listener?.detachSubwayDetail()
+    }))
+    self.present(alertVC, animated: true, completion: nil)
+  }
+  
+  func filterSelectedTrainLineNmWithList(with trainLineName: String) {
+    defer { self.label.text = list.map { $0.arvlMsg2 }.joined(separator: ", ") }
+    list = list.filter { realTimeArrivalData in
+      realTimeArrivalData.trainLineNm.contains(trainLineName)
+    }
   }
 }
