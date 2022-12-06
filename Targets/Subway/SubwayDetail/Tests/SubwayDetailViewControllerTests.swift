@@ -52,7 +52,7 @@ final class SubwayDetailViewControllerTests: XCTestCase {
 
   func test_arraivalDataSend() {
     // GIVEN
-    let mockRealtimeStationArrivalModel: RealtimeStationArrivalModel! = RealtimeStationArrivalModel(errorMessage: ErrorMessage(status: 1, code: "1", message: "1", link: "1", developerMessage: "1", total: 1), realtimeArrivalList: [.init(totalCount: 1, rowNum: 1, subwayId: "1", statnNm: "1", trainLineNm: "1 - 1", recptnDt: "1", arvlMsg2: "1", arvlMsg3: "1", arvlCd: "1")])
+    let mockRealtimeStationArrivalModel: RealtimeStationArrivalModel! = RealtimeStationArrivalModel(errorMessage: ErrorMessage(status: 1, code: "1", message: "1", link: "1", developerMessage: "1", total: 1), realtimeArrivalList: [.init(totalCount: 1, rowNum: 1, subwayId: "1", statnNm: "1", trainLineNm: "1 - 1", barvlDt: "1", recptnDt: "1", arvlMsg2: "1", arvlMsg3: "1", arvlCd: "1")])
 
     // WHEN
     viewController.viewDidLoad()
@@ -90,8 +90,8 @@ final class SubwayDetailViewControllerTests: XCTestCase {
   func test_filterSelectedTrainLineNmWithList() {
     // GIVEN
     let mockRealtimeArrivalList: [RealtimeArrivalList] = [
-      .init(totalCount: 1, rowNum: 1, subwayId: "1", statnNm: "1", trainLineNm: "1 - 1", recptnDt: "1", arvlMsg2: "1", arvlMsg3: "1", arvlCd: "1"),
-      .init(totalCount: 2, rowNum: 2, subwayId: "2", statnNm: "2", trainLineNm: "2 - 2", recptnDt: "2", arvlMsg2: "2", arvlMsg3: "2", arvlCd: "2")
+      .init(totalCount: 1, rowNum: 1, subwayId: "1", statnNm: "1", trainLineNm: "1 - 1", barvlDt: "1", recptnDt: "1", arvlMsg2: "1", arvlMsg3: "1", arvlCd: "1"),
+      .init(totalCount: 2, rowNum: 2, subwayId: "2", statnNm: "2", trainLineNm: "2 - 2", barvlDt: "2", recptnDt: "2", arvlMsg2: "2", arvlMsg3: "2", arvlCd: "2")
     ]
     
     // WHEN
