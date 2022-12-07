@@ -8,16 +8,7 @@
 import ActivityKit
 import WidgetKit
 import SwiftUI
-
-struct SubwayWidgetAttributes: ActivityAttributes {
-    public struct ContentState: Codable, Hashable {
-        // Dynamic stateful properties about your activity go here!
-        var value: Int
-    }
-
-    // Fixed non-changing properties about your activity go here!
-    var name: String
-}
+import SubwayWidgetCore
 
 struct SubwayWidgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
