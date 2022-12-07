@@ -8,7 +8,7 @@ public struct SubwayRequest {
 
 extension SubwayRequest: RequestProtocol {
   public var host: String {
-    "http://swopenAPI.seoul.go.kr/api/subway/\(Keys.SUBWAY_API_KEY)/json/realtimeStationArrival/0/5" // TODO: 인증키 넣기.
+    "http://swopenAPI.seoul.go.kr/api/subway/\(Keys.SUBWAY_API_KEY)/json/realtimeStationArrival/0/20"
   }
   
   public var path: String {
