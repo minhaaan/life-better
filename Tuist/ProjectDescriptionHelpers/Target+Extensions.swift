@@ -16,7 +16,9 @@ extension Target {
     ]),
     sources: [.glob(.relativeToRoot("Targets/Subway/SubwayWidget/Sources**"))],
     resources: [.glob(pattern: .relativeToRoot("Targets/Subway/SubwayWidget/Resources/**"))],
-    dependencies: [],
+    dependencies: [
+      .core.subwayWidgetCore
+    ],
     settings: .settings(
       base: [:],
       configurations: [],

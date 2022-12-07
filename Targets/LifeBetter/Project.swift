@@ -10,7 +10,8 @@ let lifeBetterDependencies: [TargetDependency] = [
   .CombineCocoa,
   .feature.subway,
   .platform.utils,
-  .core.networking
+  .core.networking,
+  .core.subwayWidgetCore
 ]
 
 let project = Project(

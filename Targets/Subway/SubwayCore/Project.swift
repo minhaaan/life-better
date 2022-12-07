@@ -2,6 +2,7 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let subwayCoreDependencies: [TargetDependency] = [
+  .core.subwayWidgetCore
 ]
 
 let project = Project(
