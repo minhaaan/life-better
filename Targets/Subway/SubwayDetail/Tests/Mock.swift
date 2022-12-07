@@ -7,6 +7,7 @@ import ModernRIBs
 
 // MARK: SubwayDetailPresentableMock
 final class SubwayDetailPresentableMock: SubwayDetailPresentable {
+  var labelText = PassthroughSubject<String, Never>()
   
   var listener: SubwayDetail.SubwayDetailPresentableListener?
   

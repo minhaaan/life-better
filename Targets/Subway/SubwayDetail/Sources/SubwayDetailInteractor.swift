@@ -32,7 +32,7 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   var realtimeArrivalList: [RealtimeArrivalList] = []
   
   private var bag = Set<AnyCancellable>()
-  private var updateTextCancellabel: AnyCancellable?
+  var updateTextCancellabel: AnyCancellable?
   
   // TODO: Add additional dependencies to constructor. Do not perform any logic
   // in constructor.

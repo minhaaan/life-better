@@ -82,6 +82,7 @@ final class SubwayDetailInteractorTests: XCTestCase {
   
   func test_filterSelectedTrainLineNmWithList() {
     // GIVEN
+    let exp = XCTestExpectation()
     let mockTrainLineName = "1"
     let mockRealtimeArrivalList: [RealtimeArrivalList] = [
       .init(totalCount: 1, rowNum: 1, subwayId: "1", statnNm: "1", trainLineNm: "1", barvlDt: "1", recptnDt: "1", arvlMsg2: "1", arvlMsg3: "1", arvlCd: "1"),
@@ -93,9 +94,15 @@ final class SubwayDetailInteractorTests: XCTestCase {
     interactor.filterSelectedTrainLineNmWithList(with: mockTrainLineName)
     
     // THEN
-    XCTAssert(subwayDetailPresenter.updateLabelTextCallsCount == 1)
-    XCTAssert(subwayDetailPresenter.updateLabelTextCalled)
     XCTAssert(interactor.realtimeArrivalList.first?.trainLineNm == "1")
+    XCTAssert(interactor.updateTextCancellabel != nil)
+    subwayDetailPresenter.labelText
+      .sink { text in
+        XCTAssert(true)
+        exp.fulfill()
+      }
+      .store(in: &bag)
+    wait(for: [exp], timeout: 2.0)
   }
   
   
