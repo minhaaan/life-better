@@ -21,7 +21,7 @@ let project = Project(
   targets: Project.makeAppTargets(
     name: "LifeBetter",
     dependencies: lifeBetterDependencies
-  ),
+  ) + [.subwayWidgetTarget],
   schemes: [
     Scheme(
       name: "LifeBetter",
