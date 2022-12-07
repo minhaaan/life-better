@@ -56,8 +56,15 @@ public struct RealtimeArrivalList: Codable {
 extension RealtimeArrivalList {
   public var recptnDate: Date? {
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    dateFormatter.dateFormat = "yyyy-MM-ddHH:mm:ss"
     return dateFormatter.date(from: recptnDt)
+  }
+  
+  public var calculatedBarvlDt: Int? {
+    guard let recptnDate else { return nil }
+    guard let intBarvlDt = Int(barvlDt) else { return nil }
+    let time = Int(Date().timeIntervalSince(recptnDate))
+    return intBarvlDt - time
   }
 }
 
