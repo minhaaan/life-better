@@ -19,14 +19,7 @@ struct SubwayWidgetLiveActivity: Widget {
         Text(context.attributes.stationName)
         Spacer()
         VStack(alignment: .trailing) {
-          ForEach(context.state.arrivalData, id: \.self) { time in
-            HStack {
-              Text(Date().addingTimeInterval(TimeInterval(time)), style: .timer)
-                .monospacedDigit()
-                .frame(width: 40)
-              Text("남음")
-            }
-          }
+          arrivalTimerListVStack(context: context)
         }
       }
       .padding(.horizontal, 16)
@@ -35,23 +28,45 @@ struct SubwayWidgetLiveActivity: Widget {
         // Expanded UI goes here.  Compose the expanded UI through
         // various regions, like leading/trailing/center/bottom
         DynamicIslandExpandedRegion(.leading) {
-          Text("Leading")
+          VStack {
+            Spacer()
+            Text(context.attributes.stationName)
+            Spacer()
+          }
+          .dynamicIsland(verticalPlacement: .belowIfTooWide)
         }
         DynamicIslandExpandedRegion(.trailing) {
-          Text("Trailing")
-        }
-        DynamicIslandExpandedRegion(.bottom) {
-          Text("Bottom")
-          // more content
+          VStack {
+            Spacer()
+            arrivalTimerListVStack(context: context)
+          }
+            .dynamicIsland(verticalPlacement: .belowIfTooWide)
         }
       } compactLeading: {
-        Text("L")
+        Image(systemName: "tram.fill")
       } compactTrailing: {
-        Text("T")
+        ZStack {}
       } minimal: {
-        Text("Min")
+        Image(systemName: "tram.fill")
       }
       .widgetURL(URL(string: "//"))
+      .keylineTint(.white)
+    }
+  }
+  
+  @ViewBuilder
+  func arrivalTimerListVStack(context: ActivityViewContext<SubwayWidgetAttributes>) -> some View {
+    VStack {
+      Spacer()
+      ForEach(context.state.arrivalData, id: \.self) { time in
+        HStack {
+          Text(Date().addingTimeInterval(TimeInterval(time)), style: .timer)
+            .monospacedDigit()
+            .frame(width: 60)
+          Text("남음")
+        }
+      }
+      Spacer()
     }
   }
 }
