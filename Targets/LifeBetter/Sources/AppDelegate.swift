@@ -2,6 +2,7 @@ import UIKit
 import ModernRIBs
 import SwiftyBeaver
 import Utils
+import SubwayWidgetCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     setupLaunchRouter()
     
     return true
+  }
+  
+  // 앱 종료할 때 LiveActivity 같이 없앰.
+  func applicationWillTerminate(_ application: UIApplication) {
+    if #available(iOS 16.1, *) {
+      SubwayLiveActivityManager.shared.removeAllActivities()
+    }
   }
   
 }
