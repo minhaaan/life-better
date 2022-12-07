@@ -4,6 +4,7 @@ import SubwayCore
 import Combine
 import Utils
 import Foundation
+import SubwayWidgetCore
 
 public protocol SubwayDetailRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -30,6 +31,13 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   private let subwayRepository: SubwayRepository
   
   var realtimeArrivalList: [RealtimeArrivalList] = []
+  
+  var calculatedRealtimeArrivalList: [Int] {
+    self.realtimeArrivalList
+      .compactMap{ $0.getCalculatedBarvlDt(date: Date()) }
+      .filter { $0 > 0 }
+      .map { $0 }
+  }
   
   private var bag = Set<AnyCancellable>()
   var updateTextCancellabel: AnyCancellable?
@@ -97,18 +105,10 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   
   private func startLabelTextTimer() {
     updateTextCancellabel?.cancel()
-    let startDate = Date()
-    
-    let calculatedRealtimeArrivalList = self.realtimeArrivalList
-      .compactMap{ $0.getCalculatedBarvlDt(date: Date()) }
-      .filter { $0 > 0 }
-      .map { $0 }
-    
     updateTextCancellabel = Timer.publish(every: 1.0, on: .main, in: .common)
       .autoconnect()
-      .map { Int($0.timeIntervalSince(startDate)) }
-      .compactMap { timer -> String? in
-        calculatedRealtimeArrivalList.map { $0 - timer }
+      .compactMap { [weak self] _ -> String? in
+        self?.calculatedRealtimeArrivalList.map { $0 }
           .map { String($0) }
           .joined(separator: " ,")
       }
