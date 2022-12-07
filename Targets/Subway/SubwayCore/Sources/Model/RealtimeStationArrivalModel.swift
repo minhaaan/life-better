@@ -60,10 +60,10 @@ extension RealtimeArrivalList {
     return dateFormatter.date(from: recptnDt)
   }
   
-  public var calculatedBarvlDt: Int? {
+  public func getCalculatedBarvlDt(date: Date) -> Int? {
     guard let recptnDate else { return nil }
     guard let intBarvlDt = Int(barvlDt) else { return nil }
-    let time = Int(Date().timeIntervalSince(recptnDate))
+    let time = Int(date.timeIntervalSince(recptnDate))
     return intBarvlDt - time
   }
 }
