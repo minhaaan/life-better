@@ -3,6 +3,7 @@ import SubwayNetworking
 import SubwayCore
 import Combine
 import Utils
+import Foundation
 
 public protocol SubwayDetailRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -84,7 +85,14 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   }
   
   func filterSelectedTrainLineNmWithList(with trainLineName: String) {
-    defer { presenter.updateLabelText(with: realtimeArrivalList.compactMap{ $0.recptnDt }.joined(separator: ",")) }
+    defer {
+      presenter.updateLabelText(
+        with: realtimeArrivalList
+          .compactMap{ $0.getCalculatedBarvlDt(date: Date()) }
+          .map{ String($0) }
+          .joined(separator: ",")
+      )
+    }
     realtimeArrivalList = realtimeArrivalList.filter { realTimeArrivalData in
       realTimeArrivalData.trainLineNm.contains(trainLineName)
     }
