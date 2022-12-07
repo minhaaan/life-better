@@ -84,7 +84,7 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   }
   
   func filterSelectedTrainLineNmWithList(with trainLineName: String) {
-    defer { presenter.updateLabelText(with: realtimeArrivalList.map { $0.arvlMsg2 }.joined(separator: ", ")) }
+    defer { presenter.updateLabelText(with: realtimeArrivalList.compactMap{ $0.recptnDt }.joined(separator: ",")) }
     realtimeArrivalList = realtimeArrivalList.filter { realTimeArrivalData in
       realTimeArrivalData.trainLineNm.contains(trainLineName)
     }
