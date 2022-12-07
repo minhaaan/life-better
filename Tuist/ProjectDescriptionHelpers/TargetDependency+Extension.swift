@@ -8,6 +8,7 @@ public extension TargetDependency {
 
 public struct CoreTarget {
   public let networking = TargetDependency.project(target: "Networking", path: .core.networking)
+  public let subwayWidgetCore = TargetDependency.project(target: "SubwayWidgetCore", path: .core.subwayWidgetCore)
 }
 
 public struct PlatformTarget {

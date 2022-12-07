@@ -9,6 +9,7 @@ public extension Path {
 public struct Core {
   private static let defaultPath = "Targets/Core"
   public let networking: Path = Path.relativeToRoot("Targets/Core/Networking")
+  public let subwayWidgetCore = Path.relativeToRoot("Targets/Core/SubwayWidgetCore")
 }
 
 public struct Platform {
