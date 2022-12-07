@@ -55,8 +55,9 @@ struct SubwayWidget: Widget {
     IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
       SubwayWidgetEntryView(entry: entry)
     }
-    .configurationDisplayName("My Widget")
-    .description("This is an example widget.")
+    .supportedFamilies([.accessoryCircular])
+    .configurationDisplayName("LifeBetter")
+    .description("LifeBetter 앱을 실행합니다.")
   }
 }
 
