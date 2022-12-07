@@ -53,6 +53,14 @@ public struct RealtimeArrivalList: Codable {
   }
 }
 
+extension RealtimeArrivalList {
+  public var recptnDate: Date? {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    return dateFormatter.date(from: recptnDt)
+  }
+}
+
 // MARK: Mock
 
 extension RealtimeStationArrivalModel {
