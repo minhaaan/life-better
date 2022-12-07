@@ -9,17 +9,27 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 import SubwayWidgetCore
+import Foundation
 
 struct SubwayWidgetLiveActivity: Widget {
   var body: some WidgetConfiguration {
     ActivityConfiguration(for: SubwayWidgetAttributes.self) { context in
       // Lock screen/banner UI goes here
-      VStack {
-        Text("Hello")
+      HStack {
+        Text(context.attributes.stationName)
+        Spacer()
+        VStack(alignment: .trailing) {
+          ForEach(context.state.arrivalData, id: \.self) { time in
+            HStack {
+              Text(Date().addingTimeInterval(TimeInterval(time)), style: .timer)
+                .monospacedDigit()
+                .frame(width: 40)
+              Text("남음")
+            }
+          }
+        }
       }
-      .activityBackgroundTint(Color.cyan)
-      .activitySystemActionForegroundColor(Color.black)
-      
+      .padding(.horizontal, 16)
     } dynamicIsland: { context in
       DynamicIsland {
         // Expanded UI goes here.  Compose the expanded UI through
@@ -41,8 +51,7 @@ struct SubwayWidgetLiveActivity: Widget {
       } minimal: {
         Text("Min")
       }
-      .widgetURL(URL(string: "http://www.apple.com"))
-      .keylineTint(Color.red)
+      .widgetURL(URL(string: "//"))
     }
   }
 }
