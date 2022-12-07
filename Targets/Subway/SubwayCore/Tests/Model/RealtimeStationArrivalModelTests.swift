@@ -24,12 +24,18 @@ final class RealtimeStationArrivalModelTests: XCTestCase {
   
   func test_calculatedBarvlDt() {
     // GIVEN
-    let realtimeArrivalList = RealtimeArrivalList(totalCount: 1, rowNum: 1, subwayId: "1", statnNm: "1", trainLineNm: "1", barvlDt: "30", recptnDt: "2022-12-0716:44:10", arvlMsg2: "123", arvlMsg3: "123", arvlCd: "123")
+    let realtimeArrivalList = RealtimeArrivalList(totalCount: 1, rowNum: 1, subwayId: "1", statnNm: "1", trainLineNm: "1", barvlDt: "90", recptnDt: "2022-12-0716:44:10", arvlMsg2: "123", arvlMsg3: "123", arvlCd: "123")
+    let date: Date = {
+      let dateForammter = DateFormatter()
+      dateForammter.dateFormat = "yyyy-MM-ddHH:mm:ss"
+      return dateForammter.date(from: "2022-12-0716:45:10")!
+    }()
     
     // WHEN
     
     // THEN
-    XCTAssert(realtimeArrivalList.calculatedBarvlDt != nil)
+    XCTAssert(realtimeArrivalList.getCalculatedBarvlDt(date: date) != nil)
+    XCTAssert(realtimeArrivalList.getCalculatedBarvlDt(date: date) == 30)
   }
   
   func test_calculatedBarvlDt_with_recptnDate_nil() {
@@ -39,7 +45,7 @@ final class RealtimeStationArrivalModelTests: XCTestCase {
     // WHEN
     
     // THEN
-    XCTAssert(realtimeArrivalList.calculatedBarvlDt == nil)
+    XCTAssert(realtimeArrivalList.getCalculatedBarvlDt(date: Date()) == nil)
   }
   
   func test_calculatedBarvlDt_with_barvlDt_convert_Int_fail() {
@@ -49,6 +55,6 @@ final class RealtimeStationArrivalModelTests: XCTestCase {
     // WHEN
     
     // THEN
-    XCTAssert(realtimeArrivalList.calculatedBarvlDt == nil)
+    XCTAssert(realtimeArrivalList.getCalculatedBarvlDt(date: Date()) == nil)
   }
 }
