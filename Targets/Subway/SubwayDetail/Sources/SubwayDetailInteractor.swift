@@ -11,6 +11,7 @@ public protocol SubwayDetailRouting: ViewableRouting {
 
 protocol SubwayDetailPresentable: Presentable {
   var listener: SubwayDetailPresentableListener? { get set }
+  var labelText: PassthroughSubject<String, Never> { get }
   func updateHeadingList(with: Set<String>)
   func updateLabelText(with text: String)
 }
@@ -31,6 +32,7 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   var realtimeArrivalList: [RealtimeArrivalList] = []
   
   private var bag = Set<AnyCancellable>()
+  private var updateTextCancellabel: AnyCancellable?
   
   // TODO: Add additional dependencies to constructor. Do not perform any logic
   // in constructor.
@@ -85,17 +87,37 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   }
   
   func filterSelectedTrainLineNmWithList(with trainLineName: String) {
-    defer {
-      presenter.updateLabelText(
-        with: realtimeArrivalList
-          .compactMap{ $0.getCalculatedBarvlDt(date: Date()) }
-          .filter { $0 > 0 }
-          .map{ String($0) }
-          .joined(separator: " ,")
-      )
-    }
+    defer { startLabelTextTimer() }
     realtimeArrivalList = realtimeArrivalList.filter { realTimeArrivalData in
       realTimeArrivalData.trainLineNm.contains(trainLineName)
     }
+  }
+  
+  // MARK: Private Method
+  
+  private func startLabelTextTimer() {
+    updateTextCancellabel?.cancel()
+    let startDate = Date()
+    
+    let calculatedRealtimeArrivalList = self.realtimeArrivalList
+      .compactMap{ $0.getCalculatedBarvlDt(date: Date()) }
+      .filter { $0 > 0 }
+      .map { $0 }
+    
+    updateTextCancellabel = Timer.publish(every: 1.0, on: .main, in: .common)
+      .autoconnect()
+      .map { Int($0.timeIntervalSince(startDate)) }
+      .compactMap { timer -> String? in
+        calculatedRealtimeArrivalList.map { $0 - timer }
+          .map { String($0) }
+          .joined(separator: " ,")
+      }
+      .map { text in
+        text.isEmpty ? "도착정보가 없습니다" : text
+      }
+      .sink { [weak self] text in
+        log.debug("text is \(text)")
+        self?.presenter.labelText.send("\(text)")
+      }
   }
 }
