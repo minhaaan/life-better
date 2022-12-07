@@ -11,6 +11,7 @@ let lifeBetterDependencies: [TargetDependency] = [
   .feature.subway,
   .platform.utils,
   .core.networking,
+  .feature.subwayWidget,
   .core.subwayWidgetCore
 ]
 
@@ -19,7 +20,7 @@ let subwayWidgetTarget = Target(
   platform: .iOS,
   product: .appExtension,
   productName: "SubwayWidget",
-  bundleId: "com.minan.SubwayWidget",
+  bundleId: "com.minan.LifeBetter.SubwayWidget",
   deploymentTarget: .iOS(targetVersion: "16.1", devices: [.iphone]),
   infoPlist: .extendingDefault(with: [
     "CFBundleDisplayName": "$(PRODUCT_NAME)",
@@ -56,7 +57,7 @@ let project = Project(
     Scheme(
       name: "LifeBetter",
       shared: true,
-      buildAction: .buildAction(targets: ["LifeBetter"]),
+      buildAction: .buildAction(targets: ["LifeBetter", "SubwayWidget"]),
       testAction: .testPlans([.relativeToRoot("LifeBetter.xctestplan")]),
       runAction: .runAction(executable: "LifeBetter")
     )
