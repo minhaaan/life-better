@@ -14,6 +14,35 @@ let lifeBetterDependencies: [TargetDependency] = [
   .core.subwayWidgetCore
 ]
 
+let subwayWidgetTarget = Target(
+  name: "SubwayWidget",
+  platform: .iOS,
+  product: .appExtension,
+  productName: "SubwayWidget",
+  bundleId: "com.minan.SubwayWidget",
+  deploymentTarget: .iOS(targetVersion: "16.1", devices: [.iphone]),
+  infoPlist: .extendingDefault(with: [
+    "CFBundleDisplayName": "$(PRODUCT_NAME)",
+    "NSExtension": [
+      "NSExtensionPointIdentifier": "com.apple.widgetkit-extension"
+    ]
+  ]),
+  sources: ["SubwayWidget/Sources/**"],
+  resources: ["SubwayWidget/Resources/**"],
+  dependencies: [
+    .core.subwayWidgetCore
+  ],
+  settings: .settings(
+    base: [
+      "GCC_PREPROCESSOR_DEFINITIONS" : "FLEXLAYOUT_SWIFT_PACKAGE=1", // FlexLayout error fix
+      "OTHER_LDFAGS": "-ObjC",
+      "DEVELOPMENT_TEAM": "7T8JF3V3RR"
+    ],
+    configurations: [],
+    defaultSettings: .recommended
+  )
+)
+
 let project = Project(
   name: "LifeBetter",
   organizationName: "com.minan",
@@ -22,7 +51,7 @@ let project = Project(
   targets: Project.makeAppTargets(
     name: "LifeBetter",
     dependencies: lifeBetterDependencies
-  ) + [.subwayWidgetTarget],
+  ) + [subwayWidgetTarget],
   schemes: [
     Scheme(
       name: "LifeBetter",
