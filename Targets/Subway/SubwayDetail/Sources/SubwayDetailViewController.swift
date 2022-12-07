@@ -36,8 +36,6 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
     }
   }
   
-  var list: [RealtimeArrivalList] = []
-  
   private var bag = Set<AnyCancellable>()
   
   // MARK: LayoutProperties
