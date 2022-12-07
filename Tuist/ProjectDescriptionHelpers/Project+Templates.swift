@@ -12,7 +12,8 @@ extension Project {
       "UILaunchStoryboardName": "LaunchScreen",
       "NSAppTransportSecurity":   [
         "NSAllowsArbitraryLoads": true
-      ]
+      ],
+      "NSSupportsLiveActivities": true // 라이브액티비티 지원.
     ]
     
     let baseSettings: [String: SettingValue] = [
