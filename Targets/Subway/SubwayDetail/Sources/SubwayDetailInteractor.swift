@@ -97,6 +97,7 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   func filterSelectedTrainLineNmWithList(with trainLineName: String) {
     defer {
       startLabelTextTimer()
+      SubwayLiveActivityManager.shared.removeAllActivities()
       SubwayLiveActivityManager.shared.addSubwayLiveActivity(
         stationName: station.stationName,
         state: SubwayWidgetAttributes.ContentState(arrivalData: calculatedRealtimeArrivalList)
