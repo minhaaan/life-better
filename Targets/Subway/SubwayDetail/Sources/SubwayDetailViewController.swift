@@ -30,6 +30,8 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
   
   private let stationName: String
   
+  var labelText = PassthroughSubject<String, Never>()
+  
   var heading = Set<String>() {
     didSet {
       self.showSelectedTrainLineNmAlert()
@@ -61,6 +63,7 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
     
     setupLayout()
     listener?.getArrivalData()
+    bind()
   }
   
   override func didMove(toParent parent: UIViewController?) {
@@ -85,6 +88,8 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
     }
   }
   
+  // MARK: Private Method
+  
   private func showSelectedTrainLineNmAlert() {
     DispatchQueue.main.async {
       let alertVC = UIAlertController(title: "어디 방향으로 가시나요?", message: "😎", preferredStyle: .actionSheet)
@@ -101,6 +106,17 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
       self.present(alertVC, animated: true, completion: nil)
     }
   }
+  
+  private func bind() {
+    labelText
+      .sink(receiveValue: { [weak self] text in
+        self?.label.text = text
+      })
+      .store(in: &bag)
+    
+  }
+  
+  // MARK: SubwayDetailPresentable
   
   func updateHeadingList(with: Set<String>) {
     self.heading = with
