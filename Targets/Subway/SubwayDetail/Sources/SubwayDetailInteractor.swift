@@ -11,7 +11,6 @@ public protocol SubwayDetailRouting: ViewableRouting {
 protocol SubwayDetailPresentable: Presentable {
   var listener: SubwayDetailPresentableListener? { get set }
   func updateHeadingList(with: Set<String>)
-  func updateArrivalList(with: [RealtimeArrivalList])
   func updateLabelText(with text: String)
 }
 
@@ -74,11 +73,12 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
           log.error("getRealtimeStationArrival error \(error)")
         }
       } receiveValue: { [weak self] value in
+        log.debug("received realTimeStationArrival data \(value)")
         let headingListValue = value.realtimeArrivalList
           .map { $0.trainLineNm }
           .compactMap { trainLineNm in return trainLineNm.components(separatedBy: "-")[safe: 1]?.trimmingCharacters(in: .whitespaces) }
         self?.presenter.updateHeadingList(with: Set(headingListValue))
-        self?.presenter.updateArrivalList(with: value.realtimeArrivalList)
+        self?.realtimeArrivalList = value.realtimeArrivalList
       }
       .store(in: &bag)
   }

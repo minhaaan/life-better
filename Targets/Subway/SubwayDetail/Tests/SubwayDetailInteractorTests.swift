@@ -61,10 +61,9 @@ final class SubwayDetailInteractorTests: XCTestCase {
     
     // THEN
     Thread.sleep(forTimeInterval: 1)
-    XCTAssert(subwayDetailPresenter.updateArrivalListCalled)
-    XCTAssert(subwayDetailPresenter.updateArrivalListCallsCount == 1)
     XCTAssert(subwayDetailPresenter.updateHeadingListCalled)
     XCTAssert(subwayDetailPresenter.updateHeadingListCallsCount == 1)
+    XCTAssert(interactor.realtimeArrivalList.isNotEmpty)
     exp.fulfill()
     
     wait(for: [exp], timeout: 2.0)

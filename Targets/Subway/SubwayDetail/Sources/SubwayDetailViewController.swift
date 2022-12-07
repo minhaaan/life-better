@@ -108,10 +108,6 @@ final class SubwayDetailViewController: UIViewController, SubwayDetailPresentabl
     self.heading = with
   }
   
-  func updateArrivalList(with: [RealtimeArrivalList]) {
-    self.list = with
-  }
-  
   func updateLabelText(with text: String) {
     self.label.text = text
   }
