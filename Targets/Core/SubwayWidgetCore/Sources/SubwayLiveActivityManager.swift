@@ -18,11 +18,11 @@ public final class SubwayLiveActivityManager {
   
   // MARK: Method
   
-  public func addSubwayLiveActivity(state: State) {
+  public func addSubwayLiveActivity(stationName: String, state: State) {
     // 라이브 액티비티 권한 없으면 추가안함.
     guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
     
-    let arrtibutes = SubwayWidgetAttributes(name: "123")
+    let arrtibutes = SubwayWidgetAttributes(stationName: stationName)
     self.state = state
     
     do {
