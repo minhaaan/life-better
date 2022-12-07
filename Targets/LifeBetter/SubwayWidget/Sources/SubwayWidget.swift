@@ -22,14 +22,6 @@ struct Provider: IntentTimelineProvider {
   func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
     var entries: [SimpleEntry] = []
     
-    // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-    let currentDate = Date()
-    for hourOffset in 0 ..< 5 {
-      let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-      let entry = SimpleEntry(date: entryDate, configuration: configuration)
-      entries.append(entry)
-    }
-    
     let timeline = Timeline(entries: entries, policy: .atEnd)
     completion(timeline)
   }
@@ -41,10 +33,19 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct SubwayWidgetEntryView : View {
+  @Environment(\.widgetFamily) var widgetFamily
   var entry: Provider.Entry
   
   var body: some View {
-    Text(entry.date, style: .time)
+    switch widgetFamily {
+    case .accessoryCircular:
+      ZStack {
+        AccessoryWidgetBackground()
+        Image(systemName: "tram.fill")
+      }
+    default:
+      ZStack{}
+    }
   }
 }
 
