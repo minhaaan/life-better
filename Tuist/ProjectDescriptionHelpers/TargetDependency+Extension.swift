@@ -20,4 +20,5 @@ public struct FeatureTarget {
   public let subwayNetworking = TargetDependency.project(target: "SubwayNetworking", path: .feature.subway.subwayNetworking)
   public let subwayCore = TargetDependency.project(target: "SubwayCore", path: .feature.subway.subwayCore)
   public let subwayDetail = TargetDependency.project(target: "SubwayDetail", path: .feature.subway.subwayDetail)
+  public let subwayWidget = TargetDependency.target(name: "SubwayWidget")
 }
