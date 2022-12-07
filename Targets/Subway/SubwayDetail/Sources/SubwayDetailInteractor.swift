@@ -89,8 +89,9 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
       presenter.updateLabelText(
         with: realtimeArrivalList
           .compactMap{ $0.getCalculatedBarvlDt(date: Date()) }
+          .filter { $0 > 0 }
           .map{ String($0) }
-          .joined(separator: ",")
+          .joined(separator: " ,")
       )
     }
     realtimeArrivalList = realtimeArrivalList.filter { realTimeArrivalData in
