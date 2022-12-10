@@ -46,7 +46,6 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
     setupCollectionView()
     setupDatasource()
     setupLayout()
-    setupTapGesture()
   }
   
   // MARK: method
@@ -111,9 +110,6 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
     collectionView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
-  }
-  
-  private func setupTapGesture() {
   }
   
 }
