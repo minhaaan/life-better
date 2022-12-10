@@ -1,12 +1,5 @@
-//
-//  RootListBuilder.swift
-//  LifeBetter
-//
-//  Created by 최민한 on 2022/12/10.
-//  Copyright © 2022 com.minan. All rights reserved.
-//
-
 import ModernRIBs
+import Subway
 
 protocol RootListDependency: Dependency {
   // TODO: Declare the set of dependencies required by this RIB, but cannot be
@@ -14,7 +7,7 @@ protocol RootListDependency: Dependency {
   var content: [Content] { get }
 }
 
-final class RootListComponent: Component<RootListDependency> {
+final class RootListComponent: Component<RootListDependency>, SubWayHomeDependency {
   fileprivate var contents: [Content] {
     dependency.content
   }
@@ -37,6 +30,11 @@ final class RootListBuilder: Builder<RootListDependency>, RootListBuildable {
     let viewController = RootListViewController(contents: component.contents)
     let interactor = RootListInteractor(presenter: viewController)
     interactor.listener = listener
-    return RootListRouter(interactor: interactor, viewController: viewController)
+    
+    let subwayHomeBuilder = SubWayHomeBuilder(dependency: component)
+    
+    return RootListRouter(interactor: interactor,
+                          viewController: viewController,
+                          subwayHomeBuilder: subwayHomeBuilder)
   }
 }

@@ -9,7 +9,8 @@
 import ModernRIBs
 
 protocol RootListRouting: ViewableRouting {
-  // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+  func presentSubwayHome()
+  func detachSubwayHome()
 }
 
 protocol RootListPresentable: Presentable {
@@ -44,5 +45,10 @@ final class RootListInteractor: PresentableInteractor<RootListPresentable>, Root
   }
   
   func attachSubway() {
+    router?.presentSubwayHome()
+  }
+  
+  func detachSubwayHome() {
+    router?.detachSubwayHome()
   }
 }
