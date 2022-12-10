@@ -193,7 +193,12 @@ public final class SubwayHomeRouterMock: SubWayHomeRouting {
 
 // MARK: SubwayViewControllableMock
 final public class SubwayHomeViewControllableMock: SubWayHomeViewControllable {
-  public var uiviewController: UIViewController = UIViewController()
+  var uiviewControllerSetCallCount = 0
+  public var uiviewController: UIViewController = UIViewController() {
+    didSet {
+      uiviewControllerSetCallCount += 1
+    }
+  }
   
   public var initCallCount = 0
   public init() {
@@ -237,7 +242,7 @@ final class RootInteractableMock: RootInteractable {
   func deactivate() {
     deactivateCallsCount += 1
   }
- 
+  
   var isActive: Bool = false
   var isActiveStream: AnyPublisher<Bool, Never> {
     PassthroughSubject<Bool, Never>().eraseToAnyPublisher()
@@ -299,64 +304,64 @@ final class RootListRoutingMock: RootListRouting {
 }
 
 // MARK: RootListInteractorMock
-final class RootListInteractorMock: RootListInteractable {
-    var router: LifeBetter.RootListRouting?
-    var listener: LifeBetter.RootListListener?
-    
-   // MARK: - isActive
-
-    var isActive: Bool {
-        get { underlyingIsActive }
-        set(value) { underlyingIsActive = value }
-    }
-    private var underlyingIsActive: Bool!
-    
-   // MARK: - isActiveStream
-
-    var isActiveStream: AnyPublisher<Bool, Never> {
-        get { underlyingIsActiveStream }
-        set(value) { underlyingIsActiveStream = value }
-    }
-    private var underlyingIsActiveStream: AnyPublisher<Bool, Never>!
-    
-   // MARK: - activate
-
-    var activateCallsCount = 0
-    var activateCalled: Bool {
-        activateCallsCount > 0
-    }
-    var activateClosure: (() -> Void)?
-
-    func activate() {
-        activateCallsCount += 1
-        activateClosure?()
-    }
-    
-   // MARK: - deactivate
-
-    var deactivateCallsCount = 0
-    var deactivateCalled: Bool {
-        deactivateCallsCount > 0
-    }
-    var deactivateClosure: (() -> Void)?
-
-    func deactivate() {
-        deactivateCallsCount += 1
-        deactivateClosure?()
-    }
-    
-   // MARK: - detachSubwayHome
-
-    var detachSubwayHomeCallsCount = 0
-    var detachSubwayHomeCalled: Bool {
-        detachSubwayHomeCallsCount > 0
-    }
-    var detachSubwayHomeClosure: (() -> Void)?
-
-    func detachSubwayHome() {
-        detachSubwayHomeCallsCount += 1
-        detachSubwayHomeClosure?()
-    }
+final class RootListInteractorMock: RootListInteractable, SubWayHomeListener {
+  var router: LifeBetter.RootListRouting?
+  var listener: LifeBetter.RootListListener?
+  
+  // MARK: - isActive
+  
+  var isActive: Bool {
+    get { underlyingIsActive }
+    set(value) { underlyingIsActive = value }
+  }
+  private var underlyingIsActive: Bool!
+  
+  // MARK: - isActiveStream
+  
+  var isActiveStream: AnyPublisher<Bool, Never> {
+    get { underlyingIsActiveStream }
+    set(value) { underlyingIsActiveStream = value }
+  }
+  private var underlyingIsActiveStream: AnyPublisher<Bool, Never>!
+  
+  // MARK: - activate
+  
+  var activateCallsCount = 0
+  var activateCalled: Bool {
+    activateCallsCount > 0
+  }
+  var activateClosure: (() -> Void)?
+  
+  func activate() {
+    activateCallsCount += 1
+    activateClosure?()
+  }
+  
+  // MARK: - deactivate
+  
+  var deactivateCallsCount = 0
+  var deactivateCalled: Bool {
+    deactivateCallsCount > 0
+  }
+  var deactivateClosure: (() -> Void)?
+  
+  func deactivate() {
+    deactivateCallsCount += 1
+    deactivateClosure?()
+  }
+  
+  // MARK: - detachSubwayHome
+  
+  var detachSubwayHomeCallsCount = 0
+  var detachSubwayHomeCalled: Bool {
+    detachSubwayHomeCallsCount > 0
+  }
+  var detachSubwayHomeClosure: (() -> Void)?
+  
+  func detachSubwayHome() {
+    detachSubwayHomeCallsCount += 1
+    detachSubwayHomeClosure?()
+  }
 }
 
 // MARK: RootListViewControllabeMock
@@ -364,5 +369,11 @@ final class RootListViewControllableMock: RootListViewControllable {
   var uiviewController: UIViewController = UIViewController()
   
   init() {}
+}
+
+// MARK: RootListPresentableMock
+final class RootListPresentableMock: RootListPresentable {
+  var listener: RootListPresentableListener?
+  
 }
 

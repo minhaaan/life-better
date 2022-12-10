@@ -4,19 +4,42 @@ import XCTest
 final class RootListInteractorTests: XCTestCase {
   
   private var interactor: RootListInteractor!
-  
-  // TODO: declare other objects and mocks you need as private vars
+  private var rootListPresentable: RootListPresentable!
+  private var rootListRouting: RootListRoutingMock!
   
   override func setUp() {
     super.setUp()
+    self.rootListPresentable = RootListPresentableMock()
     
-    // TODO: instantiate objects and mocks
+    interactor = RootListInteractor(
+      presenter: rootListPresentable
+    )
+    self.rootListRouting = RootListRoutingMock(
+      viewControllable: RootListViewController(contents: []),
+      interactable: interactor
+    )
+    interactor.router = rootListRouting
   }
   
   // MARK: - Tests
   
   func test_exampleObservable_callsRouterOrListener_exampleProtocol() {
-    // This is an example of an interactor test case.
-    // Test your interactor binds observables and sends messages to router or listener.
+    // GIVEN
+    
+    // WHEN
+    interactor.attachSubway()
+    
+    // THEN
+    XCTAssert(rootListRouting.presentSubwayHomeCallsCount == 1)
+  }
+  
+  func test_detachSubwayHome() {
+    // GIVEN
+    
+    // WHEN
+    interactor.detachSubwayHome()
+    
+    // THEN
+    XCTAssert(rootListRouting.detachSubwayHomeCallsCount == 1)
   }
 }

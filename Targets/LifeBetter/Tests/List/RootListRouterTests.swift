@@ -8,23 +8,62 @@
 
 @testable import LifeBetter
 import XCTest
+import Subway
 
 final class RootListRouterTests: XCTestCase {
   
   private var router: RootListRouter!
+  private var rootListInteractor: RootListInteractorMock!
+  private var rootListViewControllable: RootListViewControllableMock!
+  private var subwayHomeBuildable: SubwayHomeBuildableMock!
+  private var subwayHomeInteractor: SubWayHomeInteractableMock!
+  private var subwayHomeViewcontrollable: SubwayHomeViewControllableMock!
+  private var subwayHomeRouting: SubwayHomeRouterMock!
   
   // TODO: declare other objects and mocks you need as private vars
   
   override func setUp() {
     super.setUp()
+    self.rootListInteractor = RootListInteractorMock()
+    self.rootListViewControllable = RootListViewControllableMock()
+    self.subwayHomeInteractor = SubWayHomeInteractableMock()
+    self.subwayHomeViewcontrollable = SubwayHomeViewControllableMock()
+    self.subwayHomeRouting = SubwayHomeRouterMock(
+      interactable: subwayHomeInteractor,
+      viewControllable: subwayHomeViewcontrollable
+    )
+    self.subwayHomeBuildable = SubwayHomeBuildableMock()
+    subwayHomeBuildable.buildHandler = { listener -> SubWayHomeRouting in
+      return self.subwayHomeRouting
+    }
     
-    // TODO: instantiate objects and mocks
+    router = RootListRouter(
+      interactor: rootListInteractor,
+      viewController: RootListViewController(contents: []),
+      subwayHomeBuilder: subwayHomeBuildable
+    )
   }
   
   // MARK: - Tests
   
-  func test_routeToExample_invokesToExampleResult() {
-    // This is an example of a router test case.
-    // Test your router functions invokes the corresponding builder, attachesChild, presents VC, etc.
+  func test_presentSubwayHome() {
+    // GIVEN
+    
+    // WHEN
+    router.presentSubwayHome()
+    
+    // THEN
+    XCTAssert(subwayHomeBuildable.buildCallCount == 1)
+  }
+  
+  func test_detachSubwayHome() {
+    // GIVEN
+    
+    // WHEN
+    router.presentSubwayHome()
+    router.detachSubwayHome()
+    
+    // THEN
+    XCTAssert(subwayHomeInteractor.deactivateCallsCount == 1)
   }
 }
