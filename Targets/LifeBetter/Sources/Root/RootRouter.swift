@@ -16,7 +16,7 @@ protocol RootInteractable: Interactable, RootListListener {
 }
 
 protocol RootViewControllable: ViewControllable {
-  func addChildRootListViewController(viewController: ViewControllable)
+  func presentRootListViewController(viewController: ViewControllable)
 }
 
 final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, RootRouting {
@@ -44,6 +44,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     let rootList = rootListBuilder.build(withListener: interactor)
     self.rootList = rootList
     attachChild(rootList)
-    viewController.addChildRootListViewController(viewController: rootList.viewControllable)
+    let navViewController = UINavigationController(root: rootList.viewControllable)
+    viewController.presentRootListViewController(viewController: navViewController)
   }
 }

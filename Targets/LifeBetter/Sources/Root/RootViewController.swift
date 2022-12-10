@@ -22,7 +22,7 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
   
   // MARK: method
   
-  func addChildRootListViewController(viewController: ViewControllable) {
+  func presentRootListViewController(viewController: ViewControllable) {
     viewController.uiviewController.modalPresentationStyle = .fullScreen
     self.present(viewController, animated: false, completion: nil)
   }
