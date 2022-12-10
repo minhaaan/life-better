@@ -377,3 +377,19 @@ final class RootListPresentableMock: RootListPresentable {
   
 }
 
+// MARK: - RootListPresentableListenerMock -
+final class RootListPresentableListenerMock: RootListPresentableListener {
+    
+   // MARK: - attachSubway
+
+    var attachSubwayCallsCount = 0
+    var attachSubwayCalled: Bool {
+        attachSubwayCallsCount > 0
+    }
+    var attachSubwayClosure: (() -> Void)?
+
+    func attachSubway() {
+        attachSubwayCallsCount += 1
+        attachSubwayClosure?()
+    }
+}

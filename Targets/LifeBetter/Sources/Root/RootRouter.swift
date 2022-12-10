@@ -28,11 +28,11 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     self.rootListBuilder = rootListBuilder
     super.init(interactor: interactor, viewController: viewController)
     interactor.router = self
-    attachRootList()
   }
   
   override func didLoad() {
     super.didLoad()
+    attachRootList()
   }
   
   // MARK: Private

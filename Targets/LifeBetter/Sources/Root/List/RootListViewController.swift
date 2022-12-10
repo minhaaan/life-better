@@ -25,7 +25,6 @@ final class RootListViewController: UIViewController, RootListPresentable, RootL
     case main
   }
   
-  // TODO: Collection RIBs 추가해서 분리
   private var collectionView: UICollectionView!
   private var dataSource: UICollectionViewDiffableDataSource<Section, Content>! = nil
   
@@ -124,7 +123,7 @@ final class RootListViewController: UIViewController, RootListPresentable, RootL
 
 extension RootListViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    if let selectedContent = contents[safe: indexPath.row], selectedContent.name == "지하철 도착정보" {
+    if let selectedContent = contents[safe: indexPath.row], selectedContent.name == "SUBWAY" {
       listener?.attachSubway()
     }
   }

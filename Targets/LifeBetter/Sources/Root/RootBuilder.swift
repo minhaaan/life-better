@@ -19,7 +19,7 @@ protocol RootDependency: Dependency {
 final class RootComponent: Component<RootDependency>, RootListDependency {
   
   let content: [Content] = [
-    Content(imageName: "subway Image", name: "지하철 도착정보"),
+    Content(imageName: "subway Image", name: "SUBWAY"),
     Content(imageName: "TBD Image", name: "TBD..")
   ]
   
