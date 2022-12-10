@@ -8,7 +8,6 @@ import Combine
 import Utils
 
 protocol RootPresentableListener: AnyObject {
-  func showSubwayHome()
 }
 
 final class RootViewController: UIViewController, RootPresentable, RootViewControllable {
@@ -24,12 +23,8 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
   // MARK: method
   
   func addChildRootListViewController(viewController: ViewControllable) {
-    let rootListViewController = viewController.uiviewController
-    view.addSubview(rootListViewController.view)
-    addChild(rootListViewController)
-    rootListViewController.view.snp.makeConstraints { make in
-      make.edges.equalToSuperview()
-    }
+    viewController.uiviewController.modalPresentationStyle = .fullScreen
+    self.present(viewController, animated: false, completion: nil)
   }
   
 }

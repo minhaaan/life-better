@@ -10,8 +10,6 @@ import ModernRIBs
 
 protocol RootRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
-  func routeToSubwayHome()
-  func detachSubwayHome()
 }
 
 protocol RootPresentable: Presentable {
@@ -43,13 +41,5 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
   override func willResignActive() {
     super.willResignActive()
     // TODO: Pause any business logic.
-  }
-  
-  func showSubwayHome() {
-    router?.routeToSubwayHome()
-  }
-  
-  func detachSubwayHome() {
-    router?.detachSubwayHome()
   }
 }

@@ -10,7 +10,7 @@ import ModernRIBs
 import Subway
 import UIKit
 
-protocol RootInteractable: Interactable, SubWayHomeListener, RootListListener {
+protocol RootInteractable: Interactable, RootListListener {
   var router: RootRouting? { get set }
   var listener: RootListener? { get set }
 }
@@ -24,9 +24,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
   // TODO: Constructor inject child builder protocols to allow building children.
   init(interactor: RootInteractable,
        viewController: RootViewControllable,
-       subwayHomeBuilder: SubWayHomeBuildable,
        rootListBuilder: RootListBuildable) {
-    self.subwayHomeBuilder = subwayHomeBuilder
     self.rootListBuilder = rootListBuilder
     super.init(interactor: interactor, viewController: viewController)
     interactor.router = self
@@ -39,26 +37,8 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
   
   // MARK: Private
   
-  private let subwayHomeBuilder: SubWayHomeBuildable
-  private var subwayHome: SubWayHomeRouting?
-  
   private let rootListBuilder: RootListBuildable
   private var rootList: RootListRouting?
-  
-  func routeToSubwayHome() {
-    let subwayHome = subwayHomeBuilder.build(withListener: interactor)
-    self.subwayHome = subwayHome
-    attachChild(subwayHome)
-    viewControllable.pushViewController(subwayHome.viewControllable, animated: true)
-  }
-  
-  func detachSubwayHome() {
-    if let subwayHome {
-      detachChild(subwayHome)
-      subwayHome.viewControllable.popViewController(animated: true)
-      self.subwayHome = nil
-    }
-  }
   
   func attachRootList() {
     let rootList = rootListBuilder.build(withListener: interactor)
