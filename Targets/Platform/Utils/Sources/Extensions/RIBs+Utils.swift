@@ -52,26 +52,3 @@ extension ViewControllable {
   }
 }
 
-// MARK: ViewControllableMock
-
-public final class ViewControllableMock: UIViewController, ViewControllable {
-  
-  public init() {
-    super.init(nibName: nil, bundle: nil)
-  }
-
-  public required init?(coder: NSCoder) {
-    fatalError()
-  }
-  
-  var presentCallsCount = 0
-  public override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-    presentCallsCount += 1
-  }
-  
-  var dismissCallsCount = 0
-  public override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-    dismissCallsCount += 1
-  }
-  
-}
