@@ -17,11 +17,13 @@ final class RootRouterTests: XCTestCase {
   var rootViewControllable: RootViewControllableMock!
   var rootListBuildable: RootListBuildableMock!
   var rootListRouting: RootListRouting!
+  var rootListViewControllable: RootListViewControllableMock!
   
   override func setUp() {
     self.rootInteractable = RootInteractableMock()
     self.rootViewControllable = RootViewControllableMock()
     self.rootListBuildable = RootListBuildableMock()
+    self.rootListViewControllable = RootListViewControllableMock()
     self.rootListRouting = RootListRoutingMock(
       viewControllable: RootListViewController(contents: []),
       interactable: RootListInteractorMock()
@@ -32,7 +34,7 @@ final class RootRouterTests: XCTestCase {
     
     router = RootRouter(
       interactor: rootInteractable,
-      viewController: rootViewControllable,
+      viewController: RootViewController(),
       rootListBuilder: rootListBuildable
     )
   }
@@ -43,6 +45,15 @@ final class RootRouterTests: XCTestCase {
   
   // MARK: Tests
   
+  func test_attachRootList() {
+    // GIVEN
+    
+    // WHEN
+    router.didLoad()
+    
+    // THEN
+    XCTAssert(rootListBuildable.buildCallsCount == 1)
+  }
   
 }
 

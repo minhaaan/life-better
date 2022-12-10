@@ -358,3 +358,11 @@ final class RootListInteractorMock: RootListInteractable {
         detachSubwayHomeClosure?()
     }
 }
+
+// MARK: RootListViewControllabeMock
+final class RootListViewControllableMock: RootListViewControllable {
+  var uiviewController: UIViewController = UIViewController()
+  
+  init() {}
+}
+
