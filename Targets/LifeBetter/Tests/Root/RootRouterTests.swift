@@ -19,6 +19,7 @@ final class RootRouterTests: XCTestCase {
   public var subwayHomeRouter: SubwayHomeRouterMock!
   public var subwayHomeViewControllableMock: SubwayHomeViewControllableMock!
   var rootListBuildable: RootListBuildableMock!
+  var rootListInteractor: RootListInteractorMock!
   var rootListRouting: RootListRoutingMock!
 
   // TODO: declare other objects and mocks you need as private vars
@@ -38,7 +39,8 @@ final class RootRouterTests: XCTestCase {
       return self.subwayHomeRouter
     }
     self.rootListBuildable = RootListBuildableMock()
-    self.rootListRouting = RootListRoutingMock()
+    self.rootListInteractor = RootListInteractorMock()
+    self.rootListRouting = RootListRoutingMock(viewControllable: RootListViewController(contents: []), interactable: self.rootListInteractor)
     var rootListListener: RootListListener? = nil
     rootListBuildable.buildHandler = { listener -> RootListRouting in
       rootListListener = listener
