@@ -22,24 +22,11 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
     case main
   }
   
-  let contents: [Content]
-  
   // TODO: Collection RIBs 추가해서 분리
   private var collectionView: UICollectionView!
   private var dataSource: UICollectionViewDiffableDataSource<Section, Content>! = nil
   
   private var cancellable = Set<AnyCancellable>()
-  
-  // MARK: init
-  
-  init(contents: [Content]) {
-    self.contents = contents
-    super.init(nibName: nil, bundle: nil)
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError()
-  }
   
   // MARK: LifeCycle
   

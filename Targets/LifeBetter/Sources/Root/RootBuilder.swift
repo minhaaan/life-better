@@ -45,10 +45,8 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
   
   func build() -> LaunchRouting {
     let component = RootComponent(dependency: AppComponent())
-    let viewController = RootViewController(contents: component.content)
+    let viewController = RootViewController()
     let interactor = RootInteractor(presenter: viewController)
-
-    let navigationController = UINavigationController(root: viewController)
     
     let rootListBuilder = RootListBuilder(dependency: component)
     let subwayBuilder = SubWayHomeBuilder(dependency: component)
