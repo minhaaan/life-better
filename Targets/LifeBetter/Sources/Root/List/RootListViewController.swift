@@ -14,6 +14,7 @@ protocol RootListPresentableListener: AnyObject {
   // TODO: Declare properties and methods that the view controller can invoke to perform
   // business logic, such as signIn(). This protocol is implemented by the corresponding
   // interactor class.
+  func attachSubway()
 }
 
 final class RootListViewController: UIViewController, RootListPresentable, RootListViewControllable {
@@ -57,6 +58,7 @@ final class RootListViewController: UIViewController, RootListPresentable, RootL
   
   private func setupCollectionView() {
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCollectionViewLayout())
+    collectionView.delegate = self
     collectionView.contentInsetAdjustmentBehavior = .never
   }
   
@@ -118,6 +120,14 @@ final class RootListViewController: UIViewController, RootListPresentable, RootL
   }
   
   
+}
+
+extension RootListViewController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    if let selectedContent = contents[safe: indexPath.row], selectedContent.name == "지하철 도착정보" {
+      listener?.attachSubway()
+    }
+  }
 }
 
 #if canImport(SwiftUI)
