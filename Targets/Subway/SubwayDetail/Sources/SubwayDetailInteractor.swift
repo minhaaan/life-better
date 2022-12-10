@@ -63,6 +63,7 @@ final class SubwayDetailInteractor: PresentableInteractor<SubwayDetailPresentabl
   override func willResignActive() {
     super.willResignActive()
     // TODO: Pause any business logic.
+    updateTextCancellabel?.cancel()
   }
   
   // MARK: SubwayDetailPresentable
