@@ -82,4 +82,17 @@ final class RootRouterTests: XCTestCase {
     XCTAssert(subWayHomeInteractable.deactivateCalled)
     XCTAssert(subWayHomeInteractable.deactivateCallsCount == 1)
   }
+  
+  func test_attachRootList() {
+    // GIVEN
+    
+    
+    // WHEN
+    router.didLoad()
+    
+    // THEN
+    XCTAssert(rootListBuildable.buildCallsCount == 1)
+    XCTAssert(rootListRouting.loadCalled)
+    XCTAssert(rootListRouting.loadCallsCount == 1)
+  }
 }
