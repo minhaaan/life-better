@@ -27,7 +27,7 @@ final class RootInteractorTests: XCTestCase {
     interactor = RootInteractor(presenter: presenter)
     router = RootRouterMock(
       interactor: self.interactor,
-      viewController: RootViewController(),
+      viewController: RootViewController(contents: []),
       subwayHomeBuilder: SubWayHomeBuilder(dependency: RootComponent(dependency: AppComponent()))
     )
   }
