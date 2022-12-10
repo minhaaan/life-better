@@ -12,7 +12,7 @@ extension UINavigationController: ViewControllable {
 extension ViewControllable {
   
   public func present(_ viewControllable: ViewControllable, animated: Bool, completion: (() -> Void)?) {
-    self.uiviewController.present(viewControllable.uiviewController, animated: true, completion: completion)
+    self.uiviewController.present(viewControllable.uiviewController, animated: animated, completion: completion)
   }
   
   public func dismiss(completion: (() -> Void)?) {
