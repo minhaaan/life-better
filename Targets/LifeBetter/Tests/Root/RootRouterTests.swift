@@ -47,7 +47,7 @@ final class RootRouterTests: XCTestCase {
     
     self.router = RootRouter(
       interactor: interactor,
-      viewController: RootViewController(contents: []),
+      viewController: RootViewController(),
       subwayHomeBuilder: self.subwayHomeBuildable,
       rootListBuilder: self.rootListBuildable
     )
