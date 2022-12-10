@@ -10,24 +10,24 @@ import ModernRIBs
 import Subway
 import UIKit
 
-protocol RootInteractable: Interactable, SubWayHomeListener {
+protocol RootInteractable: Interactable, SubWayHomeListener, RootListListener {
   var router: RootRouting? { get set }
   var listener: RootListener? { get set }
 }
 
 protocol RootViewControllable: ViewControllable {
-  // TODO: Declare methods the router invokes to manipulate the view hierarchy.
+  func addChildRootListViewController(viewController: ViewControllable)
 }
-
-extension UINavigationController: RootViewControllable {}
 
 final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, RootRouting {
   
   // TODO: Constructor inject child builder protocols to allow building children.
   init(interactor: RootInteractable,
        viewController: RootViewControllable,
-       subwayHomeBuilder: SubWayHomeBuildable) {
+       subwayHomeBuilder: SubWayHomeBuildable,
+       rootListBuilder: RootListBuildable) {
     self.subwayHomeBuilder = subwayHomeBuilder
+    self.rootListBuilder = rootListBuilder
     super.init(interactor: interactor, viewController: viewController)
     interactor.router = self
   }
@@ -36,6 +36,9 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
   
   private let subwayHomeBuilder: SubWayHomeBuildable
   private var subwayHome: SubWayHomeRouting?
+  
+  private let rootListBuilder: RootListBuildable
+  private var rootList: RootListRouting?
   
   func routeToSubwayHome() {
     let subwayHome = subwayHomeBuilder.build(withListener: interactor)
@@ -50,5 +53,12 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
       subwayHome.viewControllable.popViewController(animated: true)
       self.subwayHome = nil
     }
+  }
+  
+  func attachRootList() {
+    let rootList = rootListBuilder.build(withListener: interactor)
+    self.rootList = rootList
+    attachChild(rootList)
+    viewController.addChildRootListViewController(viewController: rootList.viewControllable)
   }
 }

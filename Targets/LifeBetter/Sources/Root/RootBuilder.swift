@@ -16,7 +16,7 @@ protocol RootDependency: Dependency {
   // created by this RIB.
 }
 
-final class RootComponent: Component<RootDependency>, SubWayHomeDependency {
+final class RootComponent: Component<RootDependency>, SubWayHomeDependency, RootListDependency {
   
   let content: [Content] = [
     Content(imageName: "subway Image", name: "지하철 도착정보"),
@@ -50,11 +50,12 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
 
     let navigationController = UINavigationController(root: viewController)
     
-    
+    let rootListBuilder = RootListBuilder(dependency: component)
     let subwayBuilder = SubWayHomeBuilder(dependency: component)
     
     return RootRouter(interactor: interactor,
-                      viewController: navigationController,
-                      subwayHomeBuilder: subwayBuilder)
+                      viewController: viewController,
+                      subwayHomeBuilder: subwayBuilder,
+                      rootListBuilder: rootListBuilder)
   }
 }

@@ -53,6 +53,10 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
   
   // MARK: method
   
+  func addChildRootListViewController(viewController: ViewControllable) {
+    // zz
+  }
+  
   private func setupCollectionView() {
     collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCollectionViewLayout())
     collectionView.contentInsetAdjustmentBehavior = .never
