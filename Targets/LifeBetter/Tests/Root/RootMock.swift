@@ -205,3 +205,95 @@ final public class SubwayHomeViewControllableMock: SubWayHomeViewControllable {
     addChildSubwayListViewControllerCallsCount += 1
   }
 }
+
+// MARK: RootListBuilableMock
+final class RootListBuildableMock: RootListBuildable {
+  
+  var buildHandler: ((_ listener: RootListListener) -> RootListRouting)?
+  
+  var buildCallsCount = 0
+  func build(withListener listener: LifeBetter.RootListListener) -> LifeBetter.RootListRouting {
+    buildCallsCount += 1
+    if let buildHandler {
+      return buildHandler(listener)
+    }
+    
+    fatalError()
+  }
+}
+
+// MARK: - RootListRoutingMock -
+final class RootListRoutingMock: RootListRouting {
+    
+   // MARK: - viewControllable
+
+    var viewControllable: ModernRIBs.ViewControllable {
+        get { underlyingViewControllable }
+        set(value) { underlyingViewControllable = value }
+    }
+    private var underlyingViewControllable: ModernRIBs.ViewControllable!
+    
+   // MARK: - interactable
+
+    var interactable: ModernRIBs.Interactable {
+        get { underlyingInteractable }
+        set(value) { underlyingInteractable = value }
+    }
+    private var underlyingInteractable: ModernRIBs.Interactable!
+    var children: [ModernRIBs.Routing] = []
+    
+   // MARK: - lifecycle
+
+    var lifecycle: AnyPublisher<ModernRIBs.RouterLifecycle, Never> {
+        get { underlyingLifecycle }
+        set(value) { underlyingLifecycle = value }
+    }
+    private var underlyingLifecycle: AnyPublisher<ModernRIBs.RouterLifecycle, Never>!
+    
+   // MARK: - load
+
+    var loadCallsCount = 0
+    var loadCalled: Bool {
+        loadCallsCount > 0
+    }
+    var loadClosure: (() -> Void)?
+
+    func load() {
+        loadCallsCount += 1
+        loadClosure?()
+    }
+    
+   // MARK: - attachChild
+
+    var attachChildCallsCount = 0
+    var attachChildCalled: Bool {
+        attachChildCallsCount > 0
+    }
+    var attachChildReceivedChild: ModernRIBs.Routing?
+    var attachChildReceivedInvocations: [ModernRIBs.Routing] = []
+    var attachChildClosure: ((ModernRIBs.Routing) -> Void)?
+
+    func attachChild(_ child: ModernRIBs.Routing) {
+        attachChildCallsCount += 1
+        attachChildReceivedChild = child
+        attachChildReceivedInvocations.append(child)
+        attachChildClosure?(child)
+    }
+    
+   // MARK: - detachChild
+
+    var detachChildCallsCount = 0
+    var detachChildCalled: Bool {
+        detachChildCallsCount > 0
+    }
+    var detachChildReceivedChild: ModernRIBs.Routing?
+    var detachChildReceivedInvocations: [ModernRIBs.Routing] = []
+    var detachChildClosure: ((ModernRIBs.Routing) -> Void)?
+
+    func detachChild(_ child: ModernRIBs.Routing) {
+        detachChildCallsCount += 1
+        detachChildReceivedChild = child
+        detachChildReceivedInvocations.append(child)
+        detachChildClosure?(child)
+    }
+}
