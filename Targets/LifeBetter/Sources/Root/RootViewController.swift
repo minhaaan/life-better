@@ -46,15 +46,21 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    setupCollectionView()
-    setupDatasource()
-    setupLayout()
+//    setupCollectionView()
+//    setupDatasource()
+//    setupLayout()
   }
   
   // MARK: method
   
   func addChildRootListViewController(viewController: ViewControllable) {
     // zz
+    let rootListViewController = viewController.uiviewController
+    view.addSubview(rootListViewController.view)
+    addChild(rootListViewController)
+    rootListViewController.view.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
   }
   
   private func setupCollectionView() {

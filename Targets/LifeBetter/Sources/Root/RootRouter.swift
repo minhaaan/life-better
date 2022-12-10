@@ -30,6 +30,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     self.rootListBuilder = rootListBuilder
     super.init(interactor: interactor, viewController: viewController)
     interactor.router = self
+    attachRootList()
   }
   
   // MARK: Private
