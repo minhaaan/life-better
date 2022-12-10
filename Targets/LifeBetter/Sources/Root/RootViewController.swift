@@ -22,15 +22,18 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
     case main
   }
   
+  let contents: [Content]
+  
   // TODO: Collection RIBs 추가해서 분리
   private var collectionView: UICollectionView!
-  private var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
+  private var dataSource: UICollectionViewDiffableDataSource<Section, Content>! = nil
   
   private var cancellable = Set<AnyCancellable>()
   
   // MARK: init
   
-  init() {
+  init(contents: [Content]) {
+    self.contents = contents
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -82,8 +85,8 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
   }
   
   private func setupDatasource() {
-    let cellRegistration = UICollectionView.CellRegistration<TextCell, Int> { cell, indexPath, itemIdentifier in
-      cell.label.text = "\(itemIdentifier)"
+    let cellRegistration = UICollectionView.CellRegistration<TextCell, Content> { cell, indexPath, itemIdentifier in
+      cell.label.text = "\(itemIdentifier.name)"
       cell.contentView.backgroundColor = .systemBlue
       cell.layer.borderWidth = 1
       cell.layer.borderColor = UIColor.black.cgColor
@@ -91,15 +94,15 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
       cell.label.font = UIFont.preferredFont(forTextStyle: .title1)
     }
     
-    dataSource = UICollectionViewDiffableDataSource<Section, Int>(
+    dataSource = UICollectionViewDiffableDataSource<Section, Content>(
       collectionView: collectionView,
       cellProvider: { collectionView, indexPath, itemIdentifier in
         return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
     })
     
-    var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
+    var snapshot = NSDiffableDataSourceSnapshot<Section, Content>()
     snapshot.appendSections([.main])
-    snapshot.appendItems(Array(0..<94))
+    snapshot.appendItems(contents)
     dataSource.apply(snapshot, animatingDifferences: false)
   }
   
@@ -118,7 +121,10 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
 import SwiftUI
 struct RootVC_Preview: PreviewProvider {
   static var previews: some View {
-    RootViewController().showPreview()
+    RootViewController(contents: [
+      Content(imageName: "asdd", name: "SUBWAY"),
+      Content(imageName: "asad", name: "TBD..")
+    ]).showPreview()
       .edgesIgnoringSafeArea(.all)
   }
 }

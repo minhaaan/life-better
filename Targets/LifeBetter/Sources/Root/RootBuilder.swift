@@ -18,6 +18,11 @@ protocol RootDependency: Dependency {
 
 final class RootComponent: Component<RootDependency>, SubWayHomeDependency {
   
+  let content: [Content] = [
+    Content(imageName: "subway Image", name: "지하철 도착정보"),
+    Content(imageName: "TBD Image", name: "TBD..")
+  ]
+  
   override init(
     dependency: RootDependency
   ) {
@@ -39,12 +44,12 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
   }
   
   func build() -> LaunchRouting {
-    let viewController = RootViewController()
+    let component = RootComponent(dependency: AppComponent())
+    let viewController = RootViewController(contents: component.content)
     let interactor = RootInteractor(presenter: viewController)
 
     let navigationController = UINavigationController(root: viewController)
     
-    let component = RootComponent(dependency: AppComponent())
     
     let subwayBuilder = SubWayHomeBuilder(dependency: component)
     
