@@ -222,83 +222,11 @@ final class RootListBuildableMock: RootListBuildable {
   }
 }
 
-// MARK: - RootListRoutingMock -
-final class RootListRoutingMock: RootListRouting {
-  
-  // MARK: - viewControllable
-  
-  var viewControllable: ModernRIBs.ViewControllable
-  
-  // MARK: - interactable
-  
-  var interactable: Interactable
-  var children: [ModernRIBs.Routing] = []
-  
-  init(viewControllable: ModernRIBs.ViewControllable, interactable: Interactable) {
-    self.viewControllable = viewControllable
-    self.interactable = interactable
-  }
-  
-  // MARK: - lifecycle
-  
-  var lifecycle: AnyPublisher<ModernRIBs.RouterLifecycle, Never> {
-    get { underlyingLifecycle }
-    set(value) { underlyingLifecycle = value }
-  }
-  private var underlyingLifecycle: AnyPublisher<ModernRIBs.RouterLifecycle, Never>!
-  
-  // MARK: - load
-  
-  var loadCallsCount = 0
-  var loadCalled: Bool {
-    loadCallsCount > 0
-  }
-  var loadClosure: (() -> Void)?
-  
-  func load() {
-    loadCallsCount += 1
-    loadClosure?()
-  }
-  
-  // MARK: - attachChild
-  
-  var attachChildCallsCount = 0
-  var attachChildCalled: Bool {
-    attachChildCallsCount > 0
-  }
-  var attachChildReceivedChild: ModernRIBs.Routing?
-  var attachChildReceivedInvocations: [ModernRIBs.Routing] = []
-  var attachChildClosure: ((ModernRIBs.Routing) -> Void)?
-  
-  func attachChild(_ child: ModernRIBs.Routing) {
-    attachChildCallsCount += 1
-    attachChildReceivedChild = child
-    attachChildReceivedInvocations.append(child)
-    attachChildClosure?(child)
-  }
-  
-  // MARK: - detachChild
-  
-  var detachChildCallsCount = 0
-  var detachChildCalled: Bool {
-    detachChildCallsCount > 0
-  }
-  var detachChildReceivedChild: ModernRIBs.Routing?
-  var detachChildReceivedInvocations: [ModernRIBs.Routing] = []
-  var detachChildClosure: ((ModernRIBs.Routing) -> Void)?
-  
-  func detachChild(_ child: ModernRIBs.Routing) {
-    detachChildCallsCount += 1
-    detachChildReceivedChild = child
-    detachChildReceivedInvocations.append(child)
-    detachChildClosure?(child)
-  }
-}
 
-// MARK: RootListInteractorMock
-final class RootListInteractorMock: RootListInteractable {
-  var router: LifeBetter.RootListRouting?
-  var listener: LifeBetter.RootListListener?
+// MARK: RootInteractorMock
+final class RootInteractableMock: RootInteractable {
+  var router: LifeBetter.RootRouting?
+  var listener: LifeBetter.RootListener?
   
   var activateCallsCount = 0
   func activate() {
@@ -309,9 +237,124 @@ final class RootListInteractorMock: RootListInteractable {
   func deactivate() {
     deactivateCallsCount += 1
   }
-  
+ 
   var isActive: Bool = false
   var isActiveStream: AnyPublisher<Bool, Never> {
     PassthroughSubject<Bool, Never>().eraseToAnyPublisher()
   }
+}
+
+// MARK: RootViewControllableMock
+final class RootViewControllableMock: RootViewControllable {
+  var presentRootListViewControllerCallsCount = 0
+  func presentRootListViewController(viewController: ModernRIBs.ViewControllable) {
+    presentRootListViewControllerCallsCount += 1
+  }
+  
+  var uiviewController: UIViewController = UIViewController()
+}
+
+// MARK: RootListRoutingMock
+final class RootListRoutingMock: RootListRouting {
+  init(viewControllable: ModernRIBs.ViewControllable, interactable: ModernRIBs.Interactable) {
+    self.viewControllable = viewControllable
+    self.interactable = interactable
+  }
+  
+  var presentSubwayHomeCallsCount = 0
+  func presentSubwayHome() {
+    presentSubwayHomeCallsCount += 1
+  }
+  
+  var detachSubwayHomeCallsCount = 0
+  func detachSubwayHome() {
+    detachSubwayHomeCallsCount += 1
+  }
+  
+  var viewControllable: ModernRIBs.ViewControllable
+  var interactable: ModernRIBs.Interactable
+  
+  var children: [ModernRIBs.Routing] = []
+  
+  var loadCallsCount = 0
+  func load() {
+    loadCallsCount += 1
+  }
+  
+  var attachChildCallsCount = 0
+  func attachChild(_ child: ModernRIBs.Routing) {
+    attachChildCallsCount += 1
+  }
+  
+  var detachChildCallsCount = 0
+  func detachChild(_ child: ModernRIBs.Routing) {
+    detachChildCallsCount += 1
+  }
+  
+  var lifecycle: AnyPublisher<ModernRIBs.RouterLifecycle, Never> {
+    PassthroughSubject<RouterLifecycle, Never>().eraseToAnyPublisher()
+  }
+  
+  
+}
+
+// MARK: RootListInteractorMock
+final class RootListInteractorMock: RootListInteractable {
+    var router: LifeBetter.RootListRouting?
+    var listener: LifeBetter.RootListListener?
+    
+   // MARK: - isActive
+
+    var isActive: Bool {
+        get { underlyingIsActive }
+        set(value) { underlyingIsActive = value }
+    }
+    private var underlyingIsActive: Bool!
+    
+   // MARK: - isActiveStream
+
+    var isActiveStream: AnyPublisher<Bool, Never> {
+        get { underlyingIsActiveStream }
+        set(value) { underlyingIsActiveStream = value }
+    }
+    private var underlyingIsActiveStream: AnyPublisher<Bool, Never>!
+    
+   // MARK: - activate
+
+    var activateCallsCount = 0
+    var activateCalled: Bool {
+        activateCallsCount > 0
+    }
+    var activateClosure: (() -> Void)?
+
+    func activate() {
+        activateCallsCount += 1
+        activateClosure?()
+    }
+    
+   // MARK: - deactivate
+
+    var deactivateCallsCount = 0
+    var deactivateCalled: Bool {
+        deactivateCallsCount > 0
+    }
+    var deactivateClosure: (() -> Void)?
+
+    func deactivate() {
+        deactivateCallsCount += 1
+        deactivateClosure?()
+    }
+    
+   // MARK: - detachSubwayHome
+
+    var detachSubwayHomeCallsCount = 0
+    var detachSubwayHomeCalled: Bool {
+        detachSubwayHomeCallsCount > 0
+    }
+    var detachSubwayHomeClosure: (() -> Void)?
+
+    func detachSubwayHome() {
+        detachSubwayHomeCallsCount += 1
+        detachSubwayHomeClosure?()
+    }
 }

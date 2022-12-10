@@ -11,88 +11,39 @@ import XCTest
 import Subway
 
 final class RootRouterTests: XCTestCase {
-
-  private var router: RootRouter!
-  private var interactor: RootInteractor!
-  private var subwayHomeBuildable: SubwayHomeBuildableMock!
-  private var subWayHomeInteractable: SubWayHomeInteractableMock!
-  public var subwayHomeRouter: SubwayHomeRouterMock!
-  public var subwayHomeViewControllableMock: SubwayHomeViewControllableMock!
+  
+  var router: RootRouter!
+  var rootInteractable: RootInteractableMock!
+  var rootViewControllable: RootViewControllableMock!
   var rootListBuildable: RootListBuildableMock!
-  var rootListInteractor: RootListInteractorMock!
-  var rootListRouting: RootListRoutingMock!
-
-  // TODO: declare other objects and mocks you need as private vars
-
+  var rootListRouting: RootListRouting!
+  
   override func setUp() {
-    super.setUp()
-
-    let presenter = RootPresentableMock(listener: RootPresentableListenerMock())
-    interactor = RootInteractor(presenter: presenter)
-    subwayHomeViewControllableMock = SubwayHomeViewControllableMock()
-    subWayHomeInteractable = SubWayHomeInteractableMock()
-    subwayHomeRouter = SubwayHomeRouterMock(interactable: subWayHomeInteractable, viewControllable: subwayHomeViewControllableMock)
-    var subwayHomeListener: SubWayHomeListener? = nil
-    self.subwayHomeBuildable = SubwayHomeBuildableMock()
-    subwayHomeBuildable.buildHandler = { listener -> SubWayHomeRouting in
-      subwayHomeListener = listener
-      return self.subwayHomeRouter
-    }
+    self.rootInteractable = RootInteractableMock()
+    self.rootViewControllable = RootViewControllableMock()
     self.rootListBuildable = RootListBuildableMock()
-    self.rootListInteractor = RootListInteractorMock()
-    self.rootListRouting = RootListRoutingMock(viewControllable: RootListViewController(contents: []), interactable: self.rootListInteractor)
-    var rootListListener: RootListListener? = nil
+    self.rootListRouting = RootListRoutingMock(
+      viewControllable: RootListViewController(contents: []),
+      interactable: RootListInteractorMock()
+    )
     rootListBuildable.buildHandler = { listener -> RootListRouting in
-      rootListListener = listener
       return self.rootListRouting
     }
     
-    self.router = RootRouter(
-      interactor: interactor,
-      viewController: RootViewController(),
-      subwayHomeBuilder: self.subwayHomeBuildable,
-      rootListBuilder: self.rootListBuildable
+    router = RootRouter(
+      interactor: rootInteractable,
+      viewController: rootViewControllable,
+      rootListBuilder: rootListBuildable
     )
   }
-
-  // MARK: - Tests
-
-  func test_routeToExample_invokesToExampleResult() {
-    // GIVEN
-
-    // WHEN
-    router.routeToSubwayHome()
-
-    // THEN
-    XCTAssert(subWayHomeInteractable.activateCallsCount == 1)
-    XCTAssert(subwayHomeBuildable.buildCallCount == 1)
-    XCTAssert(subwayHomeRouter.loadCallCount == 1)
+  
+  override func tearDown() {
+    
   }
   
-  func test_detachSubwayHome() {
-    // GIVEN
-    
-    // WHEN
-    router.routeToSubwayHome()
-    XCTAssert(subWayHomeInteractable.deactivateCallsCount == 0)
-    
-    router.detachSubwayHome()
-    
-    // THEN
-    XCTAssert(subWayHomeInteractable.deactivateCalled)
-    XCTAssert(subWayHomeInteractable.deactivateCallsCount == 1)
-  }
+  // MARK: Tests
   
-  func test_attachRootList() {
-    // GIVEN
-    
-    
-    // WHEN
-    router.didLoad()
-    
-    // THEN
-    XCTAssert(rootListBuildable.buildCallsCount == 1)
-    XCTAssert(rootListRouting.loadCalled)
-    XCTAssert(rootListRouting.loadCallsCount == 1)
-  }
+  
 }
+
+
