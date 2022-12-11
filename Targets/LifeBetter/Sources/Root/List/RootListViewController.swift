@@ -88,7 +88,7 @@ final class RootListViewController: UIViewController, RootListPresentable, RootL
   }
   
   private func setupDatasource() {
-    let cellRegistration = UICollectionView.CellRegistration<TextCell, Content> { cell, indexPath, itemIdentifier in
+    let cellRegistration = UICollectionView.CellRegistration<RootListCell, Content> { cell, indexPath, itemIdentifier in
       cell.setImage(imageName: itemIdentifier.imageName)
       cell.setTitleText(text: itemIdentifier.name)
     }

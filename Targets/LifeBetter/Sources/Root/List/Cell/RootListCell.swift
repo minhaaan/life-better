@@ -2,9 +2,9 @@ import UIKit
 import SnapKit
 import Then
 
-final class TextCell: UICollectionViewCell {
+final class RootListCell: UICollectionViewCell {
   
-  static let reuseIdentifier = "text-cell-reuse-identifier"
+  static let reuseIdentifier = "rootlist-cell-reuse-identifier"
   
   // MARK: Layout Properties
   
