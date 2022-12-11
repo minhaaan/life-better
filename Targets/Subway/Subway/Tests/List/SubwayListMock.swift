@@ -302,3 +302,42 @@ final class SubwayDetailInteractableMock: SubwayDetailInteractable {
         deactivateClosure?()
     }
 }
+
+// MARK: - SubwayListPresentableListenerMock -
+
+final class SubwayListPresentableListenerMock: SubwayListPresentableListener {
+    
+   // MARK: - updateSearchKeyword
+
+    var updateSearchKeywordKeywordCallsCount = 0
+    var updateSearchKeywordKeywordCalled: Bool {
+        updateSearchKeywordKeywordCallsCount > 0
+    }
+    var updateSearchKeywordKeywordReceivedKeyword: String?
+    var updateSearchKeywordKeywordReceivedInvocations: [String] = []
+    var updateSearchKeywordKeywordClosure: ((String) -> Void)?
+
+    func updateSearchKeyword(keyword: String) {
+        updateSearchKeywordKeywordCallsCount += 1
+        updateSearchKeywordKeywordReceivedKeyword = keyword
+        updateSearchKeywordKeywordReceivedInvocations.append(keyword)
+        updateSearchKeywordKeywordClosure?(keyword)
+    }
+    
+   // MARK: - didTapSubwayStation
+
+    var didTapSubwayStationStationCallsCount = 0
+    var didTapSubwayStationStationCalled: Bool {
+        didTapSubwayStationStationCallsCount > 0
+    }
+    var didTapSubwayStationStationReceivedStation: SubwayStation?
+    var didTapSubwayStationStationReceivedInvocations: [SubwayStation] = []
+    var didTapSubwayStationStationClosure: ((SubwayStation) -> Void)?
+
+    func didTapSubwayStation(station: SubwayStation) {
+        didTapSubwayStationStationCallsCount += 1
+        didTapSubwayStationStationReceivedStation = station
+        didTapSubwayStationStationReceivedInvocations.append(station)
+        didTapSubwayStationStationClosure?(station)
+    }
+}
