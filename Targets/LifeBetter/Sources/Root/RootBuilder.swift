@@ -19,8 +19,8 @@ protocol RootDependency: Dependency {
 final class RootComponent: Component<RootDependency>, RootListDependency {
   
   let content: [Content] = [
-    Content(imageName: "subway Image", name: "SUBWAY"),
-    Content(imageName: "TBD Image", name: "TBD..")
+    Content(imageName: "tram.fill", name: "SUBWAY"),
+    Content(imageName: "wand.and.stars", name: "TBD..")
   ]
   
   override init(

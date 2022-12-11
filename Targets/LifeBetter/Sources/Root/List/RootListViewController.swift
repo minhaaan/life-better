@@ -89,12 +89,8 @@ final class RootListViewController: UIViewController, RootListPresentable, RootL
   
   private func setupDatasource() {
     let cellRegistration = UICollectionView.CellRegistration<TextCell, Content> { cell, indexPath, itemIdentifier in
-      cell.label.text = "\(itemIdentifier.name)"
-      cell.contentView.backgroundColor = .systemBlue
-      cell.layer.borderWidth = 1
-      cell.layer.borderColor = UIColor.black.cgColor
-      cell.label.textAlignment = .center
-      cell.label.font = UIFont.preferredFont(forTextStyle: .title1)
+      cell.setImage(imageName: itemIdentifier.imageName)
+      cell.setTitleText(text: itemIdentifier.name)
     }
     
     dataSource = UICollectionViewDiffableDataSource<Section, Content>(

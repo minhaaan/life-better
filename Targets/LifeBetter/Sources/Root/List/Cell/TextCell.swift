@@ -1,32 +1,60 @@
-
 import UIKit
+import SnapKit
+import Then
 
-class TextCell: UICollectionViewCell {
-    let label = UILabel()
-    static let reuseIdentifier = "text-cell-reuse-identifier"
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
+final class TextCell: UICollectionViewCell {
+  
+  static let reuseIdentifier = "text-cell-reuse-identifier"
+  
+  // MARK: Layout Properties
+  
+  private let imageView = UIImageView().then {
+    $0.contentMode = .scaleAspectFit
+  }
+  private let label = UILabel().then {
+    $0.textAlignment = .center
+    $0.font = .preferredFont(forTextStyle: .title1)
+  }
+  
+  // MARK: init
+  
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    setupLayout()
+  }
+  required init?(coder: NSCoder) {
+    fatalError("not implemnted")
+  }
+  
+  // MARK: LifeCycle
+  
+  // MARK: Method
+  
+  private func setupLayout() {
+    self.layer.cornerRadius = 12
+    self.clipsToBounds = true
+    contentView.backgroundColor = .secondarySystemBackground
+    
+    contentView.addSubview(imageView)
+    contentView.addSubview(label)
+    
+    imageView.snp.makeConstraints { make in
+      make.top.horizontalEdges.equalToSuperview()
+      make.height.equalTo(self.contentView.snp.width)
     }
-    required init?(coder: NSCoder) {
-        fatalError("not implemnted")
+    label.snp.makeConstraints { make in
+      make.bottom.equalTo(-30)
+      make.horizontalEdges.equalToSuperview()
     }
-
-}
-
-extension TextCell {
-    func configure() {
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontForContentSizeCategory = true
-        contentView.addSubview(label)
-        label.font = UIFont.preferredFont(forTextStyle: .caption1)
-        let inset = CGFloat(10)
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
-            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
-            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset)
-            ])
-    }
+  }
+  
+  func setImage(imageName: String) {
+    self.imageView.tintColor = .tertiarySystemBackground
+    self.imageView.image = UIImage(systemName: imageName)
+  }
+  
+  func setTitleText(text: String) {
+    self.label.text = text
+  }
+  
 }
