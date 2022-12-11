@@ -27,8 +27,8 @@ final class SubwayDetailViewControllerTests: XCTestCase {
   }
 
   override func tearDown() {
-    viewController.listener = nil
     viewController = nil
+    viewController.listener = nil
     presentableListener = nil
   }
   
