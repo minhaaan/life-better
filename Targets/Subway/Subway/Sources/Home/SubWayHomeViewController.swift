@@ -20,20 +20,10 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
   
   private var bag = Set<AnyCancellable>()
   
-  // MARK: Layout Properties
-  
-  private let button = UIButton(type: .system).then {
-    $0.setTitleColor(.white, for: .normal)
-    $0.backgroundColor = .systemBlue
-    $0.layer.cornerRadius = 8
-  }
-  
   // MARK: LifeCycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupLayout()
-    setupTapGesture()
   }
   
   override func didMove(toParent parent: UIViewController?) {
@@ -53,23 +43,6 @@ final class SubWayHomeViewController: UIViewController, SubWayHomePresentable, S
     }
   }
   
-  // MARK: Privtate Method
-  
-  private func setupLayout() {
-    view.backgroundColor = .systemBackground
-    
-    button.setTitle("123123", for: .normal)
-    view.addSubview(button)
-    button.snp.makeConstraints { make in
-      make.center.equalToSuperview()
-    }
-  }
-  
-  private func setupTapGesture() {
-    button.tapPublisher
-      .sink { [weak self] _ in
-        self?.listener?.detachSubwayHome()
-      }
-      .store(in: &bag)
-  }
 }
+
+
