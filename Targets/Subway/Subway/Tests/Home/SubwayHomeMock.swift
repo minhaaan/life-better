@@ -61,3 +61,21 @@ final class SubwayHomeInteratableMock: SubWayHomeInteractable {
     return isActiveStream.eraseToAnyPublisher()
   }
 }
+
+// MARK: - SubWayHomePresentableListenerMock -
+
+final class SubWayHomePresentableListenerMock: SubWayHomePresentableListener {
+    
+   // MARK: - detachSubwayHome
+
+    var detachSubwayHomeCallsCount = 0
+    var detachSubwayHomeCalled: Bool {
+        detachSubwayHomeCallsCount > 0
+    }
+    var detachSubwayHomeClosure: (() -> Void)?
+
+    func detachSubwayHome() {
+        detachSubwayHomeCallsCount += 1
+        detachSubwayHomeClosure?()
+    }
+}

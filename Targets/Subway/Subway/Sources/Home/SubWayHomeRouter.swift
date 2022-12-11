@@ -29,6 +29,10 @@ final class SubWayHomeRouter: ViewableRouter<SubWayHomeInteractable, SubWayHomeV
     self.subwayListBuilder = subwayListBuilder
     super.init(interactor: interactor, viewController: viewController)
     interactor.router = self
+  }
+  
+  override func didLoad() {
+    super.didLoad()
     attachSubwayList()
   }
   

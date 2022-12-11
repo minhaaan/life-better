@@ -44,6 +44,7 @@ final class SubwayHomeRouterTests: XCTestCase {
     // GIVEN
     
     // WHEN
+    router.didLoad()
     
     // THEN
     XCTAssert(subwayListBuildable.buildCallsCount == 1)
