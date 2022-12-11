@@ -44,8 +44,7 @@ extension Project {
       infoPlist: .default,
       sources: ["Tests/**"],
       dependencies: [
-        .target(name: "\(name)"),
-        .SnapshotTesting
+        .target(name: "\(name)")
       ],
       settings: .settings(base: baseSettings, configurations: [], defaultSettings: .recommended)
     )
