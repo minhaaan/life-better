@@ -8,11 +8,9 @@
 
 @testable import SubwayDetail
 import XCTest
-import Foundation
 import SubwayCore
 import SubwayNetworking
 import ModernRIBs
-import SnapshotTesting
 
 final class SubwayDetailViewControllerTests: XCTestCase {
   
@@ -97,21 +95,6 @@ final class SubwayDetailViewControllerTests: XCTestCase {
     
     // THEN
     viewController.label.text = text
-  }
-  
-  func test_presentableInteractor_labelText가_업데이트됐을때() {
-    // GIVEN
-    let mockLabelText = "1123"
-    
-    // WHEN
-    viewController.viewDidLoad()
-    presentableInteractor.presenter.labelText.send(mockLabelText)
-    
-    // THEN
-    assertSnapshot(
-      matching: viewController,
-      as: .image(on: .iPhone13)
-    )
   }
   
 }
