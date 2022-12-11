@@ -1,7 +1,6 @@
 @testable import LifeBetter
 import XCTest
 import UIKit
-import SnapshotTesting
 
 final class RootListViewControllerTests: XCTestCase {
   
@@ -41,19 +40,6 @@ final class RootListViewControllerTests: XCTestCase {
     // THEN
     XCTAssert(rootListPresentableListener.attachSubwayCalled)
     XCTAssert(rootListPresentableListener.attachSubwayCallsCount == 1)
-  }
-  
-  func test_snapshot() {
-    // GIVEN
-    
-    // WHEN
-    viewController.viewDidLoad()
-    
-    // THEN
-    assertSnapshot(
-      matching: viewController,
-      as: .image(on: .iPhone13)
-    )
   }
   
 }
