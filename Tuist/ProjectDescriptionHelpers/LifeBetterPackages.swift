@@ -10,6 +10,7 @@ public extension TargetDependency{
   static let Then: TargetDependency = .external(name: "Then")
   static let CombineCocoa: TargetDependency = .external(name: "CombineCocoa")
   static let SwiftyBeaver: TargetDependency = .external(name: "SwiftyBeaver")
+  static let SnapshotTesting: TargetDependency = .external(name: "SnapshotTesting")
 }
 
 public extension Package {
