@@ -25,7 +25,7 @@ jobs:
       - name: run test
         run: |
           xcodebuild build test \
-           -scheme BookSearchApp \
+           -scheme LifeBetter \
            -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.1' \
            -enableCodeCoverage YES -resultBundlePath "./result.xcresult" | xcpretty -c;
 

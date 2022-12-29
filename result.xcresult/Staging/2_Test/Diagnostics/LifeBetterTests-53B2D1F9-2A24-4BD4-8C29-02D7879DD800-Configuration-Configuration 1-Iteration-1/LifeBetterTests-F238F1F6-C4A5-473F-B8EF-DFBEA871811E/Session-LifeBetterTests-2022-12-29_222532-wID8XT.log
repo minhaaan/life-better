@@ -1,0 +1,528 @@
+Xcode version: 14.1 (14B47b)
+22:25:32.165 xcodebuild[88950:3551339] Beginning test session LifeBetterTests-4CC26378-3DDA-4C43-A067-0E437F26C447 at 2022-12-29 22:25:32.165 on target <DVTiPhoneSimulator: 0x154f18070> {
+		SimDevice: iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Shutdown)
+} (16.1 (20B72))
+22:25:32.165 xcodebuild[88950:3551339] 	/Applications/Xcode-14.1.0.app/Contents/Developer/usr/bin/xcodebuild
+build
+test
+-scheme
+LifeBetter
+-destination
+platform=iOS Simulator,name=iPhone 14,OS=16.1
+-enableCodeCoverage
+YES
+-resultBundlePath
+./result.xcresult
+22:25:32.165 xcodebuild[88950:3551339] Test standard output and standard error is at /Users/minan/Desktop/my/life-better/result.xcresult/Staging/2_Test/Diagnostics/LifeBetterTests-53B2D1F9-2A24-4BD4-8C29-02D7879DD800-Configuration-Configuration 1-Iteration-1/LifeBetterTests-F238F1F6-C4A5-473F-B8EF-DFBEA871811E/StandardOutputAndStandardError.txt
+22:25:32.328 xcodebuild[88950:3551339] A429B30C-F9DD-4AA9-8F8A-1477766F8E19: Received sim device notification: {
+    notification = "availableDevices_changed";
+}
+22:25:32.328 xcodebuild[88950:3551482] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.328 xcodebuild[88950:3551339] A429B30C-F9DD-4AA9-8F8A-1477766F8E19: Received sim device notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.329 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booting)";
+    "last_booted_at" = "2022-12-29 13:25:32 +0000";
+    "new_state" = 2;
+    notification = "device_state";
+    "prev_state" = 1;
+}
+22:25:32.403 xcodebuild[88950:3552543] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] A429B30C-F9DD-4AA9-8F8A-1477766F8E19: Received sim device notification: {
+    notification = "availableDevices_changed";
+}
+22:25:32.403 xcodebuild[88950:3551339] A429B30C-F9DD-4AA9-8F8A-1477766F8E19: Received sim device notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3551339] /Users/minan/Library/Developer/CoreSimulator/Devices: Received sim device set notification: {
+    device = "iPhone 14 (A429B30C-F9DD-4AA9-8F8A-1477766F8E19, iOS 16.1, Booted)";
+    "new_state" = 3;
+    notification = "device_state";
+    "prev_state" = 2;
+}
+22:25:32.403 xcodebuild[88950:3552541] 📱<DVTiPhoneSimulator (0x154f18070), iPhone 14, unknown class, 16.1 (20B72), A429B30C-F9DD-4AA9-8F8A-1477766F8E19> claim LaunchSessionClaim_0x11445bb10 on simulator was issued, 2 claims exist.
+22:25:32.412 xcodebuild[88950:3551339] Setting up test runner session
+22:25:32.413 xcodebuild[88950:3551477] Sim iPhone 14: Unregistering for sim device notification with token 5
+22:25:32.413 xcodebuild[88950:3551477] Calling -[SimDevice getenv:error:] for TESTMANAGERD_SIM_SOCK
+22:25:32.414 xcodebuild[88950:3551339] Registering/updating daemon-based crash report observer for process names (
+    xctest,
+    debugserver,
+    FrontBoard,
+    assertiond,
+    runningboardd,
+    SpringBoard,
+    testmanagerd,
+    backboardd,
+    DTServiceHub,
+    LifeBetter,
+    LifeBetterTests
+)
+22:25:32.427 xcodebuild[88950:3551477] Sim iPhone 14 has testmanagerd socket at /private/tmp/com.apple.launchd.JrFwqXAy4B/com.apple.testmanagerd.unix-domain.socket
+22:25:32.427 xcodebuild[88950:3551477] Validating test connection socket path (/private/tmp/com.apple.launchd.JrFwqXAy4B/com.apple.testmanagerd.unix-domain.socket)
+22:25:32.427 xcodebuild[88950:3551477] Constructing transport for test connection socket
+22:25:32.427 xcodebuild[88950:3551477] Connected socket 45 to testmanagerd for Sim iPhone 14
+22:25:32.427 xcodebuild[88950:3551477] Received connection for test runner session
+22:25:32.427 xcodebuild[88950:3551477] Listening for proxy connection request from the test bundle
+22:25:32.429 xcodebuild[88950:3551477] Initiating session with identifier: 4CC26378-3DDA-4C43-A067-0E437F26C447
+22:25:32.430 xcodebuild[88950:3551339] Test runner session acquired connection.
