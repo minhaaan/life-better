@@ -1,0 +1,37 @@
+name: pr-build
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  build:
+    if: contains(github.event.comment.body, 'build')
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: tuist clean
+        run: tuist clean
+
+      - name: tuist fetch
+        run: tuist fetch
+
+      - name: tuist generate -n
+        run: tuist generate -n
+
+      - name: run test
+        run: |
+          xcodebuild build test \
+           -scheme LifeBetter \
+           -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.1' \
+           -enableCodeCoverage YES -resultBundlePath "./result.xcresult" | xcpretty -c;
+
+      # See https://github.com/codecov/example-ci/blob/main/.github/workflows/ci.yml
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          xcode: true
+          xcode_archive_path: './result.xcresult'
